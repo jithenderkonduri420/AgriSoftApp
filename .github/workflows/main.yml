@@ -1,38 +1,32 @@
-jobs:
-  build:
-    # using Ubuntu
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./
-    steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1 #this installs node and npm for us
-      with:
-        node-version: '12.x'
-
-    - uses: actions/cache@v1 # this allows for re-using node_modules caching, making builds a bit faster.
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
-    - name: NPM Install
-      run: npm install
-    - name: NPM Install Angular
-      run: npm install -g @angular/cli > /dev/null
-    - name: NPM build Angular Production
-      run: ng build --prod
-    - name: Delete Existing Files
-      run : sudo sshpass -p ${{ secrets.SSH_PASS }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'rm -rf /home/runcloud/webapps/viuweb/*'
-
-    - name: Compress and Copy New Files to server
-      run : |
-            cd dist/Viusasa/
-            tar -czvf ../../viusasa.tar.gz ./
-            cd ..
-            cd ..
-            sudo sshpass -p ${{ secrets.SSH_PASS }} scp -v -o StrictHostKeyChecking=no -r viusasa.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/runcloud/webapps/viuweb
-    - name: Uncompress new Files
-      run : sudo sshpass -p ${{ secrets.SSH_PASS }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cd /home/runcloud/webapps/viuweb/ && tar -xzvf viusasa.tar.gz && rm viusasa.tar.gz'
+on: push  
+name: Build Angular project  
+jobs:  
+  build:  
+    runs-on: ubuntu-latest  
+    strategy:  
+      matrix:  
+        node-version: [12.x]  
+  
+    steps:  
+      - uses: actions/checkout@v1  
+  
+      - name: Cache node modules  
+        uses: actions/cache@v1  
+        with:  
+          path: ~/.npm  
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}  
+          restore-keys: |  
+            ${{ runner.os }}-node-  
+      - name: Node ${{ matrix.node-version }}  
+        uses: actions/setup-node@v1  
+        with:  
+          node-version: ${{ matrix.node-version }}  
+      - name: npm install and npm run build:ci  
+        run: |  
+          npm i  
+          npm run build:ci  
+      - name: Push Build to Releases  
+        uses: ncipollo/release-action@v1  
+        with:  
+          artifacts: "dist/angular-githubaction/*"  
+          token: ${{ secrets.TOKEN_GITHUB_ACTION }}   
