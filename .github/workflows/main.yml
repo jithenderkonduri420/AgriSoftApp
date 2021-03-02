@@ -1,15 +1,15 @@
-on: push
-name: Publish Website Dry Run
-jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@2.0.0
-      env:
-        FTP_SERVER: dev.sabarimilk.com
-        FTP_USERNAME: agrisoft@dev.sabarimilk.com
-        FTP_PASSWORD: agrisoft
-        ARGS: --delete --dry-run
+# on: push
+# name: Publish Website Dry Run
+# jobs:
+#   FTP-Deploy-Action:
+#     name: FTP-Deploy-Action
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@master
+#     - name: FTP-Deploy-Action
+#       uses: SamKirkland/FTP-Deploy-Action@2.0.0
+#       env:
+#         FTP_SERVER: dev.sabarimilk.com
+#         FTP_USERNAME: agrisoft@dev.sabarimilk.com
+#         FTP_PASSWORD: agrisoft
+#         ARGS: --delete --dry-run
