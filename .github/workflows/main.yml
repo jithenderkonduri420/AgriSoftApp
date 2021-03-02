@@ -1,0 +1,25 @@
+on: push
+name: Publish Website
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@2.0.0
+
+      # Install the node modules
+    - name: NPM Install
+      run: npm install
+      
+    # Create production build
+    - name: Production Build
+      run: npm run build -- --prod # This is equivalent to 'ng build --prod'
+
+      env:
+        FTP_SERVER: dev.sabarimilk.com
+        FTP_USERNAME: agrisoft@dev.sabarimilk.com
+        FTP_PASSWORD: agrisoft
+        ARGS: --delete
+        # --delete arg will delete files on the server if you've deleted them in git
