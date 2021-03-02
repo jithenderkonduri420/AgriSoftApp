@@ -1,2 +1,2 @@
 # AgriSoftApp
-Project Init 1
+Project Init setup
