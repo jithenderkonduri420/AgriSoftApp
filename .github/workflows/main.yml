@@ -11,6 +11,6 @@ jobs:
       env:
         FTP_SERVER: dev.sabarimilk.com
         FTP_USERNAME: agrisoft@dev.sabarimilk.com
-        FTP_PASSWORD: ,r[B[@g{#azc
+        FTP_PASSWORD: agrisoft
         ARGS: --delete
         # --delete arg will delete files on the server if you've deleted them in git
