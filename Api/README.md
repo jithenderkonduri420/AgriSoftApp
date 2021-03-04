@@ -1,164 +1,34 @@
-# Express ES2017 REST API Boilerplate
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![npm version](https://badge.fury.io/js/express-rest-es2017-boilerplate.svg)](https://badge.fury.io/js/express-rest-es2017-boilerplate) [![Build Status](https://travis-ci.org/danielfsousa/express-rest-es2017-boilerplate.svg?branch=master)](https://travis-ci.org/danielfsousa/express-rest-es2017-boilerplate) [![Coverage Status](https://coveralls.io/repos/github/danielfsousa/express-rest-es2017-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/danielfsousa/express-rest-es2017-boilerplate?branch=master)
+# Node.js MongoDB – User Authentication & Authorization example with JWT & Mongoose
 
-Boilerplate/Generator/Starter Project for building RESTful APIs and microservices using Node.js, Express and MongoDB
+For more detail, please visit:
+> [Node.js + MongoDB: User Authentication & Authorization with JWT](https://bezkoder.com/node-js-mongodb-auth-jwt/)
 
-## Features
+Working with Front-end:
+> [Vue.js JWT Authentication with Vuex and Vue Router](https://bezkoder.com/jwt-vue-vuex-authentication/)
 
- - No transpilers, just vanilla javascript
- - ES2017 latest features like Async/Await
- - CORS enabled
- - Uses [yarn](https://yarnpkg.com)
- - Express + MongoDB ([Mongoose](http://mongoosejs.com/))
- - Consistent coding styles with [editorconfig](http://editorconfig.org)
- - [Docker](https://www.docker.com/) support
- - Uses [helmet](https://github.com/helmetjs/helmet) to set some HTTP headers for security
- - Load environment variables from .env files with [dotenv](https://github.com/rolodato/dotenv-safe)
- - Request validation with [joi](https://github.com/hapijs/joi)
- - Gzip compression with [compression](https://github.com/expressjs/compression)
- - Linting with [eslint](http://eslint.org)
- - Tests with [mocha](https://mochajs.org), [chai](http://chaijs.com) and [sinon](http://sinonjs.org)
- - Code coverage with [istanbul](https://istanbul.js.org) and [coveralls](https://coveralls.io)
- - Git hooks with [husky](https://github.com/typicode/husky) 
- - Logging with [morgan](https://github.com/expressjs/morgan)
- - Authentication and Authorization with [passport](http://passportjs.org)
- - API documentation generation with [apidoc](http://apidocjs.com)
- - Continuous integration support with [travisCI](https://travis-ci.org)
- - Monitoring with [pm2](https://github.com/Unitech/pm2)
+> [Angular 8 JWT Authentication example](https://bezkoder.com/angular-jwt-authentication/)
 
-## Requirements
+> [Angular 10 JWT Authentication example](https://bezkoder.com/angular-10-jwt-auth/)
 
- - [Node v7.6+](https://nodejs.org/en/download/current/) or [Docker](https://www.docker.com/)
- - [Yarn](https://yarnpkg.com/en/docs/install)
+> [Angular 11 JWT Authentication example](https://bezkoder.com/angular-11-jwt-auth/)
 
-## Getting Started
+> [React JWT Authentication & Authorization (without Redux) example](https://bezkoder.com/react-jwt-auth/)
 
-#### Clone the repo and make it yours:
+> [React Redux JWT Authentication & Authorization example](https://bezkoder.com/react-redux-jwt-auth/)
 
-```bash
-git clone --depth 1 https://github.com/danielfsousa/express-rest-es2017-boilerplate
-cd express-rest-es2017-boilerplate
-rm -rf .git
+Integration on same Server/Port:
+> [Integrate Angular 8 with Node.js Express](https://bezkoder.com/integrate-angular-8-node-js/)
+
+> [Integrate Angular 10 with Node.js Express](https://bezkoder.com/integrate-angular-10-node-js/)
+
+> [Integrate React with Node.js Express](https://bezkoder.com/integrate-react-express-same-server-port/)
+
+## Project setup
+```
+npm install
 ```
 
-#### Install dependencies:
-
-```bash
-yarn
+### Run
 ```
-
-#### Set environment variables:
-
-```bash
-cp .env.example .env
+node server.js
 ```
-
-## Running Locally
-
-```bash
-yarn dev
-```
-
-## Running in Production
-
-```bash
-yarn start
-```
-
-## Lint
-
-```bash
-# lint code with ESLint
-yarn lint
-
-# try to fix ESLint errors
-yarn lint:fix
-
-# lint and watch for changes
-yarn lint:watch
-```
-
-## Test
-
-```bash
-# run all tests with Mocha
-yarn test
-
-# run unit tests
-yarn test:unit
-
-# run integration tests
-yarn test:integration
-
-# run all tests and watch for changes
-yarn test:watch
-
-# open nyc test coverage reports
-yarn coverage
-```
-
-## Validate
-
-```bash
-# run lint and tests
-yarn validate
-```
-
-## Logs
-
-```bash
-# show logs in production
-pm2 logs
-```
-
-## Documentation
-
-```bash
-# generate and open api documentation
-yarn docs
-```
-
-## Docker
-
-```bash
-# run container locally
-yarn docker:dev
-
-# run container in production
-yarn docker:prod
-
-# run tests
-yarn docker:test
-```
-
-## Deploy
-
-Set your server ip:
-
-```bash
-DEPLOY_SERVER=127.0.0.1
-```
-
-Replace my Docker username with yours:
-
-```bash
-nano deploy.sh
-```
-
-Run deploy script:
-
-```bash
-yarn deploy
-```
-
-## Tutorials
- - [Create API Documentation Using Squarespace](https://selfaware.blog/home/2018/6/23/api-documentation)
-
-## Inspirations
-
- - [KunalKapadia/express-mongoose-es6-rest-api](https://github.com/KunalKapadia/express-mongoose-es6-rest-api)
- - [diegohaz/rest](https://github.com/diegohaz/rest)
-
-## License
-
-[MIT License](README.md) - [Daniel Sousa](https://github.com/danielfsousa)
