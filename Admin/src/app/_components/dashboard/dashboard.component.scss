@@ -23,6 +23,7 @@
         .card{
             display: block;
             float: left;
+            padding: 15px 0;
             width: 100%;
             max-width: 300px;
             margin-right: 50px;
@@ -34,7 +35,10 @@
             img{
                 max-height: 110px;
                 width: auto;
-                padding: 20px;
+                padding: 5px 15px;
+            }
+            h5{
+                margin: 0;
             }
         }
     }
