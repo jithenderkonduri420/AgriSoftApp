@@ -1,0 +1,41 @@
+.dashboard-section{
+    padding: 20px 50px;
+    .page-title{
+        color: #000000;
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 47px;
+        margin: 20px 0;
+    }
+    .page-sub-title,
+    .page-breadcrumb{
+        color: #5A5A5A;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    p{
+        margin: 0;
+    }
+    .page-center-content{
+        padding: 80px 0;
+        .card{
+            display: block;
+            float: left;
+            width: 100%;
+            max-width: 300px;
+            margin-right: 50px;
+            border: none;
+            background-color: #ffffff;
+            box-shadow: 0 2px 24px 0 rgba(1,1,1,0.11);
+            text-align: center;
+            border-radius: 10px;
+            img{
+                max-height: 110px;
+                width: auto;
+                padding: 20px;
+            }
+        }
+    }
+}

@@ -6,13 +6,9 @@ app-sidenav{
 }
 
 main{   
-    flex-grow: 10;
-    app-header{
-        float: left;
-        width: 100%;
-    }
-    
-    app-dashboard{
+    flex-grow: 7;
+    app-header,
+    app-main{
         float: left;
         width: 100%;
     }
