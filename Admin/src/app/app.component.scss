@@ -1,0 +1,19 @@
+app-sidenav{
+    background-color: #D9E6FF80;
+    flex-grow: 3;
+    max-width: 270px;
+    padding: 40px;
+}
+
+main{   
+    flex-grow: 10;
+    app-header{
+        float: left;
+        width: 100%;
+    }
+    
+    app-dashboard{
+        float: left;
+        width: 100%;
+    }
+}
