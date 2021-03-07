@@ -1,0 +1,91 @@
+<div id="login">
+  <!-- class="common-bottom-bg" -->
+  <div class="login-screen">
+    <ion-grid class="header-login">
+      <div>
+        <h1>Welcome,</h1>
+        <p>Sign in to continue!</p>
+      </div>
+    </ion-grid>
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      class="form-with-label"
+    >
+      <ion-item lines="none">
+        <ion-label position="floating">Enter User ID</ion-label>
+        <ion-input
+          formControlName="user_name"
+          appIntegerInput
+          type="tel"
+          maxlength="10"
+          appMobileNumber="true"
+        ></ion-input>
+      </ion-item>
+      <ion-item
+        *ngIf="
+          formSubmitted &&
+          !loginForm.controls.user_name.valid &&
+          loginForm.controls.user_name.hasError('required')
+        "
+        class="error-validation error-position"
+      >
+        <p>Please Enter Mobile Number.</p>
+      </ion-item>
+      <ion-item
+        *ngIf="
+          !loginForm.controls.user_name.valid &&
+          loginForm.controls.user_name.hasError('range')
+        "
+        class="error-validation error-position"
+      >
+        <p>Must be 10 digits</p>
+      </ion-item>
+      <ion-item lines="none" class="input-space">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input
+          *ngIf="toogleType"
+          formControlName="password"
+          type="password"
+        ></ion-input>
+        <ion-input
+          *ngIf="!toogleType"
+          formControlName="password"
+          autocomplete="off"
+          type="text"
+        ></ion-input>
+        <span
+          *ngIf="!toogleType"
+          (click)="toogleType = true"
+          class="icon-icon-view"
+        ></span>
+        <span
+          *ngIf="toogleType"
+          (click)="toogleType = false"
+          class="icon-private"
+        ></span>
+      </ion-item>
+      <ion-item
+        *ngIf="
+          formSubmitted &&
+          !loginForm.controls.password.valid &&
+          loginForm.controls.password.hasError('required')
+        "
+        class="error-validation error-position"
+      >
+        <p>Please Enter Password</p>
+      </ion-item>
+
+
+
+      <ion-button type="submit">
+        Sign In
+      </ion-button>
+      <div style="text-align: center" class="forgot-pass">
+        <a (click)="routeToForgotPassword()">Forgot Password?</a>
+        <br />
+      </div>
+    </form>
+  </div>
+</div>
