@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../order/order.module').then(m => m.OrderPageModule)
       },
       {
+        path: 'notifications',
+        loadChildren: () => import('../notifications/notifications.module').then( m => m.NotificationsPageModule)
+      },
+      {
         path: '',
         redirectTo: '/home/dashboard',
         pathMatch: 'full'

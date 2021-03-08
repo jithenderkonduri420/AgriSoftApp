@@ -4,6 +4,7 @@
     --ion-font-family: 'Montserrat', sans-serif;
     font-family: var(--ion-font-family) !important;
     --ion-color-secondary: linear-gradient(90deg, rgba(84, 158, 73, 1) 0%, rgba(121, 197, 106, 1) 100%);
+    //  --ion-color-cart-button: #E77649;
     --ion-color-secondary-rgb: 0, 102, 0;
     --ion-color-secondary-contrast: #ffffff;
     --ion-color-secondary-contrast-rgb: 255, 255, 255;
@@ -24,4 +25,126 @@
 
 .header-translucent-ios ion-toolbar {
     opacity: 1;
+}
+
+ion-card {
+    margin-top: 10px !important;
+    margin-bottom: 0px !important;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 24px 0 rgb(1 1 1 / 11%);
+    img.bitmap {
+        margin: 10px 0 0;
+        height: 72px;
+        border-radius: 9px;
+        width: 72px;
+    }
+    .align {
+        margin: 10px 8px 10px 0px !important;
+    }
+}
+
+.cart-detials {
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+.sabari-cow-milk-500 {
+    height: 32px;
+    white-space: break-spaces;
+    color: #363636;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 7px !important;
+    line-height: 16px;
+}
+
+.cost {
+    height: 19px;
+    width: 51px;
+    color: #258B1F;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 19px;
+}
+
+.per-crate {
+    height: 13px;
+    width: 46px;
+    opacity: 0.4;
+    color: #363636;
+    font-size: 11px;
+    letter-spacing: 0;
+    line-height: 13px;
+}
+
+.crates-qty {
+    width: 100%;
+    text-align: center;
+    color: #363636;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 14px;
+    margin: 7px 0 9px;
+    float: left;
+}
+
+.cart-detials-input {
+    box-sizing: border-box;
+    width: 58px;
+    height: 27px;
+    border: 1px solid #747474;
+    border-radius: 4px;
+    color: #393939;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    margin: 0 0 8px
+}
+
+.cart-detials-button {
+    border-radius: 6px;
+    background-color: #258B1F;
+    color: #FFFFFF;
+    font-size: 13px;
+    letter-spacing: 0;
+    line-height: 15px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.cart-button-col {
+    width: 100%;
+    text-align: center;
+    float: left;
+    .cart-total {
+        color: #282828;
+        font-size: 16px;
+        padding: 0 10px 0 0;
+        line-height: 19px;
+    }
+    .total-mount {
+        color: #258B1F;
+        font-size: 26px;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 30px;
+    }
+    .order-review {
+        //  height: 43px;
+        //width: 280px;
+        border-radius: 10px;
+        background-color: #E77649;
+        line-height: 30px;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: center;
+    }
+}
+
+ion-item {
+    --inner-padding-end: 0px !important
 }
