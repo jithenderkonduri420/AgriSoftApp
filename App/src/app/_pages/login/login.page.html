@@ -1,0 +1,18 @@
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <header class="header-title">
+      <strong>Welcome,</strong>
+      <p>Sign in to continue!</p> 
+    </header>
+    <form #form="ngForm" class="login-form" (ngSubmit)="register(form)">
+      <ion-item>
+        <ion-label position="stacked">User ID</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+    </form>
+  </div>
+</ion-content>
