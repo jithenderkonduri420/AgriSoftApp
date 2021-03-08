@@ -8,7 +8,8 @@ import { environment } from '../environments/environment';
 import { SidenavComponent } from './_common/sidenav/sidenav.component';
 import { DashboardComponent } from './_components/dashboard/dashboard.component';
 import { HeaderComponent } from './_common/header/header.component';
-import { MainComponent } from './_components/main/main.component';
+import { LoginComponent } from './_pages/login/login.component';
+import { DistributorComponent } from './_components/distributor/distributor.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MainComponent } from './_components/main/main.component';
     SidenavComponent,
     HeaderComponent,
     DashboardComponent,
-    MainComponent
+    LoginComponent,
+    DistributorComponent
   ],
   imports: [
     BrowserModule,
