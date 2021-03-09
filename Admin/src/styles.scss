@@ -192,8 +192,8 @@ body{
 }
 
 .custom-scrollbar{
-    max-height: 350px;
-    overflow: auto;
+    max-height: 450px;
+    overflow-y: auto;
     &::-webkit-scrollbar {
         width: 8px;
     }
