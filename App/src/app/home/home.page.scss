@@ -1,1 +1,53 @@
-
+    .welcome-title {
+        font-size: 23px;
+        font-family: 'Montserrat', sans-serif;
+        line-height: 27px;
+        color: #303030;
+        margin: 0;
+        font-weight: bold;
+    }
+    
+    .welcome-subtitle {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        line-height: 15px;
+        color: #303030;
+        margin: 0;
+        font-weight: normal;
+        margin: 0;
+    }
+    
+    .notificatin-icon {
+        float: left;
+        margin: 0
+    }
+    
+    .notificatin-icon img {
+        float: right;
+        height: 26px;
+        position: relative;
+        margin: 6px 0 0;
+    }
+    
+    .notification-badge {
+        position: absolute;
+        top: 9px;
+        right: 31px;
+        font-size: 8px;
+        width: 17px;
+        height: 17px;
+        padding: 3px;
+        background: #A02A2A;
+        border: 2px solid #fff;
+    }
+    
+    .app-details {
+        float: right;
+    }
+    
+    a.ion-logout {
+        height: 34px;
+        margin: 6px 0px 0 12px;
+        float: right;
+        font-size: 20px;
+    }

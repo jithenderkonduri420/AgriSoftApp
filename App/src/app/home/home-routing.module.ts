@@ -12,8 +12,16 @@ const routes: Routes = [
         loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardPageModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'cart',
+        loadChildren: () => import('../cart/cart.module').then(m => m.CartPageModule)
+      },
+      {
+        path: 'order',
+        loadChildren: () => import('../order/order.module').then(m => m.OrderPageModule)
+      },
+      {
+        path: 'notifications',
+        loadChildren: () => import('../notifications/notifications.module').then( m => m.NotificationsPageModule)
       },
       {
         path: '',

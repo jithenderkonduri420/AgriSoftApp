@@ -9,11 +9,11 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./screens/login/login.module').then( m => m.LoginPageModule)
-   }
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./screens/home/home.module').then( m => m.HomePageModule)
-  // }
+   },  {
+    path: 'notifications',
+    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
+  }
+
 ];
 @NgModule({
   imports: [

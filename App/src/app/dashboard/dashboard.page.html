@@ -1,60 +1,69 @@
-<ion-toolbar class="app-header">
-  <ion-title>Hello,
-    <p>Sebastian</p>
-  </ion-title>
-  <ion-buttons slot="end">
-    <ion-button>
-      <ion-icon name="notifications"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-</ion-toolbar>
-<ion-content paddingclass="ion-padding-vertical">
-  <ion-card>
-    <ion-item color="secondary">
-      <ion-avatar>
-        <ion-icon name="card-sharp"></ion-icon>
-      </ion-avatar>
-      <ion-label>
-        <div class="align">
-          <h6 class="ion-text-start">Outstanding Crates</h6>
-        </div>
-        <h1>56</h1>
-        <div class="align">
-          <a href="">View History</a>
-        </div>
-      </ion-label>
-    </ion-item>
-  </ion-card>
-  <ion-card>
-    <ion-item color="cash">
-      <ion-avatar>
-        <ion-icon name="card-sharp"></ion-icon>
-      </ion-avatar>
-      <ion-label>
-        <div class="align">
-          <h6 class="ion-text-start">Outstanding Crates</h6>
-        </div>
-        <h1>56</h1>
-        <div class="align">
-          <a href="">View History</a>
-        </div>
-      </ion-label>
-    </ion-item>
-  </ion-card>
-  <ion-list>
-    <ion-list-header>
-      Notifications
-    </ion-list-header>
+<ion-content>
+    <div class="vertical-top-margin">
+        <ion-card>
+            <ion-item color="secondary">
+                <img src="\assets\icon\crate.png">
+                <ion-label>
+                    <div class="align">
+                        <p>Outstanding Crates</p>
+                        <span>56</span>
+                        <p><a href="">View History</a></p>
+                    </div>
+                </ion-label>
+            </ion-item>
+        </ion-card>
+        <ion-card class="card-money">
+            <ion-item color="cash">
+                <img src="\assets\icon\cash.svg">
+                <ion-label>
+                    <div class="align">
+                        <p>Outstanding Money</p>
+                        <span>₹ 7,880</span>
+                        <p><a href="">View History</a></p>
+                    </div>
+                </ion-label>
+            </ion-item>
+        </ion-card>
+        <ion-list>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="6">
+                        <h4 class="heading-title">Notifications</h4>
+                    </ion-col>
+                    <ion-col size="6">
+                        <a href="">View All</a>
+                    </ion-col>
 
-    <ion-item>
-      <ion-icon slot="start" name="pin"></ion-icon>
-      <p class="ion-text-left">Lorem Ipsum is simply dummy text of the printing and typesetting industry </p>
+                </ion-row>
+            </ion-grid>
+            <ul class="experiences">
 
-    </ion-item>
+                <!-- Experience -->
+                <li class="green">
+                    <div class="where">
+69
+                        <p>Curabitur id elementum mauris. Duis elit velit, vehicula id lobortis a, finibus sit amet massa.</p>
 
+                    </div>
 
-  </ion-list>
+                </li>
+                <!-- Experience -->
+                <li class="green">
+                    <div class="where">
+                        <p>Curabitur id elementum mauris. Duis elit velit, vehicula id lobortis a, finibus sit amet massa.</p>
 
+                    </div>
+                </li>
+                <!-- Experience -->
+                <li class="green">
+                    <div class="where">
+                        <p>Curabitur id elementum mauris. Duis elit velit, vehicula id lobortis a, finibus sit amet massa.</p>
 
+                    </div>
+                </li>
+            </ul>
+        </ion-list>
+
+    </div>
 
 </ion-content>
