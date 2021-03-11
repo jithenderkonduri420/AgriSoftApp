@@ -30,7 +30,6 @@
         border-radius: 10px;
         h4{
             color: #000000;
-            font-family: Roboto;
             font-size: 24px;
             font-weight: 500;
             letter-spacing: 0;
@@ -43,44 +42,6 @@
             width: 100%;
         }
 
-        form{
-            float: left;
-            max-width: 1000px;
-            &>div{
-                margin-bottom: 20px;
-                margin-top: 20px;
-                position: relative;
-                overflow: visible;
-            }
-            .form-label{
-                position: absolute;
-                margin-left: 25px;
-                padding: 0 15px;
-                top: -8px;
-                background-color: #ffffff;
-                z-index: 2;
-                color: rgba(48, 48, 48, 0.5);
-                font-size: 14px;
-                letter-spacing: 0;
-                line-height: 16px;
-            }
-            input{
-                border: 1px solid #979797;
-                border-radius: 5px;
-                background-color: #FFFFFF;
-                height: 46px;
-                &:focus{
-                    background: none !important;
-                }
-                &:-webkit-autofill,
-                &:-webkit-autofill:hover, 
-                &:-webkit-autofill:focus, 
-                &:-webkit-autofill:active
-                {
-                    -webkit-box-shadow: 0 0 0 30px white inset !important;
-                    background: none;
-                }
-            }
-        }
     }
+
 }
