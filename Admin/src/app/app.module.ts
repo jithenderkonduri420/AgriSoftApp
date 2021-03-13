@@ -11,6 +11,7 @@ import { HeaderComponent } from './_common/header/header.component';
 import { DistributorComponent } from './_components/distributor/distributor.component';
 import { DistributorsListComponent } from './_components/distributors-list/distributors-list.component';
 import { AddDistributorComponent } from './_components/add-distributor/add-distributor.component';
+import { ProductInvetoryComponent } from './_components/product-invetory/product-invetory.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddDistributorComponent } from './_components/add-distributor/add-distr
     DashboardComponent,
     DistributorComponent,
     DistributorsListComponent,
-    AddDistributorComponent
+    AddDistributorComponent,
+    ProductInvetoryComponent
   ],
   imports: [
     BrowserModule,
