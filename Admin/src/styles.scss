@@ -168,9 +168,15 @@
     font-display: swap;
 }
 
-body,html{
+html{
+    width: 100%;
+    height: 100%;
+}
+
+body{
     width: 100%;
     min-height: 100%;
+    display: grid;
 }
 
 input:focus,
@@ -192,8 +198,9 @@ body{
 }
 
 .custom-scrollbar{
-    max-height: 800px;
+    max-height: 600px;
     overflow-y: auto;
+    overflow-x: hidden;
     &::-webkit-scrollbar {
         width: 8px;
     }
@@ -204,6 +211,63 @@ body{
     &::-webkit-scrollbar-thumb {
         border-radius: 4px;
         background-color: #258B1F;
+    }
+}
+
+
+.modal-open .modal {
+  display: flex !important;
+  align-items: center !important;
+  .modal-dialog {
+    flex-grow: 1;
+    max-width: 700px;
+    .modal-content{
+        border: none;
+        border-radius: 10px;
+    }
+  }
+}
+
+header{
+    padding: 20px 50px;
+    float: left;
+    width: 100%;
+    .page-title{
+        color: #000000;
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 47px;
+        margin: 20px 0;
+    }
+    .page-sub-title,
+    .page-breadcrumb{
+        color: #5A5A5A;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    p{
+        margin: 0;
+    }
+
+    .add-new{
+        margin: 25px 40px;
+        height: 39px;
+        width: 140px;
+        border-radius: 19.5px;
+        background-color: #255D95;
+        border: none;
+    }
+}
+
+.main-section{
+    padding: 20px 50px;
+    float: left;
+    width: 100%;
+    &>div{
+        float: left;
+        width: 100%;
     }
 }
 
@@ -270,6 +334,36 @@ body{
             border: none;
             outline: none;
             height: 46px;
+        }
+    }
+    .upload-imge{
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+        .upload-placeholder{
+            width: 150px;
+            border: 1px solid #979797;
+            overflow: hidden;
+            img{
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+            }
+            label{
+                margin: 0;
+            }
+            input{
+                display: none;
+            }
+        }
+        ul{
+            list-style-type: none;
+            list-style-position: inside;
+            li{
+                color: #838383;
+                font-size: 12px;
+                letter-spacing: 0;
+            }
         }
     }
 }
