@@ -198,7 +198,7 @@ body{
 }
 
 .custom-scrollbar{
-    max-height: 800px;
+    max-height: 600px;
     overflow-y: auto;
     overflow-x: hidden;
     &::-webkit-scrollbar {
@@ -212,6 +212,20 @@ body{
         border-radius: 4px;
         background-color: #258B1F;
     }
+}
+
+
+.modal-open .modal {
+  display: flex !important;
+  align-items: center !important;
+  .modal-dialog {
+    flex-grow: 1;
+    max-width: 700px;
+    .modal-content{
+        border: none;
+        border-radius: 10px;
+    }
+  }
 }
 
 header{
@@ -320,6 +334,36 @@ header{
             border: none;
             outline: none;
             height: 46px;
+        }
+    }
+    .upload-imge{
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+        .upload-placeholder{
+            width: 150px;
+            border: 1px solid #979797;
+            overflow: hidden;
+            img{
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+            }
+            label{
+                margin: 0;
+            }
+            input{
+                display: none;
+            }
+        }
+        ul{
+            list-style-type: none;
+            list-style-position: inside;
+            li{
+                color: #838383;
+                font-size: 12px;
+                letter-spacing: 0;
+            }
         }
     }
 }

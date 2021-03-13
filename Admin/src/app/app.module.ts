@@ -13,6 +13,8 @@ import { DistributorsListComponent } from './_components/distributors-list/distr
 import { AddDistributorComponent } from './_components/add-distributor/add-distributor.component';
 import { ProductInvetoryComponent } from './_components/product-invetory/product-invetory.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import { ProductInvetoryComponent } from './_components/product-invetory/product
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
