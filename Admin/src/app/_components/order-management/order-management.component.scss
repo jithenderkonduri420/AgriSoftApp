@@ -33,6 +33,30 @@
             top: 50px;
             width: 100%;
             float: left;
+            z-index: 1;
+        }
+    }
+    .order-info{
+        margin: 30px 0;
+        float: left;
+        width: 100%;
+        .info-sub-title{
+            margin-bottom: 7px;
+            color: #515151;
+            font-size: 14px;
+            letter-spacing: 0;
+            line-height: 14px;
+            font-weight: 500;
+        }
+        .info-title{
+            color: #000000;
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 24px;
+            strong{
+                display: block;
+            }
         }
     }
 }
