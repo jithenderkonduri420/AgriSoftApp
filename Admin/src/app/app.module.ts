@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,11 @@ import { AddDistributorComponent } from './_components/add-distributor/add-distr
 import { ProductInvetoryComponent } from './_components/product-invetory/product-invetory.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrderManagementComponent } from './_components/order-management/order-management.component';
+import { OrderInvoiceComponent } from './_components/order-invoice/order-invoice.component';
+import { AccountManagementComponent } from './_components/account-management/account-management.component';
+import { OrderSearchPipe } from './_pipes/order-search.pipe';
+import { SearchHighlightDirective } from './_directive/search-highlight.directive';
 
 @NgModule({
   declarations: [
@@ -24,13 +30,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DistributorComponent,
     DistributorsListComponent,
     AddDistributorComponent,
-    ProductInvetoryComponent
+    ProductInvetoryComponent,
+    OrderManagementComponent,
+    OrderInvoiceComponent,
+    AccountManagementComponent,
+    OrderSearchPipe,
+    SearchHighlightDirective
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    NgbModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

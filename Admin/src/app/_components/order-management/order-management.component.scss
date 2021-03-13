@@ -1,0 +1,38 @@
+.order-management-list{
+    .order-search{
+        background-color: #258B1F;
+        border-radius: 4px;
+        box-shadow: 0 3px 24px 0 rgba(0,0,0,0.1);
+        position: relative;
+        .input-group-text{
+            background: #ffffff;
+            border: none;
+            padding: 0 20px;
+            border-radius: 4px 0 0 4px !important;
+            border-radius: 0;
+            svg{
+                fill: #BFBFBF;
+            }
+        }
+        .form-control{
+            border: none;
+            padding: 22px 0;
+            padding-right: 15px;
+            border-radius: 0 4px 4px 0;
+        }
+        .btn-outline-secondary{
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 20px;
+        }
+        .list-group-flush{
+            position: absolute;
+            left: 0;
+            top: 50px;
+            width: 100%;
+            float: left;
+        }
+    }
+}
