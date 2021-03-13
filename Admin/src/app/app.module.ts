@@ -8,7 +8,6 @@ import { environment } from '../environments/environment';
 import { SidenavComponent } from './_common/sidenav/sidenav.component';
 import { DashboardComponent } from './_components/dashboard/dashboard.component';
 import { HeaderComponent } from './_common/header/header.component';
-import { LoginComponent } from './_pages/login/login.component';
 import { DistributorComponent } from './_components/distributor/distributor.component';
 import { DistributorsListComponent } from './_components/distributors-list/distributors-list.component';
 import { AddDistributorComponent } from './_components/add-distributor/add-distributor.component';
@@ -19,7 +18,6 @@ import { AddDistributorComponent } from './_components/add-distributor/add-distr
     SidenavComponent,
     HeaderComponent,
     DashboardComponent,
-    LoginComponent,
     DistributorComponent,
     DistributorsListComponent,
     AddDistributorComponent
