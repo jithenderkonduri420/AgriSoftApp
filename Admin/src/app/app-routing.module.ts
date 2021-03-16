@@ -8,9 +8,11 @@ import { ProductInvetoryComponent } from "../app/_components/product-invetory/pr
 import { OrderManagementComponent } from "../app/_components/order-management/order-management.component";
 import { OrderInvoiceComponent } from "../app/_components/order-invoice/order-invoice.component";
 import { AccountManagementComponent } from "../app/_components/account-management/account-management.component";
+import { LoginComponent } from "../app/_components/login/login.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'home', component: DashboardComponent },
   { path: 'distributor', component: DistributorComponent },
   { path: 'distributors', component: DistributorsListComponent },

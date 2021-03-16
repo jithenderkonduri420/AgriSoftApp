@@ -20,6 +20,7 @@ import { OrderInvoiceComponent } from './_components/order-invoice/order-invoice
 import { AccountManagementComponent } from './_components/account-management/account-management.component';
 import { OrderSearchPipe } from './_pipes/order-search.pipe';
 import { SearchHighlightDirective } from './_directive/search-highlight.directive';
+import { LoginComponent } from './_components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SearchHighlightDirective } from './_directive/search-highlight.directiv
     OrderInvoiceComponent,
     AccountManagementComponent,
     OrderSearchPipe,
-    SearchHighlightDirective
+    SearchHighlightDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
