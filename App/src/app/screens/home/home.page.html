@@ -1,42 +1,54 @@
-
-<ion-header>
-    <ion-toolbar>
-        <ion-title>Home</ion-title>
-        <p></p>
-    </ion-toolbar>
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title
+      ><h3 class="welcome-title" *ngIf="isLogin">
+        Hello, {{ this.currentUser.name }}
+      </h3></ion-title
+    >
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6"> </ion-col>
+        <ion-col size="6">
+          <div class="app-details">
+            <a href="" class="ion-logout"><a (click)="logout()"><ion-icon slot="start" name="log-out"></ion-icon></a></a>
+            <p class="notificatin-icon">
+              <img src="\assets\icon\notification.svg" />
+              <ion-badge color="primary" mode="ios" class="notification-badge"
+                >12</ion-badge
+              >
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-card class="content-box">
-        <ion-item>
-            <ion-avatar slot="start">
-                <ion-icon name="card-sharp"></ion-icon>
-            </ion-avatar>
-            <ion-label>
-                <div class="align">
-                    <h6 class="ion-text-start">Outstanding Crates</h6>
-                </div>
-                <h1>56</h1>
-                <div class="align">
-                    <a href="">View History</a>
-                </div>
-            </ion-label>
-        </ion-item>
-    </ion-card>
-    <ion-card class="content-box">
-        <ion-item>
-            <ion-avatar slot="start">
-                <ion-icon name="cash"></ion-icon>
-            </ion-avatar>
-            <ion-label>
-                <div class="align">
-                    <h6 class="ion-text-start">Outstanding Money</h6>
-                </div>
-                <h1>56</h1>
-                <div class="align">
-                    <a href="">View History</a>
-                </div>
-            </ion-label>
-        </ion-item>
-    </ion-card>
-</ion-content>
+<ion-tabs>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="dashboard">
+        <ion-icon name="wallet"></ion-icon>
+        <ion-label>wallet</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="tab1">
+        <ion-icon name="wifi"></ion-icon>
+        <ion-label>Order</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="tab3">
+        <ion-icon name="cart"></ion-icon>
+        <ion-label>Cart</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="tab2">
+        <ion-icon name="call"></ion-icon>
+        <ion-label>Call</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-tabs>

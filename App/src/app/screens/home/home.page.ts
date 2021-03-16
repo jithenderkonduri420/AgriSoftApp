@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-tabs',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss']
 })
-export class HomePage implements OnInit {
+export class HomePage {
+  currentUser: any;
+  isLogin: boolean = false;
+  constructor(private authService: AuthenticationService) {
+    this.authService.userDetails().then((res: any) => {
+      this.currentUser = res.user;
+      this.isLogin = this.authService.currentUserValue;
+    })
 
-  constructor() { }
-
-  ngOnInit() {
+  }
+  logout() {
+    this.authService.logout();
   }
 
 }

@@ -9,18 +9,19 @@ import { OrderManagementComponent } from "../app/_components/order-management/or
 import { OrderInvoiceComponent } from "../app/_components/order-invoice/order-invoice.component";
 import { AccountManagementComponent } from "../app/_components/account-management/account-management.component";
 import { LoginComponent } from "../app/_components/login/login.component";
+import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: DashboardComponent },
-  { path: 'distributor', component: DistributorComponent },
-  { path: 'distributors', component: DistributorsListComponent },
-  { path: 'add-distributor', component: AddDistributorComponent},
-  { path: 'products', component: ProductInvetoryComponent },
-  { path: 'orders', component: OrderManagementComponent },
-  { path: 'order-invoice', component: OrderInvoiceComponent },
-  { path: 'account', component: AccountManagementComponent },
+  { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'distributor', component: DistributorComponent, canActivate: [AuthGuard] },
+  { path: 'distributors', component: DistributorsListComponent, canActivate: [AuthGuard] },
+  { path: 'add-distributor', component: AddDistributorComponent, canActivate: [AuthGuard]},
+  { path: 'products', component: ProductInvetoryComponent, canActivate: [AuthGuard] },
+  { path: 'orders', component: OrderManagementComponent, canActivate: [AuthGuard] },
+  { path: 'order-invoice', component: OrderInvoiceComponent, canActivate: [AuthGuard] },
+  { path: 'account', component: AccountManagementComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

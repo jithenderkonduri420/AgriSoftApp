@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+
+import { UtilsService } from 'src/app/shared/services//utils.service';
 
 @Component({
   selector: 'app-login',
@@ -10,18 +14,48 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   toogleType: boolean = true;
   formSubmitted = false;
-  constructor() { }
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService,
+    private utilsService: UtilsService
+  ) {}
 
   ngOnInit() {
     this.initForm();
+    /**
+     * check login state
+     */
+    this.checkLoginState();
   }
   initForm() {
     this.loginForm = new FormGroup({
-      user_name: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+      username: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(11),
+      ]),
       password: new FormControl('', [Validators.required]),
-      // captcha: new FormControl('', [Validators.required]),
-      // captchaHash: new FormControl(''),
     });
   }
-
+  onSubmit() {
+    if (!this.utilsService.networkStatus.connected) {
+      this.utilsService.presentToastError(
+        'Network disconnected. Please try to login while network available.'
+      );
+    }
+    this.formSubmitted = true;
+    if (this.loginForm.valid) {
+      const loginData = { ...this.loginForm.value };
+      this.authService.login(loginData);
+    }
+  }
+  /**
+   * declar - check login state
+   */
+  checkLoginState() {
+    this.authService.authenticationState.subscribe((state) => {
+      if (state) {
+        this.router.navigate(['home']);
+      }
+    });
+  }
 }

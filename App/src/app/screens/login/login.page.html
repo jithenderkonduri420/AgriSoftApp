@@ -12,22 +12,23 @@
       [formGroup]="loginForm"
       (ngSubmit)="onSubmit()"
       class="form-with-label"
+
     >
       <ion-item lines="none">
         <ion-label position="floating">Enter User ID</ion-label>
         <ion-input
-          formControlName="user_name"
+          formControlName="username"
           appIntegerInput
           type="tel"
-          maxlength="10"
+          maxlength="11"
           appMobileNumber="true"
         ></ion-input>
       </ion-item>
       <ion-item
         *ngIf="
           formSubmitted &&
-          !loginForm.controls.user_name.valid &&
-          loginForm.controls.user_name.hasError('required')
+          !loginForm.controls.username.valid &&
+          loginForm.controls.username.hasError('required')
         "
         class="error-validation error-position"
       >
@@ -35,8 +36,8 @@
       </ion-item>
       <ion-item
         *ngIf="
-          !loginForm.controls.user_name.valid &&
-          loginForm.controls.user_name.hasError('range')
+          !loginForm.controls.username.valid &&
+          loginForm.controls.username.hasError('range')
         "
         class="error-validation error-position"
       >
@@ -48,6 +49,7 @@
           *ngIf="toogleType"
           formControlName="password"
           type="password"
+          autocomplete="off"
         ></ion-input>
         <ion-input
           *ngIf="!toogleType"

@@ -9,7 +9,7 @@
     @media only screen and (min-width:320px) and (max-width:767px){
         padding:10px 5px 0;
     }
-
+    
 }
 @mixin margin-div{
     margin-top:-65px;
@@ -31,7 +31,7 @@
     @media only screen and (min-width:320px) and (max-width:568px){
         font-size:16px;
     }
-
+    
 }
 @mixin input-select-style{
     font-size:18px;
@@ -70,7 +70,7 @@ ion-item.menu-links::part(native){
     transform: translateY(50%) scale(0.95);
 }
 // .item-has-value .label-floating.sc-ion-label-md-h{
-
+   
 // }
 .error-position{
     --background: transparent;
@@ -209,14 +209,14 @@ form{
 .profile-btns{
     justify-content: flex-start;
     display: flex;
-
+    
 
     .register-btn{
         --color: #fff;
         --border-radius:31px;
         --box-shadow: 1px 2px 8px 7px #00000029;
         //--background:#1B4867;
-
+       
         --background:#002060!important;
         @include button-style;
         width:150px;
@@ -225,7 +225,7 @@ form{
     .ion-color-primary{
          --ion-color-base:#002060!important;
     }
-
+     
     .cancel-btn{
         //--color:#1B4867;
         --color:#002060;
@@ -303,7 +303,7 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
     --background:#002060;
     padding-left:5px;
   }
-
+  
 .clear-filter-btn{
     --color: #002060;
     --border-radius:31px;
@@ -315,7 +315,7 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
     --background:#fff;
     padding-right:5px;
 }
-
+  
 .benificiary-checkbox{
     font-size: 14px !important;
     line-height: 18px;

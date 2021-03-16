@@ -1,5 +1,8 @@
-<app-sidenav></app-sidenav>
+<app-sidenav *ngIf="currentUser"></app-sidenav>
+
+
 <main>
-  <app-header></app-header>
+  <app-header  *ngIf="currentUser"></app-header>
+  <alert></alert>
   <router-outlet></router-outlet>
 </main>

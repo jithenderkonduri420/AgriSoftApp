@@ -1,7 +1,7 @@
-//@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100,200,300,400,500,600&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 :root {
-    --ion-font-family: 'Montserrat', sans-serif;
+    --ion-font-family: 'Roboto';
     font-family: var(--ion-font-family) !important;
     --ion-color-secondary: linear-gradient(90deg, rgba(84, 158, 73, 1) 0%, rgba(121, 197, 106, 1) 100%);
     //  --ion-color-cart-button: #E77649;
