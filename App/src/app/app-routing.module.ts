@@ -17,7 +17,15 @@ const routes: Routes = [
   {
     path: 'changepassword',
     loadChildren: () => import('./screens/changepassword/changepassword.module').then( m => m.ChangepasswordPageModule)
+  },  {
+    path: 'deliveryboy',
+    loadChildren: () => import('./screens/deliveryboy/deliveryboy.module').then( m => m.DeliveryboyPageModule)
+  },
+  {
+    path: 'deliveryboy-ionvice',
+    loadChildren: () => import('./screens/deliveryboy-ionvice/deliveryboy-ionvice.module').then( m => m.DeliveryboyIonvicePageModule)
   }
+
 
 
 ];
