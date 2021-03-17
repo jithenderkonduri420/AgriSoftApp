@@ -6,7 +6,7 @@
                 <ion-label>
                     <div class="align">
                         <p>Outstanding Crates</p>
-                        <span>56</span>
+                        <span *ngIf="currentUser">{{currentUser.outStandingCrates}}</span>
                         <p><a href="">View History</a></p>
                     </div>
                 </ion-label>
@@ -18,7 +18,7 @@
                 <ion-label>
                     <div class="align">
                         <p>Outstanding Money</p>
-                        <span>₹ 7,880</span>
+                        <span *ngIf="currentUser">₹ {{currentUser.outStandingAmount}}</span>
                         <p><a href="">View History</a></p>
                     </div>
                 </ion-label>

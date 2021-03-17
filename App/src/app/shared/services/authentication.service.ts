@@ -51,7 +51,6 @@ export class AuthenticationService {
             if (res.accessToken) {
               return this.storage.set(TOKEN_KEY, res.accessToken).then(() => {
                 this.authenticationState.next(true);
-                console.log('res.accessToken', res.accessToken);
                 this.router.navigate(['home']);
               });
             } else {
@@ -69,7 +68,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    return this.storage.remove(TOKEN_KEY).then(() => {
+    return this.storage.clear().then(() => {
       this.authenticationState.next(false);
       this.router.navigate(['login']);
     });
