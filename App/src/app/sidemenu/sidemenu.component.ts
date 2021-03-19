@@ -7,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidemenuComponent {
 
-  version: string = "0.7.2";
-
-  appPages = [
+   appPages = [
       {
           title: 'Home',
           url: '/home/dashboard',

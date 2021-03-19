@@ -17,7 +17,12 @@ const routes: Routes = [
   {
     path: 'changepassword',
     loadChildren: () => import('./screens/changepassword/changepassword.module').then( m => m.ChangepasswordPageModule)
-  },  {
+  },
+  {
+    path: 'order',
+    loadChildren: () => import('./screens/order/order-routing.module').then( m => m.OrderPageRoutingModule)
+  },
+  {
     path: 'deliveryboy',
     loadChildren: () => import('./screens/deliveryboy/deliveryboy.module').then( m => m.DeliveryboyPageModule)
   },

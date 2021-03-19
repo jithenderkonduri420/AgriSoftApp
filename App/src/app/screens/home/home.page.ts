@@ -16,12 +16,14 @@ export class HomePage {
   @ViewChild('tabs', { static: true }) tabs: IonTabs;
   constructor(
     private authService: AuthenticationService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private router: Router
   ) {
     this.authService.userDetails().then((res: any) => {
       this.currentUser = res.user;
       this.isLogin = this.authService.currentUserValue;
       this.tabs.select(this.selectedTab);
+      console.log('this.router.url', this.router.url);
     });
   }
   async openTab(tab: string, evt: MouseEvent) {

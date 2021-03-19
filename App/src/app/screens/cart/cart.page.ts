@@ -30,34 +30,19 @@ export class CartPage implements OnInit {
         this.products = res.distributor.products;
       });
     });
-    this.storage.get('cart-products').then((res) => {
-      if (res) {
-        let total = 0;
-        let orders = [];
-        for (let product of res) {
-          total = total + product.qty * product.price;
-          orders = this.products.map((data: any) => {
-            if(data._id === product._id) {
-              data['qty'] = product.qty;
-            }
-            return data;
-          });
-        }
-        this.cartAmount = total;
-        this.products = orders;
-      }
-    });
   }
   addToCart(item, qty) {
-    item.qty = qty.value;
-    this.cartAddedProducts.push(item);
-    const uniqueProducts = new Set(this.cartAddedProducts);
-    let total = 0;
+    if (qty.value > 0) {
+      item.qty = qty.value;
+      this.cartAddedProducts.push(item);
+      const uniqueProducts = new Set(this.cartAddedProducts);
+      let total = 0;
 
-    for (let product of uniqueProducts) {
-      total = total + product.qty * product.price;
+      for (let product of uniqueProducts) {
+        total = total + product.qty * product.price;
+      }
+      this.cartAmount = total;
     }
-    this.cartAmount = total;
   }
   placeOrder() {
     const orderProducts = [];
@@ -66,8 +51,7 @@ export class CartPage implements OnInit {
       orderProducts.push(product);
     }
     this.storage.set('cart-products', orderProducts).then(() => {
-      this.router.navigate(['home/order']);
+      this.router.navigate(['order']);
     });
   }
-
 }
