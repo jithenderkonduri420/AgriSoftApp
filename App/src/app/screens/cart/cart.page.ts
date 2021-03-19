@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
-  products: [];
+  products: any;
   cartAddedProducts = [];
   cartAmount: Number = 0;
   serverImagePath = `${environment.serverUploads}/uploads`;
+  orderProducts = [];
   constructor(
     private authService: AuthenticationService,
     private apiService: ApiService,
@@ -25,7 +26,6 @@ export class CartPage implements OnInit {
   ngOnInit() {}
   ionViewWillEnter() {
     this.authService.userDetails().then((res: any) => {
-      console.log(res.user._id);
       this.apiService.getDistributorDetails(res.user).subscribe((res) => {
         this.products = res.distributor.products;
       });
@@ -33,10 +33,18 @@ export class CartPage implements OnInit {
     this.storage.get('cart-products').then((res) => {
       if (res) {
         let total = 0;
+        let orders = [];
         for (let product of res) {
           total = total + product.qty * product.price;
+          orders = this.products.map((data: any) => {
+            if(data._id === product._id) {
+              data['qty'] = product.qty;
+            }
+            return data;
+          });
         }
         this.cartAmount = total;
+        this.products = orders;
       }
     });
   }
@@ -61,8 +69,5 @@ export class CartPage implements OnInit {
       this.router.navigate(['home/order']);
     });
   }
-  placedOrderQty() {
-    return 0;
-    // return 8;
-  }
+
 }

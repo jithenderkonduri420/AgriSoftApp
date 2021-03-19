@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const Brand = mongoose.model(
   "Brand",
   new mongoose.Schema({
-    name: String
+    name: String,
+    image: String
   })
 );
 

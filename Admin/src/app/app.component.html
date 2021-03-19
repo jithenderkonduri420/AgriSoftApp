@@ -1,8 +1,8 @@
-<app-sidenav *ngIf="currentUser"></app-sidenav>
+<app-sidenav *ngIf="currentUser && currentUser.accessToken"></app-sidenav>
 
 
 <main>
-  <app-header  *ngIf="currentUser"></app-header>
+  <app-header  *ngIf="currentUser && currentUser.accessToken"></app-header>
   <alert></alert>
   <router-outlet></router-outlet>
 </main>

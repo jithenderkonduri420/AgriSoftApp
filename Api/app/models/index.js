@@ -12,6 +12,7 @@ db.product = require("./product.model");
 db.warehouse = require("./warehouse.model");
 db.route = require("./route.model");
 db.distributor = require("./distributor.model");
+db.order = require("./order.model");
 // db.ROLES = ["user", "admin", "moderator"];
 
 module.exports = db;
