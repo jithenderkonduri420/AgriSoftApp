@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'distributor', component: DistributorComponent, canActivate: [AuthGuard] },
+  { path: 'distributor/:id', component: DistributorComponent, canActivate: [AuthGuard] },
   { path: 'distributors', component: DistributorsListComponent, canActivate: [AuthGuard] },
   { path: 'add-distributor', component: AddDistributorComponent, canActivate: [AuthGuard]},
   { path: 'products', component: ProductInvetoryComponent, canActivate: [AuthGuard] },

@@ -6,8 +6,8 @@
 <section class="main-section">
     <div class="page-center-content">
         
-        <div class="card" *ngFor="let item of brands" routerLink="/distributor" >
-            <img src="../../../assets/images/sabari.jpg" class="card-img-top" alt="sabari">
+        <div class="card" *ngFor="let item of brands" routerLink="/distributor/{{item._id}}" >
+            <img src="{{serverImagePath}}/{{item.image}}" class="card-img-top" alt="sabari">
             <div class="card-body">
                 <h5 class="card-title">{{item.name}}</h5>
             </div>

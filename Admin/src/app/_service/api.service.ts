@@ -1,11 +1,12 @@
 import { AuthenticationService } from '../_service/authentication.service';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { catchError, first, map, take } from 'rxjs/operators';
 import { User } from '../_models/user.model';
 import { ToastrService } from 'ngx-toastr';
+import { Brands } from '../_models/brands.model';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -77,5 +78,31 @@ export class ApiService {
     return this.http
       .get<User>(`${environment.api}/users`)
       .pipe(catchError((error: any) => this.processError(error)));
+  }
+
+  public readAll(uri:any){
+    return this.http
+      .get<Brands>(`${environment.api}/${uri}`)
+      .pipe(catchError((error: any) => this.processError(error)));
+  }
+
+  public read(id:any): Observable<any> {
+    return this.http.get(`${environment.api}/${id}`);
+  }
+
+  public create(data:[]): Observable<any> {
+    return this.http.post(environment.api, data);
+  }
+
+  public update(id:any, data:[]): Observable<any> {
+    return this.http.put(`${environment.api}/${id}`, data);
+  }
+
+  public delete(id:any): Observable<any> {
+    return this.http.delete(`${environment.api}/${id}`);
+  }
+
+  public deleteAll(): Observable<any> {
+    return this.http.delete(`${environment.api}`);
   }
 }
