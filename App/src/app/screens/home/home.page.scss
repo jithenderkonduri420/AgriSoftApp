@@ -1,14 +1,25 @@
     .welcome-title {
-        font-size: 23px;
-        font-family: 'Montserrat', sans-serif;
-        line-height: 27px;
         color: #303030;
-        margin: 0;
+        font-family: Roboto;
+        font-size: 23px;
         font-weight: bold;
+        text-align: left;
+        float: left;
+        letter-spacing: 0;
+        line-height: 27px;
+        .user-name {
+            color: #303030;
+            font-family: Roboto;
+            font-size: 13px;
+            letter-spacing: 0;
+            font-weight: normal;
+            line-height: 15px;
+            display: block;
+        }
     }
-
+    
     .welcome-subtitle {
-        font-family: 'Montserrat', sans-serif;
+        font-family: Roboto;
         font-size: 13px;
         line-height: 15px;
         color: #303030;
@@ -16,19 +27,19 @@
         font-weight: normal;
         margin: 0;
     }
-
+    
     .notificatin-icon {
         float: left;
         margin: 0
     }
-
+    
     .notificatin-icon img {
         float: right;
         height: 26px;
         position: relative;
         margin: 6px 0 0;
     }
-
+    
     .notification-badge {
         position: absolute;
         top: 9px;
@@ -40,14 +51,32 @@
         background: #A02A2A;
         border: 2px solid #fff;
     }
-
+    
     .app-details {
         float: right;
     }
-
+    
     a.ion-logout {
         height: 34px;
         margin: 6px 0px 0 12px;
         float: right;
         font-size: 26px;
+    }
+    
+    .welcome-title {
+        ion-label {
+            span {
+                color: #303030;
+                font-family: Roboto;
+                font-size: 23px;
+                font-weight: bold;
+                letter-spacing: 0;
+                line-height: 27px;
+            }
+        }
+    }
+    
+    ion-header {
+        z-index: 999;
+        background: #fff;
     }
