@@ -6,26 +6,11 @@
 <section class="main-section">
     <div class="page-center-content">
         
-        <div class="card" routerLink="/distributor">
+        <div class="card" *ngFor="let item of brands" routerLink="/distributor" >
             <img src="../../../assets/images/sabari.jpg" class="card-img-top" alt="sabari">
             <div class="card-body">
-                <h5 class="card-title">Sabari Milk</h5>
+                <h5 class="card-title">{{item.name}}</h5>
             </div>
         </div>
-    
-        <div class="card" routerLink="/distributor">
-            <img src="../../../assets/images/menma.png" class="card-img-top" alt="Menma">
-            <div class="card-body">
-                <h5 class="card-title">Menma Milk</h5>
-            </div>
-        </div>
-
-        <div class="card" routerLink="/distributor">
-            <img src="../../../assets/images/malabar.png" class="card-img-top" alt="malabar">
-            <div class="card-body">
-                <h5 class="card-title">Malabar Milk</h5>
-            </div>
-        </div>
-    
     </div>
 </section>
