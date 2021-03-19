@@ -20,7 +20,7 @@
                             <div class="cart-detials">
                                 <span class="crates-qty">Crates Qty</span>
                                 <input type="text" class="cart-detials-input" placeholder="0" #quantity name='quantity' ng-
-                                model='quantity' [value]="placedOrderQty()">
+                                model='quantity' value="{{ item ? item.qty : ''}} ">
                                 <button type="button" class="cart-detials-button" (click)="addToCart(item, quantity)">Add To Cart</button>
                             </div>
                         </ion-col>

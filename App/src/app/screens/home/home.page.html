@@ -1,25 +1,28 @@
 <ion-header translucent>
     <ion-toolbar>
         <ion-title>
-            <h3 class="welcome-title">
-                <span>Hello,</span>
-                <span class="user-name">kammari supraja</span>
+            <h3 class="welcome-title" *ngIf="isLogin">
+                <span>Hello, </span
+        >
+        <span class="user-name">{{ this.currentUser.name }}</span>
             </h3>
-            <h3 class="welcome-title">
-                <ion-label><span *ngIf="selectedTab === 'order'"> Order Review</span></ion-label>
-            </h3>
-            <h3 class="welcome-title">
-                <ion-label><span *ngIf="selectedTab === 'cart'"> New Order</span></ion-label>
-            </h3>
+            <!-- <h3 class="welcome-title">
+        <ion-label><span *ngIf="selectedTab === 'order'"
+          > Order Review</span></ion-label>
+      </h3>
+      <h3 class="welcome-title">
+        <ion-label><span *ngIf="selectedTab === 'cart'"
+          > New Order</span></ion-label>
+      </h3> -->
 
         </ion-title>
         <ion-buttons slot="start">
             <ion-menu-button autoHide="false"></ion-menu-button>
         </ion-buttons>
-        <ion-buttons slot="start">
-            <!-- <ion-back-button defaultHref="/home/cart" (click)="openTab('cart', $event)"></ion-back-button> -->
+        <!-- <ion-buttons slot="start" *ngIf="selectedTab === 'order'">
+      <ion-back-button defaultHref="/home/cart" (click)="openTab('cart', $event)"></ion-back-button>
 
-        </ion-buttons>
+    </ion-buttons> -->
 
         <ion-grid>
             <ion-row>

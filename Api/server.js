@@ -13,9 +13,12 @@ var corsOptions = {
 // enable files upload
 app.use(fileUpload({
   useTempFiles: true,
-  tempFileDir: path.join(__dirname, 'uploads'),
+  tempFileDir: path.join(__dirname, 'public/uploads'),
 }));
 
+var dir = path.join(__dirname, 'public');
+
+app.use(express.static(dir));
 
 app.use(cors(corsOptions));
 
@@ -61,6 +64,7 @@ require("./app/routes/product.routes")(app);
 require("./app/routes/warehouse.routes")(app);
 require("./app/routes/route.routes")(app);
 require("./app/routes/distributor.routes")(app);
+require("./app/routes/order.routes")(app);
 
 
 
@@ -109,7 +113,8 @@ function initial() {
   Brand.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {
       new Brand({
-        name: "Sabari Milk"
+        name: "Sabari Milk",
+        image: `brands/sabari.jpg`
       }).save(err => {
         if (err) {
           console.log("error", err);
@@ -119,7 +124,8 @@ function initial() {
       });
 
       new Brand({
-        name: "Menma Milk"
+        name: "Menma Milk",
+        image: `brands/menma.png`
       }).save(err => {
         if (err) {
           console.log("error", err);
@@ -129,7 +135,8 @@ function initial() {
       });
 
       new Brand({
-        name: "Malabar Milk"
+        name: "Malabar Milk",
+        image: `brands/malabar.png`
       }).save(err => {
         if (err) {
           console.log("error", err);

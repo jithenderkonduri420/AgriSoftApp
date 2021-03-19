@@ -70,8 +70,8 @@ exports.appSignin = async (req, res, next) => {
     code: req.body.username
   })
     .exec((err, distributor) => {
-      if (err) throw next(ApiError.handleError(500, err));
-      if (!distributor) res.status(500).json({ status: 500, message: "Distributor userid is invalid." });
+      if (err) res.send({ status: 500, message: err });
+      if (!distributor) res.json({ status: 500, message: "Distributor userid is invalid." });
       else {
         console.log(distributor);
         let passwordIsValid = bcrypt.compareSync(
@@ -91,7 +91,7 @@ exports.appSignin = async (req, res, next) => {
         });
 
         res.status(200).send({
-
+          _id: distributor._id,
           accessToken: token
         });
       }

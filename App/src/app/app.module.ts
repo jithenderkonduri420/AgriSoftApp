@@ -16,7 +16,7 @@ import { AppComponent } from './app.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, SidemenuComponent],
+  declarations: [AppComponent,  SidemenuComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

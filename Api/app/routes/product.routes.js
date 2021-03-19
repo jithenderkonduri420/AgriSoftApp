@@ -24,7 +24,7 @@ module.exports = function(app) {
     controller.update
   );
   app.delete(
-    "/api/products",
+    "/api/products/:id",
     authJwt.verifyToken,
     controller.delete
   );

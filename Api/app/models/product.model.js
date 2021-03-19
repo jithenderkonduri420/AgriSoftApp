@@ -5,6 +5,7 @@ const Product = mongoose.model(
   new mongoose.Schema({
     name: String,
     fileName: String,
+    packet: Number,
     fileOriginalName: String,
     status: { type: Boolean, default: true }
   })
