@@ -19,8 +19,7 @@
                         <ion-col size="4">
                             <div class="cart-detials">
                                 <span class="crates-qty">Crates Qty</span>
-                                <input type="text" class="cart-detials-input" placeholder="0" #quantity name='quantity' ng-
-                                model='quantity' value="{{ item ? item.qty : ''}} ">
+                                <input type="text" class="cart-detials-input" placeholder="0" #quantity name='quantity' ng- model='quantity' value="{{ item ? item.qty : ''}} ">
                                 <button type="button" class="cart-detials-button" (click)="addToCart(item, quantity)">Add To Cart</button>
                             </div>
                         </ion-col>
@@ -115,7 +114,9 @@
     <ion-toolbar>
         <div class="cart-button-col">
             <p><span class="cart-total">Cart Total</span> <span class="total-mount">{{cartAmount | number : '1.2-2'}}</span></p>
+            <ion-label>Order placing time is completed for today</ion-label>
             <section class="full-width">
+
                 <ion-button expand="block" color="cart-button" class="order-review" [disabled]='cartAmount === 0' (click)="placeOrder()">Order Review </ion-button>
             </section>
         </div>
