@@ -5,7 +5,7 @@ const ApiError = require('../error/ApiError');
 exports.create = (req, res, next) => {
   const { name } = req.body
   if (!name) {
-    throw next(ApiError.handleError(400, 'name is required'));
+    res.send({ status: 500, message: 'name is required' });
   }
 
   const warehouse = new Warehouse({
@@ -13,7 +13,7 @@ exports.create = (req, res, next) => {
   });
 
   warehouse.save((err, user) => {
-    if (err) throw next(ApiError.handleError(500, err));
+    if (err) res.send({ status: 500, message: err });
     res.send({ status: 200, message: "Warehouse was created successfully!" });
   });
 

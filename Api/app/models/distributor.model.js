@@ -13,17 +13,29 @@ const Distributor = mongoose.model(
         email: String,
         phone: Number,
         address: String,
-        route: String,
+        route: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Route"
+        },
         location: String,
-        products: Array,
+        products: [{
+            productId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Product"
+            },
+            price: Number
+        }],
         crateLimit: Number,
         cashLimit: Number,
         password: String,
         passwordHash: String,
         code: String,
-        passwordChanged: { type: Boolean, default: false }
+        passwordChanged: { type: Boolean, default: false },
+        outStandingCrates: { type: Number, default: 0 },
+        outStandingAmount: { type: Number, default: 0 }
 
     })
 );
+
 
 module.exports = Distributor;

@@ -54,11 +54,6 @@ module.exports = function (app) {
     "/api/distributor/:id",
     authJwt.verifyToken,
     [
-      check('name')
-        .notEmpty()
-        .withMessage('name is required')
-        .isLength({ min: 3, max: 12 })
-        .withMessage('Must be min 3 and max 12 chars long'),
       check('email')
         .notEmpty()
         .withMessage('email is required'),
