@@ -8,13 +8,14 @@ const { check, validationResult } = require('express-validator')
 exports.create = async (req, res, next) => {
   await check('name').notEmpty().withMessage('Product name is required').run(req);
   await check('packet').notEmpty().withMessage('Packet count is required').run(req);
+  await check('brandId').notEmpty().withMessage('Brand Id is required').run(req);
   if (!req.files) {
     res.send({ status: 400, message: 'Product image is required' });
   }
   
   const result = validationResult(req);
   if (!result.isEmpty()) {
-    return res.status(400).json({ errors: result.array() });
+    return res.status(400).json({  error: true, message: result.array() });
   }
   const { name, packet } = req.body
   let image = req.files.image;
@@ -24,14 +25,15 @@ exports.create = async (req, res, next) => {
 
     // Deleting Temporary File
     fs.unlinkSync(image.tempFilePath);
-    res.send({ status: 431, message: 'File is too Large' });
+    res.status(431).send({  error: true,  message: 'File is too Large' });
   }
 
   let file = `${image.md5}${extension}`;
   image.mv(`public/uploads/${file}`, (err) => {
-    if (err) res.send({ status: 500, message: err });
+    if (err) res.status(500).send({ error: true, message: err });
     
     const product = new Product({
+      brandId: req.body.brandId,
       name: req.body.name,
       fileName: file,
       packet: req.body.packet,
@@ -39,8 +41,8 @@ exports.create = async (req, res, next) => {
     });
 
     product.save((err, user) => {
-      if (err) res.send({ status: 500, message: err });
-      res.send({ status: 200, message: "Product was created successfully!" });
+      if (err) res.status(500).send({ error: true, message: err });
+      res.send({message: "Product was created successfully!" });
     });
   });
 };
@@ -51,18 +53,18 @@ exports.update = async (req, res, next) => {
   
   const result = validationResult(req);
   if (!result.isEmpty()) {
-    return res.status(400).json({ errors: result.array() });
+    return res.status(400).json({ error: true, message: result.array() });
   }
   const { name, packet } = req.body
   
   const product = await Product.findById(req.params.id);
   // validate
-  if (!product) res.send({ status: 400, message: 'Product not found' });
+  if (!product) res.status(400).send({ error: true, message: 'Product not found' });
   if (req.files) {
     let file = `public/uploads/${product.fileName}`;
     if (fs.existsSync(file)) {
       fs.unlinkSync(file, (err) => {
-        if (err) res.send({ status: 500, message: err });
+        if (err) res.status(500).send({ error: true, message: err });
       });
     }
 
@@ -73,11 +75,11 @@ exports.update = async (req, res, next) => {
 
       // Deleting Temporary File
       fs.unlinkSync(image.tempFilePath);
-      res.send({ status: 431, message: 'File is too Large' });
+      res.status(431).send({ error: true, message: 'File is too Large' });
     }
     file = `${image.md5}${extension}`;
     image.mv(`public/uploads/${file}`, (err) => {
-      if (err) res.send({ status: 500, message: err });
+      if (err) res.status(500).send({ error: true, message: err });
       product.name = req.body.name;
       product.fileName = file;
       product.fileOriginalName = image.name;
@@ -85,8 +87,8 @@ exports.update = async (req, res, next) => {
       product.status = req.body.status;
 
       product.save((err, product) => {
-        if (err) res.send({ status: 500, message: err });
-        res.send({ status: 200, message: "Product was updated successfully!" });
+        if (err) res.status(500).send({ error: true, message: err });
+        res.send({ message: "Product was updated successfully!" });
       });
     });
   } else {
@@ -94,31 +96,34 @@ exports.update = async (req, res, next) => {
     product.status = req.body.status;
     product.packet = req.body.packet;
     product.save((err, product) => {
-      if (err) res.send({ status: 500, message: err });
-      res.send({ status: 200, message: "Product was updated successfully!" });
+      if (err) res.status(500).send({ error: true, message: err });
+      res.send({ message: "Product was updated successfully!" });
     });
   }
 };
 exports.delete = async (req, res, next) => {
   const product = await Product.findById(req.params.id);
   // validate
-  if (!product) res.send({ status: 400, message: 'Product not found' });
+  if (!product) res.status(400).send({  error: true, message: 'Product not found' });
 
   Product.deleteOne((err, product) => {
-    if (err) res.send({ status: 500, message: err });
-    res.send({ status: 200, message: "Product was deleted successfully!" });
+    if (err) res.status(500).send({ error: true, message: err });
+    res.send({ message: "Product was deleted successfully!" });
   });
 }
 exports.getById = async (req, res, next) => {
   const product = await Product.findById(req.params.id);
   // validate
-  if (!product) res.send({ status: 400, message: 'Product not found' });
-  res.status(200).send({ product });
+  if (!product) res.status(400).send({ error: true, message: 'Product not found' });
+  res.send({ product });
 };
-exports.getAll = (req, res) => {
-  Product.find({ status: true }, (err, products) => {
+exports.getAll = async (req, res) => {
+  if (!req.query.brandId) {
+    res.send({ status: 400, message: 'BrandId is required' });
+  }
+  Product.find({ status: true, brandId: req.query.brandId }, (err, products) => {
     if (err) {
-      res.status(500).send({ message: err });
+      res.status(500).send({ error: true, message: err });
       return;
     }
     res.status(200).send({

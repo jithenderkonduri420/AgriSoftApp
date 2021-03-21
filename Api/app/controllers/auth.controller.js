@@ -17,12 +17,12 @@ exports.signin = (req, res) => {
     .populate("roles", "-__v")
     .exec((err, user) => {
       if (err) {
-        res.status(500).send({ message: err });
+        res.status(500).send({ error: true, message: err });
         return;
       }
 
       if (!user) {
-        return res.status(404).send({ message: "Invalid Username!" });
+        return res.status(404).send({ error: true, message: "Invalid Username!" });
       }
 
       let passwordIsValid = bcrypt.compareSync(
@@ -32,6 +32,7 @@ exports.signin = (req, res) => {
 
       if (!passwordIsValid) {
         return res.status(401).send({
+          error: true,
           accessToken: null,
           message: "Invalid Password!"
         });
@@ -70,8 +71,8 @@ exports.appSignin = async (req, res, next) => {
     code: req.body.username
   })
     .exec((err, distributor) => {
-      if (err) res.send({ status: 500, message: err });
-      if (!distributor) res.json({ status: 500, message: "Distributor userid is invalid." });
+      if (err) res.send({ error: false, message: err });
+      if (!distributor) res.status(500).json({ error: true, message: "Distributor userid is invalid." });
       else {
         console.log(distributor);
         let passwordIsValid = bcrypt.compareSync(
@@ -81,7 +82,7 @@ exports.appSignin = async (req, res, next) => {
 
         if (!passwordIsValid) {
           return res.status(401).send({
-            status: 401,
+            error: true,
             message: "Invalid Password!"
           });
         }

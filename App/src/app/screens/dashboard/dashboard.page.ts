@@ -8,18 +8,18 @@ import { HomePage } from '../home/home.page';
   templateUrl: 'dashboard.page.html',
   styleUrls: ['dashboard.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage {
   currentUser: any;
   constructor(
     private authService: AuthenticationService,
     private apiService: ApiService,
     @Inject(HomePage) private parent: HomePage
-  ) {
-
-  }
-  ngOnInit() {
+  ) {}
+  ionViewWillEnter() {
     this.authService.userDetails().then((res: any) => {
-      this.currentUser = res.user;
+      this.apiService.getDistributorDetails(res.user).subscribe((res) => {
+        this.currentUser = res.distributor;
+      });
     });
   }
 }

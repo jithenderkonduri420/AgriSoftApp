@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
 import { catchError, first, map, take } from 'rxjs/operators';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { UtilsService } from './utils.service';
+import { Storage } from '@ionic/storage';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -14,7 +16,9 @@ export class ApiService {
     private http: HttpClient,
     private authService: AuthenticationService,
     public alertController: AlertController,
-    private router: Router
+    private router: Router,
+    private utilsService: UtilsService,
+    private storage: Storage
   ) {}
   public processError(error: any): Observable<any> {
     let title = '';
@@ -64,7 +68,7 @@ export class ApiService {
       .get<any>(`${environment.api_prefix_url}/distributor/${distributor._id}`)
       .pipe(catchError((error: any) => this.processError(error)));
   }
-  public orderPlace(order: any){
+  public orderPlace(order: any) {
     this.loadingController
       .create({ keyboardClose: true, message: 'Loging In ...' })
       .then((loadingEl) => {
@@ -72,16 +76,25 @@ export class ApiService {
         return this.http
           .post<any>(`${environment.api_prefix_url}/place-order`, order)
           .subscribe(
-            res => {
+            (res) => {
               loadingEl.dismiss(); // hide loading
+              this.utilsService.presentToastSuccess(res.message);
               this.router.navigate(['home/dashboard']);
             },
-            err => {
-              this.failedAlert('Order Failed', 'Order not placed. please try again after some time');
+            (err) => {
+              console.log(err);
+              this.failedAlert('Order Failed', err.error.message);
               loadingEl.dismiss(); // hide loading
             }
           );
       });
+  }
+  public getAllNotifications(distributor: any): Observable<any> {
+    return this.http
+      .post<any>(`${environment.api_prefix_url}/notifications`, {
+        distributorId: distributor._id,
+      })
+      .pipe(catchError((error: any) => this.processError(error)));
   }
   async failedAlert(header, message) {
     const alert = await this.alertController.create({
@@ -92,6 +105,4 @@ export class ApiService {
 
     await alert.present();
   }
-
 }
-

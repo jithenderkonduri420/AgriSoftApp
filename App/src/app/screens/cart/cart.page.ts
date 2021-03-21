@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-cart',
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
+  isOrderTimeOut = false;
+  currentUser: any;
   products: any;
   cartAddedProducts = [];
   cartAmount: Number = 0;
@@ -25,9 +28,15 @@ export class CartPage implements OnInit {
 
   ngOnInit() {}
   ionViewWillEnter() {
+    this.cartAddedProducts = [];
+    this.cartAmount = 0;
     this.authService.userDetails().then((res: any) => {
       this.apiService.getDistributorDetails(res.user).subscribe((res) => {
+        this.currentUser = res.distributor;
         this.products = res.distributor.products;
+        if(this.compareTime(this.currentUser.route.closeTime, moment().format('HH:MM')) === -1) {
+          this.isOrderTimeOut = true;
+        }
       });
     });
   }
@@ -37,7 +46,6 @@ export class CartPage implements OnInit {
       this.cartAddedProducts.push(item);
       const uniqueProducts = new Set(this.cartAddedProducts);
       let total = 0;
-
       for (let product of uniqueProducts) {
         total = total + product.qty * product.price;
       }
@@ -53,5 +61,19 @@ export class CartPage implements OnInit {
     this.storage.set('cart-products', orderProducts).then(() => {
       this.router.navigate(['order']);
     });
+  }
+  private compareTime(str1, str2) {
+    if (str1 === str2) {
+      return 0;
+    }
+    var time1 = str1.split(':');
+    var time2 = str2.split(':');
+    if (eval(time1[0]) > eval(time2[0])) {
+      return 1;
+    } else if (eval(time1[0]) == eval(time2[0]) && eval(time1[1]) > eval(time2[1])) {
+      return 1;
+    } else {
+      return -1;
+    }
   }
 }

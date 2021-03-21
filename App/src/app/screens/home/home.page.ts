@@ -1,8 +1,12 @@
 import { Router } from '@angular/router';
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { IonTabs, Platform, NavController, IonRouterOutlet } from '@ionic/angular';
+import {
+  IonTabs,
+  Platform,
+  NavController,
+  IonRouterOutlet,
+} from '@ionic/angular';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
-
 
 @Component({
   selector: 'app-tabs',
@@ -12,7 +16,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 export class HomePage {
   currentUser: any;
   isLogin: boolean = false;
-  selectedTab: string = 'dashboard';
+  selectedTab: string = '';
   @ViewChild('tabs', { static: true }) tabs: IonTabs;
   constructor(
     private authService: AuthenticationService,
@@ -22,8 +26,6 @@ export class HomePage {
     this.authService.userDetails().then((res: any) => {
       this.currentUser = res.user;
       this.isLogin = this.authService.currentUserValue;
-      this.tabs.select(this.selectedTab);
-      console.log('this.router.url', this.router.url);
     });
   }
   async openTab(tab: string, evt: MouseEvent) {
@@ -35,6 +37,9 @@ export class HomePage {
     return tabSelected !== tab
       ? await this.navCtrl.navigateRoot(this.tabs.outlet.tabsPrefix + '/' + tab)
       : this.tabs.select(tab);
+  }
+  notifications() {
+    this.router.navigate(['/home/notifications']);
   }
   logout() {
     this.authService.logout();

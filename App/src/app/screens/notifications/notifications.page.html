@@ -1,71 +1,22 @@
 <ion-content>
-<div class="vertical-top-margin">
-    <ion-list>
-        <!-- <ion-list-header>
-            Recent Conversations
-        </ion-list-header> -->
+  <div class="vertical-top-margin">
 
-        <ion-item>
-            <div  slot="start" class="icon-circel icon-bg-greenclr">
-                <img src="\assets\icon\cart.png">
-            </div>
-            <ion-label>
-                <h2>Your Order Delivered</h2>
-                <p>Curabitur id elementum mauris. Duis elit velit, vehicula id lobortis a, finibus sit amet massa.</p>
-                <p><span>Feb 6</span> <span>2:40 pm</span></p>
-            </ion-label>
-        </ion-item>
+    <ion-list *ngFor="let item of notifications">
+      <ion-list-header>
+        <p class="day-wise">{{ item._id | convertFrom24To12Format }}</p>
+      </ion-list-header>
 
-        <ion-item>
-            <div  slot="start" class="icon-circel icon-bg-redclr">
-                <img src="\assets\icon\cart.png">
-            </div>
-            <ion-label>
-                <h2>Your Order Delivered</h2>
-                <p>Curabitur id elementum mauris. Duis elit velit, vehicula id lobortis a, finibus sit amet massa.</p>
-                <p><span>Feb 6</span> <span>2:40 pm</span></p>
-            </ion-label>
-        </ion-item>
-
-        <ion-item>
-            <div  slot="start" class="icon-circel icon-bg-pinkclr">
-                <img src="\assets\icon\cart.png">
-            </div>
-            <ion-label>
-                <h2>Your Order Delivered</h2>
-                <p>Curabitur id elementum mauris. Duis elit velit, vehicula id lobortis a, finibus sit amet massa.</p>
-                <p><span>Feb 6</span> <span>2:40 pm</span></p>
-            </ion-label>
-        </ion-item>
-
+      <ion-item *ngFor="let records of item.records">
+         <!-- Your Order Delivered icon-circel icon-bg-greenclr -->
+        <div slot="start" class="icon-circel icon-bg-greenclr">
+          <img src="\assets\icon\cart.png" />
+        </div>
+        <ion-label>
+          <h2>{{records.title}}</h2>
+          <p>{{records.body}}</p>
+          <p><span>{{records.date | date:'MMM dd'}}</span> <span>{{records.date | date:'hh:mm a'}}</span></p>
+        </ion-label>
+      </ion-item>
     </ion-list>
-
-    <ion-list>
-        <ion-list-header>
-            <p class="day-wise">Yesterday</p>
-        </ion-list-header>
-
-        <ion-item>
-            <div  slot="start" class="icon-circel icon-bg-greenclr">
-                <img src="\assets\icon\cart.png">
-            </div>
-            <ion-label>
-                <h2>Your Order Delivered</h2>
-                <p>Curabitur id elementum mauris. Duis elit velit, vehicula id lobortis a, finibus sit amet massa.</p>
-                <p><span>Feb 6</span> <span>2:40 pm</span></p>
-            </ion-label>
-        </ion-item>
-        <ion-item>
-            <div  slot="start" class="icon-circel icon-bg-greenclr">
-                <img src="\assets\icon\cart.png">
-            </div>
-            <ion-label>
-                <h2>Your Order Delivered</h2>
-                <p>Curabitur id elementum mauris. Duis elit velit, vehicula id lobortis a, finibus sit amet massa.</p>
-                <p><span>Feb 6</span> <span>2:40 pm</span></p>
-            </ion-label>
-        </ion-item>
-
-    </ion-list>
-    </div>
+  </div>
 </ion-content>
