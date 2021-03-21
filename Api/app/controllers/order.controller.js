@@ -38,7 +38,8 @@ exports.create = async (req, res) => {
           distributorId: req.body.distributorId,
           product: req.body.product,
           outstanding_price: req.body.outstanding_price,
-          total: req.body.total
+          total: req.body.total,
+          order: 'accept'
         });
         const sumOfCrates = _.sumBy(order.product, function (o) { return o.qty * o.total_packets; });
         distributor.outStandingAmount += req.body.total;

@@ -9,7 +9,7 @@ const Order = mongoose.model(
       ref: "Distributor"
     },
     product: [{
-      productId:  {
+      productId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Product"
       },
@@ -17,7 +17,12 @@ const Order = mongoose.model(
       total_packets: Number,
     }],
     outstanding_price: Number,
-    total: Number
+    total: Number,
+    orderType: {
+      type: String,
+      enum: ['accept', 'deliver', 'rejected'],
+      default: 'accept'
+    },
   })
 );
 
