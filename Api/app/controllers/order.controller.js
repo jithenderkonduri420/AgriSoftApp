@@ -1,9 +1,12 @@
 const db = require("../models");
 const Order = db.order;
 const Distributor = db.distributor;
+const Notification = db.notification;
 const { check, validationResult } = require('express-validator')
+const notifications = require("./notifications.controller");
 var _ = require('lodash');
 var moment = require('moment');
+const orderid = require('order-id')('mysecret');
 
 exports.create = async (req, res) => {
   await check('distributorId').notEmpty().withMessage('Distributor name is required').run(req);
@@ -15,37 +18,49 @@ exports.create = async (req, res) => {
   if (!result.isEmpty()) {
     return res.status(400).json({ errors: result.array() });
   }
-  const distributor = await Distributor.findById(req.body.distributorId).populate("route", "-__v");
-  // validate
-  if (!distributor) { res.send({ status: 400, message: 'Distributor not found' }); }
-  else {
-    if(compareTime(distributor.route.closeTime, moment().format('HH:MM')) === -1) {
-      return res.send({ status: 400, message: 'Order placing time is completed for today' });
-    }
-    const checking = distributorOrderPlacingCheck(distributor, req.body);
-    if (!checking) {
-      return res.send({ status: 400, message: 'Order not placed due to insufficient crates or amount limit for today' });
-    }
-    if (checking) {
-      const order = new Order({
-        distributorId: req.body.distributorId,
-        product: req.body.product,
-        outstanding_price: req.body.outstanding_price,
-        total: req.body.total
-      });
-      const sumOfCrates = _.sumBy(order.product, function (o) { return o.qty * o.total_packets; });
-
-      order.save((err, user) => {
-        if (err) res.send({ status: 500, message: err });
-        distributor.outStandingAmount = req.body.total;
-        distributor.outStandingCrates = sumOfCrates;
-        distributor.save((err, product) => {
-          if (err) res.send({ status: 500, message: err });
-          res.send({ status: 200, message: "Order placed successfully!" });
+  try {
+    const distributor = await Distributor.findById(req.body.distributorId).populate("route", "-__v");
+    // validate
+    if (!distributor) { res.status(400).send({ error: true, message: 'Distributor not found' }); }
+    else {
+      if (compareTime(distributor.route.closeTime, moment().format('HH:MM')) === -1) {
+        return res.status(400).json({ error: true, message: 'Order placing time is completed for today' });
+      }
+      const checking = distributorOrderPlacingCheck(distributor, req.body);
+      if (!checking) {
+        return res.status(400).json({ error: true, message: 'Order not placed due to insufficient crates or amount limit for today' });
+      }
+      if (checking) {
+        const id = orderid.generate();
+        const orderId = orderid.getTime(id);
+        const order = new Order({
+          orderId,
+          distributorId: req.body.distributorId,
+          product: req.body.product,
+          outstanding_price: req.body.outstanding_price,
+          total: req.body.total
         });
+        const sumOfCrates = _.sumBy(order.product, function (o) { return o.qty * o.total_packets; });
+        distributor.outStandingAmount += req.body.total;
+        distributor.outStandingCrates += sumOfCrates;
 
-      });
+        const orderResult = await order.save();
+
+        await distributor.save();
+
+        const notification = new Notification({
+          distributorId: req.body.distributorId,
+          title: 'Order Accepted',
+          body: `We acknowledge the receipt of your purchase order number ${orderId}`
+        })
+        await notification.save()
+
+        res.status(200).send({ message: `Your order (${orderId}) placed successfully!.` });
+
+      }
     }
+  } catch (err) {
+    console.log(err);
   }
 
 };
@@ -54,7 +69,7 @@ function distributorOrderPlacingCheck(distributor, order) {
   if (distributor.outStandingCrates === 0 && distributor.outStandingAmount === 0) {
     return true;
   }
-  if (distributor.outStandingAmount > order.total && distributor.outStandingCrates > sumOfCrates) {
+  if (distributor.cashLimit >= (order.total + distributor.outStandingAmount) && distributor.crateLimit >= (sumOfCrates + distributor.outStandingCrates)) {
     return true;
   }
 
@@ -73,6 +88,13 @@ function compareTime(str1, str2) {
   } else {
     return -1;
   }
+}
+function orderNumber() {
+  let now = Date.now().toString() // '1492341545873'
+  // pad with extra random digit
+  now += now + Math.floor(Math.random() * 10)
+  // format
+  return [now.slice(0, 4), now.slice(4, 10), now.slice(10, 14)].join('-')
 }
 
 

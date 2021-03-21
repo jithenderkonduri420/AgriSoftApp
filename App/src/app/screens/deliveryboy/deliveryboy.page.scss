@@ -1,0 +1,90 @@
+.vertical-top-margin {
+    p {
+        color: #FFFFFF;
+        font-family: Roboto;
+        font-size: 11px;
+        line-height: 14px;
+        margin: 5px 0;
+        a {
+            color: #fff;
+        }
+    }
+    span {
+        color: #FFFFFF;
+        font-family: Roboto;
+        font-size: 30px;
+        font-weight: bold;
+        margin: 5px 0 10px;
+        letter-spacing: 0;
+        line-height: 35px;
+    }
+    ion-label {
+        position: relative;
+        .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 27px;
+            width: 27px;
+            background-color: #EDCE0C;
+            border-radius: 100%;
+            color: #000000;
+            font-family: Roboto;
+            padding: 6px 0 0;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 16px;
+            text-align: center;
+        }
+    }
+}
+
+.heading-title {
+    color: #303030;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0;
+    float: left;
+    margin-bottom: 0px;
+    line-height: 19px;
+    img {
+        width: 14px;
+        height: 14px;
+        margin: 3px 0 0;
+    }
+}
+
+.delivery-content {
+    p {
+        color: #515151;
+        a {
+            color: #515151;
+        }
+    }
+    span {
+        color: #000;
+    }
+}
+
+.call-details {
+    width: 100%;
+    float: left;
+    text-align: center;
+    margin: 20px 0 0px;
+    img {
+        height: 24px;
+        width: 24px;
+    }
+    span {
+        width: 100%;
+        float: left;
+        text-align: center;
+        color: #FFFFFF;
+        font-family: Roboto;
+        font-size: 11px;
+        line-height: 14px;
+        margin: 0;
+        color: #515151;
+    }
+}

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { NotificationsPageRoutingModule } from './notifications-routing.module';
+import { TimeFormatPipe } from '../../shared/pipes/time-format.pipe';
 
 import { NotificationsPage } from './notifications.page';
 
@@ -15,6 +16,6 @@ import { NotificationsPage } from './notifications.page';
     IonicModule,
     NotificationsPageRoutingModule
   ],
-  declarations: [NotificationsPage]
+  declarations: [NotificationsPage, TimeFormatPipe]
 })
 export class NotificationsPageModule {}

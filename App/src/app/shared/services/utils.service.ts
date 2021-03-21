@@ -189,48 +189,30 @@ export class UtilsService {
   }
 
   async presentToastError(toastMessage, position?) {
-    let pos;
-    if (this.isMobileDevice) {
-      pos  = position ? position : 'bottom';
-    } else {
-      pos  = position ? position : 'top';
-    }
     const toast = await this.toastr.create({
       message: toastMessage,
       duration: 5000,
-      position: pos,
+      position: 'bottom',
       cssClass: 'error'
     });
     toast.present();
   }
 
   async presentToastSuccess(toastMessage, position?) {
-    let pos;
-    if (this.isMobileDevice) {
-      pos  = position ? position : 'bottom';
-    } else {
-      pos  = position ? position : 'top';
-    }
     const toast = await this.toastr.create({
       message: toastMessage,
       duration: 5000,
-      position: pos,
+      position: 'bottom',
       cssClass: 'success'
     });
     toast.present();
   }
 
   async presentToastInfo(toastMessage, position?) {
-    let pos;
-    if (this.isMobileDevice) {
-      pos  = position ? position : 'bottom';
-    } else {
-      pos  = position ? position : 'top';
-    }
     const toast = await this.toastr.create({
       message: toastMessage,
       duration: 5000,
-      position: pos,
+      position: 'bottom',
       cssClass: 'info'
     });
     toast.present();

@@ -1,0 +1,171 @@
+ion-item {
+    --padding-start: 0px !important;
+}
+
+.delivery-invoice {
+    p {
+        color: #515151;
+        font-family: Roboto;
+        font-size: 11px;
+        letter-spacing: 0;
+        line-height: 14px;
+        margin: 0;
+    }
+    span {
+        color: #000000;
+        font-family: Roboto;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 24px;
+        &.address {
+            color: #000000;
+            font-family: Roboto;
+            font-size: 16px;
+            letter-spacing: 0;
+            line-height: 19px;
+            font-weight: normal !important;
+        }
+    }
+}
+
+ion-card {
+    ion-card {
+        margin: 0px !important;
+    }
+}
+
+.invoice-num {
+    color: #fff !important;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 16px;
+    margin: 10px 0 3px 21px;
+}
+
+.invoice {
+    ion-label {
+        color: #303030;
+        font-family: Roboto;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 16px;
+    }
+    .align {
+        p {
+            color: #303030;
+            font-family: Roboto;
+            font-size: 12px;
+            letter-spacing: 0;
+            line-height: 14px;
+            font-weight: normal;
+            margin: 0 0 9px;
+        }
+    }
+}
+
+.invoice-btn {
+    background: #EDCE0C;
+    padding: 7px 10px;
+    font-size: 13px;
+    margin: 8px 0 0;
+    float: left;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #303030;
+}
+
+.delivery-completed {
+    color: #fff !important;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0;
+    text-align: right;
+    line-height: 16px;
+}
+
+.returns {
+    ion-card {
+        margin: 5px !important;
+    }
+    .heading-title {
+        color: #303030;
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 0px;
+    }
+    .center {
+        text-align: center;
+        width: 100%;
+        display: inline-grid;
+        float: left;
+        padding: 10px;
+        p {
+            color: #FFFFFF;
+            font-family: Roboto;
+            font-size: 11px;
+            letter-spacing: 0;
+            line-height: 14px;
+        }
+        span {
+            box-sizing: border-box;
+            border: 1px solid #FFFFFF;
+            border-radius: 4px;
+            padding: 8px 32px;
+            margin: 0 auto;
+            color: #fff;
+            font-family: Roboto;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    }
+    .align {
+        text-align: center;
+        width: 100%;
+        display: inline-grid;
+        float: left;
+        padding: 10px;
+        span {
+            color: #FFFFFF;
+            font-family: Roboto;
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 0;
+            line-height: 20px;
+            text-align: center;
+            margin-top: 10px;
+        }
+    }
+    ion-label {
+        height: 80px;
+        margin: 0px !important;
+    }
+}
+
+.call-details {
+    width: 100%;
+    float: left;
+    text-align: center;
+    margin: 20px 0 0px;
+    img {
+        height: 24px;
+        width: 24px;
+    }
+    span {
+        width: 100%;
+        float: left;
+        color: #303030;
+        font-family: Roboto;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 10px;
+        text-align: center;
+    }
+}

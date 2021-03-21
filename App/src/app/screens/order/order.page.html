@@ -1,13 +1,13 @@
-<!-- <ion-header translucent>
+<ion-header translucent>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home/dashboard"></ion-back-button>
+      <ion-back-button defaultHref="/home/cart"></ion-back-button>
     </ion-buttons>
-    <ion-title>Change Password</ion-title>
+    <ion-title>Order Review</ion-title>
   </ion-toolbar>
-</ion-header> -->
-<ion-content>
-  <div class="vertical-top-margin">
+</ion-header>
+<ion-content  fullscreen class="ion-padding">
+  <div class="order">
     <ion-card *ngFor="let item of cartAddedProducts">
       <ion-item>
         <ion-grid>
@@ -55,7 +55,7 @@
         <span class="total-mount">{{ cartAmount | number : '1.2-2' }}</span>
       </p>
       <section class="full-width">
-        <ion-button expand="block" color="cart-button" class="order-review"
+        <ion-button expand="block" color="cart-button" class="order-review" (click)="placeOrder()"
           >Proceed to checkout
         </ion-button>
       </section>

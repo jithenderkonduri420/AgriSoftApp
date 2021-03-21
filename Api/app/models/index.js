@@ -13,6 +13,7 @@ db.warehouse = require("./warehouse.model");
 db.route = require("./route.model");
 db.distributor = require("./distributor.model");
 db.order = require("./order.model");
+db.notification = require("./notification.model");
 // db.ROLES = ["user", "admin", "moderator"];
 
 module.exports = db;

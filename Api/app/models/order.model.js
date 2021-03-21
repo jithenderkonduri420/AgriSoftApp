@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Order = mongoose.model(
   "Order",
   new mongoose.Schema({
+    orderId: String,
     distributorId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Distributor"
