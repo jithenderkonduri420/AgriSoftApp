@@ -2,7 +2,14 @@
 
 <nav class="nav flex-column">
     <span class="nav-header">MAIN MENU</span>
-    <a class="nav-link active" href="#">
+    <a class="nav-link" href="#" routerLink="/home" routerLinkActive="active">
+        <span routerLink="distributor" [hidden]="true">distributor</span>
+        <span routerLink="distributors" [hidden]="true">distributors</span>
+        <span routerLink="add-distributor" [hidden]="true">add-distributor</span>
+        <span routerLink="products" [hidden]="true">products</span>
+        <span routerLink="orders" [hidden]="true">orders</span>
+        <span routerLink="order-invoice" [hidden]="true">order-invoice</span>
+        <span routerLink="account" [hidden]="true">account</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid-1x2-fill"
         viewBox="0 0 16 16">
             <path
@@ -10,7 +17,9 @@
         </svg>
         Dashboard
     </a>
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="#" routerLink="/routes" routerLinkActive="active">
+        <span routerLink="/routes" [hidden]="true">routes</span>
+        <span routerLink="/add-route" [hidden]="true">add-route</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-truck"
         viewBox="0 0 16 16">
             <path

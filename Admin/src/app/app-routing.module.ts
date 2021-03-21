@@ -10,11 +10,15 @@ import { OrderInvoiceComponent } from "../app/_components/order-invoice/order-in
 import { AccountManagementComponent } from "../app/_components/account-management/account-management.component";
 import { LoginComponent } from "../app/_components/login/login.component";
 import { AuthGuard } from './_helpers/auth.guard';
+import { RoutesListComponent } from './_components/routes-list/routes-list.component';
+import { AddRouteComponent } from './_components/add-route/add-route.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'routes', component: RoutesListComponent, canActivate: [AuthGuard] },
+  { path: 'add-route', component: AddRouteComponent, canActivate: [AuthGuard] },
   { path: 'distributor', component: DistributorComponent, canActivate: [AuthGuard] },
   { path: 'distributors', component: DistributorsListComponent, canActivate: [AuthGuard] },
   { path: 'add-distributor', component: AddDistributorComponent, canActivate: [AuthGuard]},

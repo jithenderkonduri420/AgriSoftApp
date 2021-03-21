@@ -26,6 +26,8 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { AlertComponent } from './_alert';
 import { ToastrModule } from 'ngx-toastr';
+import { AddRouteComponent } from './_components/add-route/add-route.component';
+import { RoutesListComponent } from './_components/routes-list/routes-list.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { ToastrModule } from 'ngx-toastr';
     OrderSearchPipe,
     SearchHighlightDirective,
     LoginComponent,
+    AddRouteComponent,
+    RoutesListComponent,
   ],
   imports: [
     BrowserModule,

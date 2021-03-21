@@ -1,0 +1,84 @@
+<header>
+    <p class="page-breadcrumb"> <span routerLink="/route"> Routes </span>/ Add New</p>
+    <h3 class="page-title">Routes</h3>
+</header>
+
+<section class="main-section">
+    <div class="add-new-route agrisoft-forms">
+        <h4>Add New Route</h4>
+        <div class="form-section custom-scrollbar">
+
+            <form class="row g-3 needs-validation" novalidate #addDistributor="ngForm" novalidate>
+                <div class="col-md-8">
+                    <label class="form-label">Wearhouse</label>
+                    <select name="" name="Distributorroute" #Distributorroute="ngModel" ngModel required class="form-control">
+                        <option value="1">1</option>
+                        <option value="1">2</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn  add-item btn-primary btn-block">+ Add Wearhouse</button>
+                </div>
+
+
+               <div class="col-md-8">
+                    <label class="form-label">Route Name</label>
+                    <input name="Distributorname" ngModel #Distributorname="ngModel" type="text" required class="form-control">
+                </div>
+                <div class="col-md-4"></div>
+
+                <div class="col-md-8">
+                    <label class="form-label">Drop Point</label>
+                    <input name="Distributorname" ngModel #Distributorname="ngModel" type="text" required class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn add-item btn-primary btn-block">+ Add Location</button>
+                </div>
+
+                <div class="col-12">
+                    <h4>Set Order Type</h4>
+                </div>
+
+                <div class="col-md-3 form-text">
+                    <label class="form-label-block">Open</label>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock"
+                                viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                            </svg>
+                        </div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+
+                <div class="col-md-3 form-text">
+                    <label class="form-label-block">Close</label>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock"
+                                viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                            </svg>
+                        </div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-block">Add Route</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
