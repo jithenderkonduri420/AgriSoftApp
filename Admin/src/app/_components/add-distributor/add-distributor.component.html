@@ -7,26 +7,34 @@
     <div class="add-new-distributor agrisoft-forms">
         <h4>Distributor Information</h4>
         <div class="form-section custom-scrollbar">
-            <form class="row g-3">
+
+            <form class="row g-3 needs-validation" novalidate #addDistributor="ngForm" novalidate (ngSubmit)="onSubmit(addDistributor)">
+
                 <div class="col-md-7">
                     <label class="form-label">Enter Distributor Name</label>
-                    <input type="text" class="form-control">
+                    <input name="Distributorname" ngModel #Distributorname="ngModel" type="text"  required class="form-control">
+                    <div class="col-12" *ngIf="Distributorname.touched && !Distributorname.valid"> 
+                        <p>Please Enter value</p>
+                    </div>
                 </div>
                 <div class="col-md-5">
                     <label class="form-label">Brand</label>
-                    <input type="text" class="form-control">
+                    <input name="Distributorbrand" #Distributorbrand="ngModel" ngModel type="text" required class="form-control">
+                    <div class="col-12" *ngIf="Distributorbrand.touched && !Distributorbrand.valid">
+                        <p>Please Enter value</p>
+                    </div>
                 </div>
 
                 <div class="col-md-5">
                     <label class="form-label">Route</label>
-                    <select name="" class="form-control">
+                    <select name="" name="Distributorroute" #Distributorroute="ngModel" ngModel required class="form-control">
                         <option value="1">1</option>
                         <option value="1">2</option>
                     </select>
                 </div>
                 <div class="col-md-7">
                     <label class="form-label">Drop Point</label>
-                    <select name="" class="form-control">
+                    <select name=""  name="DistributordropPoint" #DistributordropPoint="ngModel" ngModel required class="form-control">
                         <option value="1">1</option>
                         <option value="1">2</option>
                     </select>
@@ -34,16 +42,16 @@
 
                 <div class="col-md-6">
                     <label class="form-label">Email Address</label>
-                    <input type="email" class="form-control">
+                    <input type="email"  name="DistributorEmailAddress" #DistributorEmailAddress="ngModel" ngModel required class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Contact Number</label>
-                    <input type="text" class="form-control">
+                    <input type="text"  name="DistributorContactNo" #DistributorContactNo="ngModel" ngModel required class="form-control">
                 </div>
 
                 <div class="col-md-12">
                     <label class="form-label">Delivery Address</label>
-                    <input type="text" class="form-control">
+                    <input type="text"  name="DistributorAddress" #DistributorAddress="ngModel" ngModel required class="form-control">
                 </div>
                 
                 <div class="clearfix"></div>
@@ -61,38 +69,6 @@
                 </div>
                 <div class="col-md-4"></div>
 
-                <div class="col-md-6 form-text">
-                    <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4"></div>
-
-                <div class="col-md-6 form-text">
-                    <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4"></div>
-
-                <div class="col-md-6 form-text">
-                    <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4"></div>
-
-                <div class="col-md-6 form-text">
-                    <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4"></div>
-
                 <div class="clearfix"></div>
                 <br>
                 <div class="col-12">
@@ -101,12 +77,14 @@
                 <br>
                 <div class="col-md-6">
                     <label class="form-label">Set Credit Limit</label>
-                    <input type="email" class="form-control">
+                    <input type="email"  name="DistributorCreditLimit" #DistributorCreditLimit="ngModel" ngModel required class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Set Cash Limit</label>
-                    <input type="text" class="form-control">
+                    <input type="text"  name="DistributorCashLimit" #DistributorCashLimit="ngModel" ngModel required class="form-control">
                 </div>
+                <div class="clearfix"></div>
+
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary btn-block">Add Distributor</button>
                 </div>

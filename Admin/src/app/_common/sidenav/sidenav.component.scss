@@ -30,6 +30,7 @@ nav{
         padding: 15px 20px;
         margin: 10px 0 15px;
         letter-spacing: 0.5px;
+        cursor: pointer;
         &.active{
             background-color: #258B1F;
             box-shadow: 0 2px 13px 0 rgba(27,27,27,0.38);

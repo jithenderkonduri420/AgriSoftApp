@@ -2,11 +2,10 @@ import { AuthenticationService } from '../_service/authentication.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { catchError, first, map, take } from 'rxjs/operators';
 import { User } from '../_models/user.model';
 import { ToastrService } from 'ngx-toastr';
-import { Brands } from '../_models/brands.model';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -82,12 +81,14 @@ export class ApiService {
 
   public readAll(uri:any){
     return this.http
-      .get<Brands>(`${environment.api}/${uri}`)
+      .get<[]>(`${environment.api}/${uri}`)
       .pipe(catchError((error: any) => this.processError(error)));
   }
 
   public read(id:any): Observable<any> {
-    return this.http.get(`${environment.api}/${id}`);
+    return this.http
+      .get(`${environment.api}/${id}`)
+      .pipe(catchError((error: any) => this.processError(error)));
   }
 
   public create(data:[]): Observable<any> {

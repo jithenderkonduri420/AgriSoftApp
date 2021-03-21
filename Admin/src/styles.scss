@@ -198,7 +198,7 @@ body{
 }
 
 .custom-scrollbar{
-    max-height: 600px;
+    // max-height: 600px;
     overflow-y: auto;
     overflow-x: hidden;
     &::-webkit-scrollbar {
@@ -246,6 +246,9 @@ header{
         color: #5A5A5A;
         font-size: 14px;
         font-weight: 500;
+    }
+    span{
+        cursor: pointer;
     }
     p{
         margin: 0;
