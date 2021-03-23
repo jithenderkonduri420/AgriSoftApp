@@ -1,4 +1,4 @@
-const config = require("../config/auth.config");
+                              const config = require("../config/auth.config");
 const db = require("../models");
 const ApiError = require('../error/ApiError');
 const { validationResult } = require('express-validator')
@@ -10,14 +10,14 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 exports.create = async (req, res, next) => {
   const errors = validationResult(req)
-  if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() })
+  if (!errors.isEmpty()) return res.status(422).json({ error: true, message: errors.array() })
   const route = await Route.findById(req.body.route).populate("warehouse", "-__v");
   // validate
-  if (!route) res.send({ status: 400, message: 'Route not found' });
+  if (!route) res.status(400).send({  error: true,  message: 'Route not found' });
 
   const brand = await Brand.findById(req.body.brand);
   // validate
-  if (!brand) res.send({ status: 400, message: 'Brand not found' });
+  if (!brand) res.status(400).send({  error: true,  message: 'Brand not found' });
 
   const password = Math.random().toString(36).substring(4);
 
@@ -26,8 +26,8 @@ exports.create = async (req, res, next) => {
   Distributor.findOne({
     code
   }).exec((err, user) => {
-    if (err) res.send({ status: 500, message: err });
-    if (user) res.send({ status: 400, message: "Failed! Distributor is already in use!" });
+    if (err) res.status(500).send({  error: true, message: err });
+    if (user) res.status(400).send({  error: true, message: "Failed! Distributor is already in use!" });
   });
 
   const distributor = new Distributor({
@@ -47,17 +47,17 @@ exports.create = async (req, res, next) => {
   });
 
   distributor.save((err, user) => {
-    if (err) res.send({ status: 500, message: err });
+    if (err) res.status(500).send({  error: true,  message: err });
     res.send({ message: "Distributor was created successfully!" });
   });
 };
 exports.update = async (req, res, next) => {
   const errors = validationResult(req)
-  if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() })
+  if (!errors.isEmpty()) return res.status(400).json({  error: true, message: errors.array() })
 
   const distributor = await Distributor.findById(req.params.id);
   // validate
-  if (!distributor) res.send({ status: 400, message: 'Distributor not found'});
+  if (!distributor) res.status(400).send({  error: true, message: 'Distributor not found'});
 
   distributor.name = req.body.name;
   distributor.email = req.body.email;
@@ -69,29 +69,29 @@ exports.update = async (req, res, next) => {
 
 
   distributor.save((err, product) => {
-    if (err) res.send({ status: 500, message: err });
+    if (err) res.status(500).send({  error: true, message: err });
     res.send({ status: 200, message: "Distributor was updated successfully!" });
   });
 };
 exports.delete = async (req, res, next) => {
   const distributor = await Distributor.findById(req.params.id);
   // validate
-  if (!distributor) res.send({ status: 400, message: "distributor not found" });
+  if (!distributor) res.status(400).send({  error: true, message: "distributor not found" });
   Distributor.deleteOne((err, distributor) => {
-    if (err) res.send({ status: 500, message: err });
+    if (err) res.status(500).send({  error: true,  message: err });
     res.send({ status: 200, message: "Distributor was deleted successfully!" });
   });
 }
 exports.getById = async (req, res, next) => {
-  const distributor = await Distributor.findById(req.params.id).populate("brand", "-__v").populate("products.productId", "-__v");
+  const distributor = await Distributor.findById(req.params.id).populate("brand", "-__v").populate("products.productId", "-__v").populate("route", "-__v");
   // validate
-  if (!distributor) res.send({ status: 400, message: 'Distributor not found' });
+  if (!distributor) res.status(400).send({  error: true,  message: 'Distributor not found' });
   res.status(200).send({ distributor });
 };
 exports.getAll = (req, res) => {
   Distributor.find({}, (err, distributors) => {
     if (err) {
-      res.status(500).send({ message: err });
+      res.status(500).send({ error: true, message: err });
       return;
     }
     res.status(200).send({

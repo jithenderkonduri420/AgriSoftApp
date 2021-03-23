@@ -5,12 +5,12 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col size="3">
-                            <img src="{{serverImagePath}}/{{item.productId.fileName}}" class="bitmap">
+                            <img src="{{serverImagePath}}/{{item.productId.fileName}}" class="bitmap" />
                         </ion-col>
                         <ion-col size="5">
                             <ion-label>
                                 <div class="align">
-                                    <p class="sabari-cow-milk-500"> {{ item.productId.name }}</p>
+                                    <p class="sabari-cow-milk-500">{{ item.productId.name }}</p>
                                     <span class="cost">{{ item.price | number : '1.2-2' }}</span>
                                     <p class="per-crate">Per crate</p>
                                 </div>
@@ -19,105 +19,29 @@
                         <ion-col size="4">
                             <div class="cart-detials">
                                 <span class="crates-qty">Crates QTY</span>
-                                <input type="text" class="cart-detials-input" placeholder="0" #quantity name='quantity' ng- model='quantity' value="{{ item ? item.qty : ''}} ">
-                                <button type="button" class="cart-detials-button" (click)="addToCart(item, quantity)">Add To Cart</button>
+                                <input type="text" class="cart-detials-input" placeholder="0" #quantity name="quantity" ng- model="quantity" maxlength="3" autocomplete="off" />
+                                <button type="button" class="cart-detials-button" (click)="addToCart(item, quantity)">
+                  Add To Cart
+                </button>
                             </div>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
             </ion-item>
         </ion-card>
-        <!--   <ion-card>
-            <ion-item>
-                <ion-grid>
-                    <ion-row>
-                        <ion-col size="3">
-                            <img src="\assets\icon\sabari.png" class="bitmap">
-                        </ion-col>
-                        <ion-col size="5">
-                            <ion-label>
-                                <div class="align">
-                                    <p class="sabari-cow-milk-500">Sabari Cow Milk 500 ml</p>
-                                    <span class="cost">450.00</span>
-                                    <p class="per-crate">Pre crate</p>
-                                </div>
-                            </ion-label>
-                        </ion-col>
-                        <ion-col size="4">
-                            <div class="cart-detials">
-                                <span class="crates-qty">Crates Qty</span>
-                                <input type="text" class="cart-detials-input" value="20">
-                                <button type="button" class="cart-detials-button">Add To Cart</button>
-                            </div>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-item>
-        </ion-card>
-        <ion-card>
-            <ion-item>
-                <ion-grid>
-                    <ion-row>
-                        <ion-col size="3">
-                            <img src="\assets\icon\sabari.png" class="bitmap">
-                        </ion-col>
-                        <ion-col size="5">
-                            <ion-label>
-                                <div class="align">
-                                    <p class="sabari-cow-milk-500">Sabari Cow Milk 500 ml</p>
-                                    <span class="cost">450.00</span>
-                                    <p class="per-crate">Pre crate</p>
-                                </div>
-                            </ion-label>
-                        </ion-col>
-                        <ion-col size="4">
-                            <div class="cart-detials">
-                                <span class="crates-qty">Crates Qty</span>
-                                <input type="text" class="cart-detials-input" value="20">
-                                <button type="button" class="cart-detials-button">Add To Cart</button>
-                            </div>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-item>
-        </ion-card>
-        <ion-card>
-            <ion-item>
-                <ion-grid>
-                    <ion-row>
-                        <ion-col size="3">
-                            <img src="\assets\icon\sabari.png" class="bitmap">
-                        </ion-col>
-                        <ion-col size="5">
-                            <ion-label>
-                                <div class="align">
-                                    <p class="sabari-cow-milk-500">Sabari Cow Milk 500 ml</p>
-                                    <span class="cost">450.00</span>
-                                    <p class="per-crate">Pre crate</p>
-                                </div>
-                            </ion-label>
-                        </ion-col>
-                        <ion-col size="4">
-                            <div class="cart-detials">
-                                <span class="crates-qty">Crates QTY</span>
-                                <input type="text" class="cart-detials-input" value="20">
-                                <button type="button" class="cart-detials-button">Add To Cart</button>
-                            </div>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-item>
-        </ion-card>-->
     </div>
 </ion-content>
 <ion-footer>
     <ion-toolbar>
         <div class="cart-button-col">
-            <p><span class="cart-total">Cart Total</span> <span class="total-mount">{{cartAmount | number : '1.2-2'}}</span></p>
-            <ion-label>Order placing time is completed for today</ion-label>
+            <p>
+                <span class="cart-total">Cart Total</span>
+                <span class="total-mount">{{cartAmount | number : '1.2-2'}}</span>
+            </p>
             <section class="full-width">
-
-                <ion-button expand="block" color="cart-button" class="order-review" [disabled]='cartAmount === 0' (click)="placeOrder()">Order Review </ion-button>
+                <ion-label *ngIf="isOrderTimeOut && currentUser && currentUser.route">Your Order closing time is {{currentUser.route.closeTime }}. Please try again next day</ion-label>
+                <ion-button *ngIf="!isOrderTimeOut" expand="block" color="cart-button" class="order-review" [disabled]="cartAmount === 0" (click)="placeOrder()">Order Review
+                </ion-button>
             </section>
         </div>
     </ion-toolbar>

@@ -6,23 +6,10 @@
         >
         <span class="user-name">{{ this.currentUser.name }}</span>
             </h3>
-            <!-- <h3 class="welcome-title">
-        <ion-label><span *ngIf="selectedTab === 'order'"
-          > Order Review</span></ion-label>
-      </h3>
-      <h3 class="welcome-title">
-        <ion-label><span *ngIf="selectedTab === 'cart'"
-          > New Order</span></ion-label>
-      </h3> -->
-
         </ion-title>
         <ion-buttons slot="start">
-            <ion-menu-button autoHide="false"></ion-menu-button>
+          <ion-menu-button autoHide="false"></ion-menu-button>
         </ion-buttons>
-        <!-- <ion-buttons slot="start" *ngIf="selectedTab === 'order'">
-      <ion-back-button defaultHref="/home/cart" (click)="openTab('cart', $event)"></ion-back-button>
-
-    </ion-buttons> -->
 
         <ion-grid>
             <ion-row>
@@ -34,7 +21,7 @@
                                 <ion-icon slot="start" name="log-out"></ion-icon>
                             </a>
                         </a>
-                        <p class="notificatin-icon">
+                        <p class="notificatin-icon" (click)="notifications()">
                             <img src="\assets\icon\notification.svg" />
                             <ion-badge color="primary" mode="ios" class="notification-badge">12</ion-badge>
                         </p>
@@ -53,7 +40,7 @@
                 <ion-label>wallet</ion-label>
             </ion-tab-button>
 
-            <ion-tab-button tab="order" (click)="openTab('order', $event)">
+            <ion-tab-button>
                 <ion-icon src="\assets\icon\notification.svg"></ion-icon>
                 <ion-label>Order</ion-label>
             </ion-tab-button>

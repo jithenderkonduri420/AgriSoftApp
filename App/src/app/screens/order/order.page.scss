@@ -3,14 +3,14 @@
         background: #fff;
         border-radius: 0 10px 10px 0;
     }
-    
-    .vertical-top-margin {
+
+    .order {
         ion-grid {
             padding: 0;
             background: #258B1F;
         }
     }
-    
+
     .order-cost {
         color: #FFFFFF;
         font-size: 16px;
@@ -20,7 +20,7 @@
         float: left;
         margin: 0 0 9px
     }
-    
+
     .order-total {
         width: 100%;
         float: left;
@@ -29,7 +29,7 @@
         font-weight: bold;
         line-height: 19px;
     }
-    
+
     .sabari-cow-milk-500 {
         color: #363636;
         font-family: Roboto;
@@ -39,15 +39,15 @@
         line-height: 19px;
         margin: 20px 0 7px !important;
     }
-    
+
     .crates-qty {
         color: #fff;
     }
-    
+
     ion-card img.bitmap {
         margin: 3px 0 0
     }
-    
+
     ion-card .align {
         margin: 10px 0px 10px 0px !important
     }
