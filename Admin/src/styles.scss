@@ -214,6 +214,15 @@ body{
     }
 }
 
+app-login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(252.47deg, #79C56A 0%, #549E49 100%);
+}
+
 
 .modal-open .modal {
   display: flex !important;
