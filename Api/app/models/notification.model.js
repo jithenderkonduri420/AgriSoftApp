@@ -12,7 +12,8 @@ const notification = mongoose.model(
     date: {
       type: Date,
       default: Date.now
-    }
+    },
+    isRead: false
   })
 );
 

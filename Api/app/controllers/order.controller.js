@@ -52,7 +52,8 @@ exports.create = async (req, res) => {
         const notification = new Notification({
           distributorId: req.body.distributorId,
           title: 'Order Accepted',
-          body: `We acknowledge the receipt of your purchase order number ${orderId}`
+          body: `We acknowledge the receipt of your purchase order number ${orderId}`,
+          isRead : false
         })
         await notification.save()
 

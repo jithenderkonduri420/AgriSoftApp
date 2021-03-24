@@ -7,5 +7,10 @@ module.exports = function(app) {
     authJwt.verifyToken,
     controller.getAll
   );
+  app.post(
+    "/api/notifications-update",
+    authJwt.verifyToken,
+    controller.update
+  );
   
 };

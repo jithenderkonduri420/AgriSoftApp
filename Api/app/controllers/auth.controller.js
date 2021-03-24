@@ -71,7 +71,7 @@ exports.appSignin = async (req, res, next) => {
     code: req.body.username
   })
     .exec((err, distributor) => {
-      if (err) res.send({ error: false, message: err });
+      if (err) res.send({ error: true, message: err });
       if (!distributor) res.status(500).json({ error: true, message: "Distributor userid is invalid." });
       else {
         console.log(distributor);
@@ -87,7 +87,7 @@ exports.appSignin = async (req, res, next) => {
           });
         }
 
-        let token = jwt.sign({ user: distributor}, config.secret, {
+        let token = jwt.sign({ user: distributor }, config.secret, {
           expiresIn: 86400 // 24 hours
         });
 
@@ -95,6 +95,40 @@ exports.appSignin = async (req, res, next) => {
           _id: distributor._id,
           accessToken: token
         });
+      }
+    });
+};
+
+exports.appChangePassword = async (req, res, next) => {
+  await check('username').notEmpty().withMessage('Distributor userid is required').run(req);
+  await check('newPassword').notEmpty().withMessage('Password is required').run(req);
+  const { username, newPassword } = req.body
+  const result = validationResult(req);
+  if (!result.isEmpty()) {
+    return res.status(400).json({ errors: result.array() });
+  }
+
+  Distributor.findOne({
+    _id: username
+  })
+    .exec((err, distributor) => {
+      if (err) res.send({ error: false, message: err });
+      if (!distributor) res.status(500).json({ error: true, message: "Distributor userid is invalid." });
+      else {
+        console.log(distributor);
+        bcrypt.genSalt(10, function (err, salt) {
+          // Call error-handling middleware:
+          if (err) { return res.send({ error: true, message: err }); }
+          bcrypt.hash(newPassword, salt, function (err, hash) {
+            distributor.password = newPassword;
+            distributor.passwordHash = hash;
+            distributor.passwordChanged = true;
+            distributor.save((err, product) => {
+              if (err) res.status(500).send({ error: true, message: err });
+              res.send({ status: 200, message: "Password is updated successfully!" });
+            });
+          })
+        })
       }
     });
 };
