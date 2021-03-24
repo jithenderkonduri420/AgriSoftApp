@@ -96,6 +96,7 @@ ion-card {
         color: #303030;
         font-family: Roboto;
         font-size: 16px;
+        margin-left: 7px;
         font-weight: bold;
         letter-spacing: 0;
         line-height: 0px;
@@ -167,5 +168,12 @@ ion-card {
         letter-spacing: 0;
         line-height: 10px;
         text-align: center;
+    }
+}
+
+.invoice-details {
+    padding: 0 15px;
+    ion-col {
+        margin-bottom: 15px;
     }
 }
