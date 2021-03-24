@@ -89,10 +89,18 @@ export class ApiService {
           );
       });
   }
-  public getAllNotifications(distributor: any): Observable<any> {
+  public getAllNotifications(distributor: any, limit: Number = 0): Observable<any> {
     return this.http
       .post<any>(`${environment.api_prefix_url}/notifications`, {
         distributorId: distributor._id,
+        limit: limit
+      })
+      .pipe(catchError((error: any) => this.processError(error)));
+  }
+  public notificationsReadUpdate(distributor: any): Observable<any> {
+    return this.http
+      .post<any>(`${environment.api_prefix_url}/notifications-update`, {
+        distributorId: distributor._id
       })
       .pipe(catchError((error: any) => this.processError(error)));
   }

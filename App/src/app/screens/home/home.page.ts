@@ -1,3 +1,4 @@
+import { ApiService } from './../../shared/services/api.service';
 import { Router } from '@angular/router';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import {
@@ -14,6 +15,8 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  count: any = 0;
+  notifies: any = [];
   currentUser: any;
   isLogin: boolean = false;
   selectedTab: string = '';
@@ -21,11 +24,18 @@ export class HomePage {
   constructor(
     private authService: AuthenticationService,
     private navCtrl: NavController,
-    private router: Router
+    private router: Router,
+    private apiService: ApiService
   ) {
     this.authService.userDetails().then((res: any) => {
       this.currentUser = res.user;
       this.isLogin = this.authService.currentUserValue;
+      this.apiService.getAllNotifications(this.currentUser).subscribe((res) => {
+        this.notifies = res.notifications;
+        this.count = this.notifies.map((res: any) => {
+          return res.records.filter((n: any) => !n.isRead).length;
+        });
+      });
     });
   }
   async openTab(tab: string, evt: MouseEvent) {

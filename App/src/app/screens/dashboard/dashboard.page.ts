@@ -10,6 +10,7 @@ import { HomePage } from '../home/home.page';
 })
 export class DashboardPage {
   currentUser: any;
+  notifications: [];
   constructor(
     private authService: AuthenticationService,
     private apiService: ApiService,
@@ -19,7 +20,14 @@ export class DashboardPage {
     this.authService.userDetails().then((res: any) => {
       this.apiService.getDistributorDetails(res.user).subscribe((res) => {
         this.currentUser = res.distributor;
+        this.getLatestNotifications();
       });
+    });
+  }
+  getLatestNotifications() {
+    const limit = 3;
+    this.apiService.getAllNotifications(this.currentUser, limit).subscribe((res) => {
+      this.notifications = res.notifications;
     });
   }
 }
