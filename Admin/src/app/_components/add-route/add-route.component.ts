@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-route',
@@ -19,6 +20,11 @@ export class AddRouteComponent implements OnInit {
     if(this.DropPointList.length < 10){
       this.DropPointList.push({});
     }
+  }
+
+  onSubmit(formData: NgForm):void{
+    console.log(formData.value);
+    console.log(formData.valid);
   }
 
 }
