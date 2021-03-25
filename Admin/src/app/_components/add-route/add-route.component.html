@@ -29,10 +29,10 @@
                 
                 <div class="clearfix"></div>
 
-                <div class="col-12 dropPoint" *ngFor="let item of DropPointList; last as isLast">
+                <div class="col-12 dropPoint" *ngFor="let item of DropPointList; last as isLast; index as i">
                     <div class="row">
                         <div class="col-8">
-                            <label class="form-label">Drop Point</label>
+                            <label class="form-label">Drop Point {{i+1}}</label>
                             <input name="Distributorname" ngModel #Distributorname="ngModel" type="text" required class="form-control">
                         </div>
                         <div class="col-4">

@@ -16,7 +16,7 @@ export class AddRouteComponent implements OnInit {
   }
 
   addDropPoint():void{
-    if(this.DropPointList.length <= 10){
+    if(this.DropPointList.length < 10){
       this.DropPointList.push({});
     }
   }
