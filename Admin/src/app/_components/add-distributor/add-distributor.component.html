@@ -1,116 +1,153 @@
 <header>
-    <p class="page-breadcrumb"> <span routerLink="/home"> Dashboard </span>/ <span routerLink="/distributor"> Sabari MIlk </span> / Distributors</p>
-    <h3 class="page-title">Add New</h3>
+  <p class="page-breadcrumb">
+    <span routerLink="/home"> Dashboard </span>/
+    <span routerLink="/distributor"> Sabari MIlk </span> / Distributors
+  </p>
+  <h3 class="page-title">Add New</h3>
 </header>
 
 <section class="main-section">
-    <div class="add-new-distributor agrisoft-forms">
-        <h4>Distributor Information</h4>
-        <div class="form-section custom-scrollbar">
-            <form class="row g-3">
-                <div class="col-md-7">
-                    <label class="form-label">Enter Distributor Name</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-5">
-                    <label class="form-label">Brand</label>
-                    <input type="text" class="form-control">
-                </div>
-
-                <div class="col-md-5">
-                    <label class="form-label">Route</label>
-                    <select name="" class="form-control">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                    </select>
-                </div>
-                <div class="col-md-7">
-                    <label class="form-label">Drop Point</label>
-                    <select name="" class="form-control">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label">Email Address</label>
-                    <input type="email" class="form-control">
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label">Contact Number</label>
-                    <input type="text" class="form-control">
-                </div>
-
-                <div class="col-md-12">
-                    <label class="form-label">Delivery Address</label>
-                    <input type="text" class="form-control">
-                </div>
-                
-                <div class="clearfix"></div>
-
-                <div class="col-12">
-                    <h4>Set Product Price</h4>
-                </div>
-                <br>
-
-                <div class="col-md-6 form-text">
-                    <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4"></div>
-
-                <div class="col-md-6 form-text">
-                    <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4"></div>
-
-                <div class="col-md-6 form-text">
-                    <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4"></div>
-
-                <div class="col-md-6 form-text">
-                    <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4"></div>
-
-                <div class="col-md-6 form-text">
-                    <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4"></div>
-
-                <div class="clearfix"></div>
-                <br>
-                <div class="col-12">
-                    <h4>Set Credit Limit</h4>
-                </div>
-                <br>
-                <div class="col-md-6">
-                    <label class="form-label">Set Credit Limit</label>
-                    <input type="email" class="form-control">
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label">Set Cash Limit</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary btn-block">Add Distributor</button>
-                </div>
-            </form>
+  <div class="add-new-distributor agrisoft-forms">
+    <h4>Distributor Information</h4>
+    <div class="form-section custom-scrollbar">
+      <form class="row g-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="col-md-7">
+          <label class="form-label">Enter Distributor Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+          </div>
         </div>
+        <div class="col-md-5">
+          <label class="form-label">Brand</label>
+          <input type="text" class="form-control" formControlName="brand" />
+          <div *ngIf="submitted && f.brand.errors" class="invalid-feedback">
+            <div *ngIf="f.brand.errors.required">Brand is required</div>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <label class="form-label">Route</label>
+          <select name="" class="form-control" formControlName="route">
+            <option value="1">1</option>
+            <option value="1">2</option>
+          </select>
+          <div *ngIf="submitted && f.route.errors" class="invalid-feedback">
+            <div *ngIf="f.route.errors.required">Route is required</div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <label class="form-label">Drop Point</label>
+          <select name="" class="form-control">
+            <option value="1">1</option>
+            <option value="1">2</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" formControlName="email" />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Contact Number</label>
+          <input type="text" class="form-control" formControlName="phone" />
+          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+            <div *ngIf="f.phone.errors.required">Phone is required</div>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <label class="form-label">Delivery Address</label>
+          <input type="text" class="form-control" formControlName="address" />
+          <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+            <div *ngIf="f.address.errors.required">Address is required</div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="col-12">
+          <h4>Set Product Price</h4>
+        </div>
+        <br />
+
+        <div class="col-md-6 form-text">
+          <label class="form-label-block">Sabari Cow Milk 500 ml</label>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" />
+        </div>
+        <div class="col-md-4"></div>
+
+        <div class="col-md-6 form-text">
+          <label class="form-label-block">Sabari Cow Milk 500 ml</label>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" />
+        </div>
+        <div class="col-md-4"></div>
+
+        <div class="col-md-6 form-text">
+          <label class="form-label-block">Sabari Cow Milk 500 ml</label>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" />
+        </div>
+        <div class="col-md-4"></div>
+
+        <div class="col-md-6 form-text">
+          <label class="form-label-block">Sabari Cow Milk 500 ml</label>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" />
+        </div>
+        <div class="col-md-4"></div>
+
+        <div class="col-md-6 form-text">
+          <label class="form-label-block">Sabari Cow Milk 500 ml</label>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" />
+        </div>
+        <div class="col-md-4"></div>
+
+        <div class="clearfix"></div>
+        <br />
+        <div class="col-12">
+          <h4>Set Credit Limit</h4>
+        </div>
+        <br />
+        <div class="col-md-6">
+          <label class="form-label">Set Credit Limit</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="crateLimit"
+          />
+          <div *ngIf="submitted && f.crateLimit.errors" class="invalid-feedback">
+            <div *ngIf="f.crateLimit.errors.required">Crate limit is required</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Set Cash Limit</label>
+          <input type="text" class="form-control" formControlName="cashLimit" />
+          <div *ngIf="submitted && f.cashLimit.errors" class="invalid-feedback">
+            <div *ngIf="f.cashLimit.errors.required">Cash limit limit is required</div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button [disabled]="loading" class="btn btn-primary btn-block">
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm mr-1"
+            ></span>
+            Add Distributor
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 </section>

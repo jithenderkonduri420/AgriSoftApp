@@ -22,7 +22,7 @@ export class ApiService {
     } else {
       errorJson = error;
     }
-
+    console
     switch (error.status) {
       case 0:
         title = 'Failed to reach API';
@@ -35,6 +35,10 @@ export class ApiService {
         title = 'Login Required';
         this.toastr.error("You'll need to log in again to continue.", title);
         break;
+      case 422:
+        title = 'Required Fields';
+        this.toastr.error("Some fields are missed. Please enter all required fields", title);
+        break;
       case 405:
         title = "Endpoint doesn't exist";
         this.toastr.error(
@@ -43,9 +47,19 @@ export class ApiService {
         );
         break;
       case 500:
-        this.displayMessage(errorJson);
+        title = "Api Internal Error";
+        this.toastr.error(
+          'Server not responding this api. Please try again later',
+          title
+        );
+        this.displayMessage('Server not responding this api. Please try again later');
         break;
       default:
+        title = "Api Internal Error";
+        this.toastr.error(
+          'Server not responding this api. Please try again later',
+          title
+        );
         this.displayMessage(errorJson);
         break;
     }
@@ -76,6 +90,11 @@ export class ApiService {
   public users(): Observable<any> {
     return this.http
       .get<User>(`${environment.api}/users`)
+      .pipe(catchError((error: any) => this.processError(error)));
+  }
+  create(data: any): Observable<any> {
+    return this.http
+      .post<any>(environment.api + '/distributor', data)
       .pipe(catchError((error: any) => this.processError(error)));
   }
 }
