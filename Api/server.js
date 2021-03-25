@@ -7,7 +7,7 @@ const path = require('path');
 const app = express();
 const apiErrorHandler = require('./app/error/api-error-handler');
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8100"
 };
 
 // enable files upload
@@ -21,6 +21,19 @@ var dir = path.join(__dirname, 'public');
 app.use(express.static(dir));
 
 app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  if (req.method === 'OPTIONS') {
+      res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+      return res.status(200).json({});
+  }
+  next();
+});
 
 // for parsing application/json
 app.use(bodyParser.json());

@@ -18,40 +18,51 @@ exports.create = async (title, body) => {
 };
 
 exports.getAll = (req, res) => {
-  console.log(req.body.distributorId);
-  // Notification.find({ distributorId: req.body.distributorId }, (err, notifications) => {
-  //   if (err) {
-  //     res.status(500).send({ error: true, message: err });
-  //     return;
-  //   }
-  //   res.status(200).send({
-  //     notifications,
-  //   });
-  // });
-  Notification.aggregate(
-    [
-      {
-        $group: {
-          _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
-          records: { $push: "$$ROOT" }
-        }
-      },
-      {
-        $sort: { "_id": -1 }
-      }
-    ],
-    function (err, notifications) {
+  const { distributorId, limit } = req.body;
+  if (limit > 0) {
+    Notification.find({ distributorId: distributorId }, (err, notifications) => {
       if (err) {
         res.status(500).send({ error: true, message: err });
         return;
-      } else {
-        res.status(200).send({
-          notifications,
-        });
       }
-    }
-  );
+      res.status(200).send({
+        notifications,
+      });
+    }).sort({ date: -1 }).limit(limit).skip(0);
+  } else {
+    Notification.aggregate(
+      [
+        {
+          $group: {
+            _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
+            records: { $push: "$$ROOT" }
+          }
+        },
+        {
+          $sort: { "_id": -1 }
+        }
+      ],
+      function (err, notifications) {
+        if (err) {
+          res.status(500).send({ error: true, message: err });
+          return;
+        } else {
+          res.status(200).send({
+            notifications,
+          });
+        }
+      }
+    );
+  }
 };
+exports.update = async (req, res, next) => {
+  const { distributorId } = req.body
+  Notification.updateMany({ distributorId: distributorId }, { "$set": { isRead: true } }).exec(function (err, book) {
+    if (err) {
+      if (err) res.status(500).send({ error: true, message: err });
+    } else {
+      res.send({ message: "Notifications was updated successfully!" });
+    }
+  });
 
-
-
+};
