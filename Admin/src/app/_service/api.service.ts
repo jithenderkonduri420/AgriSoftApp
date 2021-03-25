@@ -91,8 +91,10 @@ export class ApiService {
       .pipe(catchError((error: any) => this.processError(error)));
   }
 
-  public create(data:[]): Observable<any> {
-    return this.http.post(environment.api, data);
+  public create(apiUri:string, data:any): Observable<any> {
+    console.log(data)
+    return this.http.post(`${environment.api}/${apiUri}`, data)
+      .pipe(catchError((error: any) => this.processError(error)));;
   }
 
   public update(id:any, data:[]): Observable<any> {
