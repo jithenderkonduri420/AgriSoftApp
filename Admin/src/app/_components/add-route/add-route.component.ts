@@ -52,7 +52,7 @@ export class AddRouteComponent implements OnInit {
         "Test3"
       ]
 
-      this._api.create("route", this.newRoute);
+      this._api.create("route", formData.value);
 
     }
   }

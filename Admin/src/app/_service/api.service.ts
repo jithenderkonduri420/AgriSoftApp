@@ -1,8 +1,8 @@
 import { AuthenticationService } from '../_service/authentication.service';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, Subject, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { catchError, first, map, take } from 'rxjs/operators';
 import { User } from '../_models/user.model';
 import { ToastrService } from 'ngx-toastr';
@@ -22,7 +22,7 @@ export class ApiService {
     } else {
       errorJson = error;
     }
-
+    console
     switch (error.status) {
       case 0:
         title = 'Failed to reach API';
@@ -35,6 +35,10 @@ export class ApiService {
         title = 'Login Required';
         this.toastr.error("You'll need to log in again to continue.", title);
         break;
+      case 422:
+        title = 'Required Fields';
+        this.toastr.error("Some fields are missed. Please enter all required fields", title);
+        break;
       case 405:
         title = "Endpoint doesn't exist";
         this.toastr.error(
@@ -43,9 +47,19 @@ export class ApiService {
         );
         break;
       case 500:
-        this.displayMessage(errorJson);
+        title = "Api Internal Error";
+        this.toastr.error(
+          'Server not responding this api. Please try again later',
+          title
+        );
+        this.displayMessage('Server not responding this api. Please try again later');
         break;
       default:
+        title = "Api Internal Error";
+        this.toastr.error(
+          'Server not responding this api. Please try again later',
+          title
+        );
         this.displayMessage(errorJson);
         break;
     }
@@ -79,33 +93,16 @@ export class ApiService {
       .pipe(catchError((error: any) => this.processError(error)));
   }
 
-  public readAll(uri:any){
+  readAll(uri: string): Observable<any> {
+    console.log(uri)
     return this.http
-      .get<[]>(`${environment.api}/${uri}`)
+      .get<any>(`${environment.api}/${uri}`)
       .pipe(catchError((error: any) => this.processError(error)));
   }
 
-  public read(id:any): Observable<any> {
+  create(uri:string, data: []): Observable<any> {
     return this.http
-      .get(`${environment.api}/${id}`)
+      .post<any>(`${environment.api}/${uri}`, data)
       .pipe(catchError((error: any) => this.processError(error)));
-  }
-
-  public create(apiUri:string, data:any): Observable<any> {
-    console.log(data)
-    return this.http.post(`${environment.api}/${apiUri}`, data)
-      .pipe(catchError((error: any) => this.processError(error)));;
-  }
-
-  public update(id:any, data:[]): Observable<any> {
-    return this.http.put(`${environment.api}/${id}`, data);
-  }
-
-  public delete(id:any): Observable<any> {
-    return this.http.delete(`${environment.api}/${id}`);
-  }
-
-  public deleteAll(): Observable<any> {
-    return this.http.delete(`${environment.api}`);
   }
 }
