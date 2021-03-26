@@ -92,9 +92,17 @@ export class ApiService {
       .get<User>(`${environment.api}/users`)
       .pipe(catchError((error: any) => this.processError(error)));
   }
-  create(data: any): Observable<any> {
+
+  readAll(uri: string): Observable<any> {
+    console.log(uri)
     return this.http
-      .post<any>(environment.api + '/distributor', data)
+      .get<any>(`${environment.api}/${uri}`)
+      .pipe(catchError((error: any) => this.processError(error)));
+  }
+
+  create(uri:string, data: []): Observable<any> {
+    return this.http
+      .post<any>(`${environment.api}/${uri}`, data)
       .pipe(catchError((error: any) => this.processError(error)));
   }
 }

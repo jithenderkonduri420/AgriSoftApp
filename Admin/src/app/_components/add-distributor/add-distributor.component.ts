@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'src/app/_service/alert.service';
 import { first } from 'rxjs/operators';
+import { BrandService, BrandsType } from 'src/app/_service/brand.service';
 
 @Component({
   selector: 'app-add-distributor',
@@ -15,18 +16,35 @@ export class AddDistributorComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  routeList: any[];
+  DropPoint: any[];
+  seletedBrand: BrandsType;
+  brandProducts: any[];
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertService,
-    private apiService: ApiService
-  ) {}
+    private apiService: ApiService,
+    public _brands: BrandService
+  ) {
+    this.seletedBrand = this._brands.getBrand();
+    this.apiService.readAll(`products?brandId=${this.seletedBrand._id}`).subscribe(data =>{
+      this.brandProducts = data.products;
+      console.log(this.brandProducts)
+    })
+    this.apiService.readAll("route").subscribe(data => this.routeList = data.routes )
+  }
+
+  onChangeRoute(value:any){
+    this.DropPoint = this.routeList.filter(item => item['_id'] === value)[0]["locations"];
+  }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
-      brand: ['', Validators.required],
+      brand: [this.seletedBrand.name, Validators.required],
       route: ['', Validators.required],
       email: ['', Validators.required],
       phone: ['', Validators.required],
@@ -55,14 +73,18 @@ export class AddDistributorComponent implements OnInit {
       return;
     }
     this.loading = true;
+
+    this.form.value.brand = this.seletedBrand._id;
+    console.log(this.form.value)
     this.apiService
-      .create(this.form.value)
+      .create("distributor", this.form.value)
       .pipe(first())
       .subscribe(
         (data) => {
           this.router.navigate(['home']);
         },
         (error) => {
+          console.log(error)
           this.alertService.error(error);
           this.loading = false;
         }

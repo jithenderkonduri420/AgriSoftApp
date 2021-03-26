@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +28,9 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { AlertComponent } from './_alert';
 import { ToastrModule } from 'ngx-toastr';
+import { AddRouteComponent } from './_components/add-route/add-route.component';
+import { RoutesListComponent } from './_components/routes-list/routes-list.component';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +49,8 @@ import { ToastrModule } from 'ngx-toastr';
     OrderSearchPipe,
     SearchHighlightDirective,
     LoginComponent,
+    AddRouteComponent,
+    RoutesListComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +61,8 @@ import { ToastrModule } from 'ngx-toastr';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
-
+    NgxMaterialTimepickerModule,
+    BrowserAnimationsModule,
     NgbModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',

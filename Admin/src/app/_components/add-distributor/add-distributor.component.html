@@ -28,9 +28,8 @@
 
         <div class="col-md-5">
           <label class="form-label">Route</label>
-          <select name="" class="form-control" formControlName="route">
-            <option value="1">1</option>
-            <option value="1">2</option>
+          <select name="" class="form-control" formControlName="route" #route (change)="onChangeRoute(route.value)">
+            <option *ngFor="let route of routeList; let i = index" value="{{route._id}}">{{route.name}}</option>
           </select>
           <div *ngIf="submitted && f.route.errors" class="invalid-feedback">
             <div *ngIf="f.route.errors.required">Route is required</div>
@@ -39,8 +38,7 @@
         <div class="col-md-7">
           <label class="form-label">Drop Point</label>
           <select name="" class="form-control">
-            <option value="1">1</option>
-            <option value="1">2</option>
+            <option  *ngFor="let point of DropPoint" value="{{point}}">{{point}}</option>
           </select>
         </div>
 
@@ -74,45 +72,19 @@
         </div>
         <br />
 
-        <div class="col-md-6 form-text">
-          <label class="form-label-block">Sabari Cow Milk 500 ml</label>
+        <div class="col-12" *ngFor="let product of brandProducts">
+          <div class="row">
+            <div class="col-md-6 form-text">
+              <label class="form-label-block">{{product.name}}</label>
+            </div>
+            <div class="col-md-2">
+              <input type="text" formControlName="{{product.brandId}}" name="{{product.brandId}}" class="form-control" />
+            </div>
+            <div class="col-md-4"></div>
+          </div>
         </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" />
-        </div>
-        <div class="col-md-4"></div>
 
-        <div class="col-md-6 form-text">
-          <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" />
-        </div>
-        <div class="col-md-4"></div>
-
-        <div class="col-md-6 form-text">
-          <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" />
-        </div>
-        <div class="col-md-4"></div>
-
-        <div class="col-md-6 form-text">
-          <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" />
-        </div>
-        <div class="col-md-4"></div>
-
-        <div class="col-md-6 form-text">
-          <label class="form-label-block">Sabari Cow Milk 500 ml</label>
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" />
-        </div>
-        <div class="col-md-4"></div>
+       
 
         <div class="clearfix"></div>
         <br />

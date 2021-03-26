@@ -198,7 +198,7 @@ body{
 }
 
 .custom-scrollbar{
-    max-height: 600px;
+    // max-height: 600px;
     overflow-y: auto;
     overflow-x: hidden;
     &::-webkit-scrollbar {
@@ -212,6 +212,15 @@ body{
         border-radius: 4px;
         background-color: #258B1F;
     }
+}
+
+app-login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(252.47deg, #79C56A 0%, #549E49 100%);
 }
 
 
@@ -246,6 +255,9 @@ header{
         color: #5A5A5A;
         font-size: 14px;
         font-weight: 500;
+    }
+    span{
+        cursor: pointer;
     }
     p{
         margin: 0;

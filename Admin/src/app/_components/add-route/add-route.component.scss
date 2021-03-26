@@ -1,5 +1,5 @@
 .main-section{
-    .add-new-distributor{
+    .add-new-route{
         display: block;
         float: left;
         width: 100%;
@@ -21,7 +21,24 @@
             float: left;
             width: 100%;
         }
-
+        button.add-item{
+            background-color: #255D95;
+            border-radius: 100px;
+        }
+        .input-group{
+            .form-control{
+                border-radius: 5px;
+            }
+            .input-group-text{
+                background: none;
+                border: none;
+                svg{
+                    width: 30px;
+                    height: 30px;
+                    fill: rgba(0,0,0,0.75);
+                }
+            }
+        }
     }
 
 }

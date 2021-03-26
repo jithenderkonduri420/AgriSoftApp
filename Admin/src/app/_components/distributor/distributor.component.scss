@@ -13,7 +13,12 @@
             box-shadow: 0 2px 24px 0 rgba(1,1,1,0.11);
             text-align: center;
             border-radius: 10px;
+            transition: ease-in-out all 0.3s;
             cursor: pointer;
+            &:focus{
+                outline: none;
+                border: none;
+            }
             .card-head{
                 width: 40%;
                 float: left;
@@ -26,6 +31,7 @@
                 max-width: 100%;
                 fill: #295360;
                 display: inline-block;
+                transition: ease-in-out all 0.3s;
             }
             &.distributors{
                 .card-img-top{
@@ -77,6 +83,7 @@
                     letter-spacing: 0;
                     line-height: 24px;
                     color: #5A5A5A;
+                    transition: ease-in-out all 0.3s;
                 }
             }
         }
