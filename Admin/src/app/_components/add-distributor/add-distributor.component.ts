@@ -6,6 +6,11 @@ import { AlertService } from 'src/app/_service/alert.service';
 import { first } from 'rxjs/operators';
 import { BrandService, BrandsType } from 'src/app/_service/brand.service';
 
+class productdata{
+  productId:string;
+  price: string;
+}
+
 @Component({
   selector: 'app-add-distributor',
   templateUrl: './add-distributor.component.html',
@@ -16,10 +21,14 @@ export class AddDistributorComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+
+
   routeList: any[];
   DropPoint: any[];
   seletedBrand: BrandsType;
   brandProducts: any[];
+  warehouses: any[];
+  productValue: productdata[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,19 +41,21 @@ export class AddDistributorComponent implements OnInit {
     this.seletedBrand = this._brands.getBrand();
     this.apiService.readAll(`products?brandId=${this.seletedBrand._id}`).subscribe(data =>{
       this.brandProducts = data.products;
-      console.log(this.brandProducts)
+      for(let product of this.brandProducts){
+        this.productValue.push({productId:product._id, price:"0"})
+      }
     })
     this.apiService.readAll("route").subscribe(data => this.routeList = data.routes )
   }
 
   onChangeRoute(value:any){
-    this.DropPoint = this.routeList.filter(item => item['_id'] === value)[0]["locations"];
+    this.DropPoint = this.routeList.filter(item => item._id === value)[0]["locations"];
   }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
-      brand: [this.seletedBrand.name, Validators.required],
+      brand: [{value: this.seletedBrand.name, disabled: true}, Validators.required],
       route: ['', Validators.required],
       email: ['', Validators.required],
       phone: ['', Validators.required],
@@ -55,6 +66,11 @@ export class AddDistributorComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+
+  onChangeEvent(event: any, productId: any){
+    this.productValue.filter(item => item.productId === productId)[0].price = event.target.value;
+    console.log(this.productValue)
   }
 
   // convenience getter for easy access to form fields
@@ -75,6 +91,7 @@ export class AddDistributorComponent implements OnInit {
     this.loading = true;
 
     this.form.value.brand = this.seletedBrand._id;
+    this.form.value.products = this.productValue;
     console.log(this.form.value)
     this.apiService
       .create("distributor", this.form.value)

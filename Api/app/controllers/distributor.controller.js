@@ -20,7 +20,7 @@ exports.create = async (req, res, next) => {
   if (!brand) res.status(400).send({  error: true,  message: 'Brand not found' });
 
   const password = Math.random().toString(36).substring(4);
-
+  console.log('route', route);
   var code = `${route.warehouse.name.substring(0, 2).toUpperCase()}${route.name.substring(0, 3).toUpperCase()}${brand.name.substring(0, 3).toUpperCase()}${req.body.name.substring(0, 3).toUpperCase()}`;
 
   Distributor.findOne({

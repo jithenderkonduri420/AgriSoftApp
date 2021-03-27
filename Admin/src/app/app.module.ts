@@ -30,6 +30,7 @@ import { AlertComponent } from './_alert';
 import { ToastrModule } from 'ngx-toastr';
 import { AddRouteComponent } from './_components/add-route/add-route.component';
 import { RoutesListComponent } from './_components/routes-list/routes-list.component';
+import { NumOnlyDirective } from './_directive/num-only.directive';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { RoutesListComponent } from './_components/routes-list/routes-list.compo
     LoginComponent,
     AddRouteComponent,
     RoutesListComponent,
+    NumOnlyDirective,
   ],
   imports: [
     BrowserModule,

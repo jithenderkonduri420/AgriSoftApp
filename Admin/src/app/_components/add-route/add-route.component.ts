@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ApiService } from 'src/app/_service/api.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+import { ApiService } from './../../../app/_service/api.service';
+import { AlertService } from './../../../app/_service/alert.service';
+import { Router } from '@angular/router';
 
 export class CreateRoute{
   name: string
@@ -16,45 +19,71 @@ export class CreateRoute{
   styleUrls: ['./add-route.component.scss']
 })
 export class AddRouteComponent implements OnInit {
+
   RouterValid: any = true;
   newRoute: CreateRoute = new CreateRoute();
-  DropPointList:any[] = [
-    {},
-    {}
-  ];
-  constructor(private _api:ApiService) { }
+  DropPointList:string[] = ["","",""];
+
+  addRoute: FormGroup;
+  submitted: boolean;
+  loading: boolean;
+
+  constructor(
+    private apiService:ApiService,
+    private formBuilder: FormBuilder,
+    private alertService: AlertService,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
+    this.addRoute = this.formBuilder.group({
+      warehouse: ['', Validators.required],
+      name: ['', Validators.required],
+      openTime: ['', Validators.required],
+      closeTime: ['', Validators.required]
+    });
   }
 
-  addDropPoint():void{
-    if(this.DropPointList.length < 10){
-      this.DropPointList.push({});
+  addDropPoint(index:any):void{
+    this.DropPointList[index]
+    if(this.DropPointList.length < 5){
+      this.DropPointList.push("");
     }
   }
 
-  onSubmit(formData: NgForm):void{
-    this.RouterValid =  formData.valid;
-    for (let index = 0; index < this.DropPointList.length; index++) {
-      console.log(formData.value.DropPoint+""+index)
-    }
-    if (formData.valid){
-      
-      console.log(formData.value);
-      
-      this.newRoute.name = formData.value.RouteName;
-      this.newRoute.warehouse = formData.value.Wearhouse;
-      this.newRoute.openTime = formData.value.OpenTime;
-      this.newRoute.closeTime = formData.value.CloseTime;
-      this.newRoute.locations = [
-        "Test1",
-        "Test2",
-        "Test3"
-      ]
+  dropPoint(event:any, i:any){
+    alert('test');
+    console.log(i);
+    this.DropPointList[i] = event.target.value;
+    console.log(this.DropPointList)
+  }
 
-      this._api.create("route", formData.value);
+  onNewRouteSubmit():void{
+    this.submitted = true;
 
+    // reset alerts on submit
+    this.alertService.clear();
+
+    // stop here if form is invalid
+    if (this.addRoute.invalid) {
+      return;
     }
+    this.loading = true;
+    this.addRoute.value.locations=this.DropPointList;
+    console.log(this.addRoute.value)
+    this.apiService
+      .create("route", this.addRoute.value)
+      .pipe(first())
+      .subscribe(
+        (data) => {
+          this.router.navigate(['home']);
+        },
+        (error) => {
+          console.log(error)
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      );
   }
 
 }
