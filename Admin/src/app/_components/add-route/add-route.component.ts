@@ -58,6 +58,7 @@ export class AddRouteComponent implements OnInit {
   dropPoint(event:any, i:any){
     this.DropPointList[i] = event.target.value;
   }
+
   trackByFn(index: any, item: any) {
     return index;
   }

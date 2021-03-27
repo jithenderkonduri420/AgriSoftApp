@@ -97,7 +97,7 @@ export class AddDistributorComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.router.navigate(['home']);
+          this.router.navigate(['distributors']);
         },
         (error) => {
           console.log(error)

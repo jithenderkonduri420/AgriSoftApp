@@ -13,13 +13,24 @@ export class RoutesListComponent implements OnInit {
   constructor(
     private apiService:ApiService,
   ) {
-    this.apiService.readAll("route").subscribe(data => {
-      this.RoutesList = data.routes;
-      console.log(this.RoutesList);
-    })
+      this.getRoutesList()
    }
 
-  ngOnInit(): void {
+  getRoutesList():void{
+    this.apiService.readAll("route").subscribe(data => {
+      this.RoutesList = data.routes;
+    })
+  }
+
+  ngOnInit(): void {}
+
+  dropRoute(id: string){
+    if(confirm("Conform delete distributor")){
+      this.apiService.deleteIndex("route",id).subscribe(data=>{
+        console.log(data);
+        this.getRoutesList();
+      });
+    }
   }
 
 }
