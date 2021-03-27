@@ -23,144 +23,18 @@
                 </div>
             </div>
             <div class="routes-table-items custom-scrollbar">
-                <div class="row-item">
+                <div class="row-item" *ngFor="let route of RoutesList; let i = index">
                     <div class="no-col">
-                        01
+                        {{i+1}}
                     </div>
                     <div class="route-col">
-                        R01
+                        {{route.name}}
                     </div>
                     <div class="open-time-col">
-                        TVM06SABSEB
+                        {{route.openTime}}
                     </div>
                     <div class="close-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="manage-col">
-                        <button type="button" class="btn btn-dark  distributor-block-edit">Edit</button>
-                        <button type="button" class="btn btn-outline-dark distributor-block-delete">Delete</button>
-                    </div>
-                </div>
-                <div class="row-item">
-                    <div class="no-col">
-                        01
-                    </div>
-                    <div class="route-col">
-                        R01
-                    </div>
-                    <div class="open-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="close-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="manage-col">
-                        <button type="button" class="btn btn-dark  distributor-block-edit">Edit</button>
-                        <button type="button" class="btn btn-outline-dark distributor-block-delete">Delete</button>
-                    </div>
-                </div>
-                <div class="row-item">
-                    <div class="no-col">
-                        01
-                    </div>
-                    <div class="route-col">
-                        R01
-                    </div>
-                    <div class="open-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="close-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="manage-col">
-                        <button type="button" class="btn btn-dark  distributor-block-edit">Edit</button>
-                        <button type="button" class="btn btn-outline-dark distributor-block-delete">Delete</button>
-                    </div>
-                </div>
-                <div class="row-item">
-                    <div class="no-col">
-                        01
-                    </div>
-                    <div class="route-col">
-                        R01
-                    </div>
-                    <div class="open-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="close-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="manage-col">
-                        <button type="button" class="btn btn-dark  distributor-block-edit">Edit</button>
-                        <button type="button" class="btn btn-outline-dark distributor-block-delete">Delete</button>
-                    </div>
-                </div>
-                <div class="row-item">
-                    <div class="no-col">
-                        01
-                    </div>
-                    <div class="route-col">
-                        R01
-                    </div>
-                    <div class="open-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="close-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="manage-col">
-                        <button type="button" class="btn btn-dark  distributor-block-edit">Edit</button>
-                        <button type="button" class="btn btn-outline-dark distributor-block-delete">Delete</button>
-                    </div>
-                </div>
-                <div class="row-item">
-                    <div class="no-col">
-                        01
-                    </div>
-                    <div class="route-col">
-                        R01
-                    </div>
-                    <div class="open-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="close-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="manage-col">
-                        <button type="button" class="btn btn-dark  distributor-block-edit">Edit</button>
-                        <button type="button" class="btn btn-outline-dark distributor-block-delete">Delete</button>
-                    </div>
-                </div>
-                <div class="row-item">
-                    <div class="no-col">
-                        01
-                    </div>
-                    <div class="route-col">
-                        R01
-                    </div>
-                    <div class="open-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="close-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="manage-col">
-                        <button type="button" class="btn btn-dark  distributor-block-edit">Edit</button>
-                        <button type="button" class="btn btn-outline-dark distributor-block-delete">Delete</button>
-                    </div>
-                </div>
-                <div class="row-item">
-                    <div class="no-col">
-                        01
-                    </div>
-                    <div class="route-col">
-                        R01
-                    </div>
-                    <div class="open-time-col">
-                        TVM06SABSEB
-                    </div>
-                    <div class="close-time-col">
-                        TVM06SABSEB
+                        {{route.closeTime}}
                     </div>
                     <div class="manage-col">
                         <button type="button" class="btn btn-dark  distributor-block-edit">Edit</button>

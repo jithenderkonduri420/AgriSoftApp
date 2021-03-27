@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../_service/api.service';
 
 @Component({
   selector: 'app-routes-list',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoutesListComponent implements OnInit {
 
-  constructor() { }
+  RoutesList: any[] = [];
+
+  constructor(
+    private apiService:ApiService,
+  ) {
+    this.apiService.readAll("route").subscribe(data => {
+      this.RoutesList = data.routes;
+      console.log(this.RoutesList);
+    })
+   }
 
   ngOnInit(): void {
   }

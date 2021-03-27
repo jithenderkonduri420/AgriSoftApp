@@ -237,6 +237,17 @@ app-login{
   }
 }
 
+.alert {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: #255d95;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+}
+
 header{
     padding: 20px 50px;
     float: left;

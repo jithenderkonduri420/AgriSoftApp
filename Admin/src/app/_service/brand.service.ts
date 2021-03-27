@@ -9,7 +9,11 @@ export class BrandsType {
 
 @Injectable({ providedIn: 'root' })
 export class BrandService {
-  constructor(private _api: ApiService){}
+  BrandWherehouses: any[] = [];
+  constructor(private _api: ApiService){
+    this._api.readAll("warehouse").subscribe(data => this.BrandWherehouses = data.warehouses)
+  }
+  
   public currentBrandData: BrandsType;
   
   setBrand(data: BrandsType): void{
@@ -19,4 +23,9 @@ export class BrandService {
   getBrand(): BrandsType{
     return this.currentBrandData;
   }
+
+  getWearhouses(): any{
+    return this.BrandWherehouses;
+  }
+
 }

@@ -27,7 +27,6 @@ export class AddDistributorComponent implements OnInit {
   DropPoint: any[];
   seletedBrand: BrandsType;
   brandProducts: any[];
-  warehouses: any[];
   productValue: productdata[] = [];
 
   constructor(
@@ -39,7 +38,7 @@ export class AddDistributorComponent implements OnInit {
     public _brands: BrandService
   ) {
     this.seletedBrand = this._brands.getBrand();
-    this.apiService.readAll(`products?brandId=${this.seletedBrand._id}`).subscribe(data =>{
+    this.apiService.readAll(`products?brandId=${this.seletedBrand._id}`).subscribe(data =>{ 
       this.brandProducts = data.products;
       for(let product of this.brandProducts){
         this.productValue.push({productId:product._id, price:"0"})
