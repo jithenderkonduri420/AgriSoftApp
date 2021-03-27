@@ -26,14 +26,14 @@
                     <input name="RouteName" ngModel #RouteName="ngModel" type="text" required class="form-control">
                 </div>
                 <div class="col-4"></div>
-                
+
                 <div class="clearfix"></div>
 
-                <div class="col-12 dropPoint" *ngFor="let item of DropPointList; last as isLast; index as i">
+                <div class="col-12 dropPoint" *ngFor="let item of DropPointList; last as isLast; index as i; trackBy:trackByFn">
                     <div class="row">
                         <div class="col-8">
                             <label class="form-label">Drop Point {{i+1}}</label>
-                            <input name="DropPoint{{i}}" ngModel #DropPoint{{i}}="ngModel" type="text" required class="form-control">
+                            <input name="DropPoint-{{i}}" [(ngModel)]="DropPointList[i]" type="text" required class="form-control" (change)="addLocations($event, i)">
                         </div>
                         <div class="col-4">
                             <button type="submit" *ngIf="isLast" class="btn add-item btn-primary btn-block" (click)="addDropPoint()">+ Add Location</button>
