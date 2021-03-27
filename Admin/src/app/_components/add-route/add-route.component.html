@@ -1,96 +1,173 @@
 <header>
-    <p class="page-breadcrumb"> <span routerLink="/route"> Routes </span>/ Add New</p>
-    <h3 class="page-title">Routes</h3>
+  <p class="page-breadcrumb">
+    <span routerLink="/route"> Routes </span>/ Add New
+  </p>
+  <h3 class="page-title">Routes</h3>
 </header>
 
 <section class="main-section">
-    <div class="add-new-route agrisoft-forms">
-        <h4>Add New Route</h4>
-        <div class="form-section custom-scrollbar">
-
-            <form class="row g-3 needs-validation" #addDistributor="ngForm" (ngSubmit)="onSubmit(addDistributor)">
-                <div class="col-8">
-                    <label class="form-label">Wearhouse</label>
-                    <select name="Wearhouse" #Wearhouse="ngModel" ngModel required class="form-control">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                    </select>
-                </div>
-                <div class="col-4">
-                    <button type="submit" class="btn  add-item btn-primary btn-block">+ Add Wearhouse</button>
-                </div>
-
-
-               <div class="col-8">
-                    <label class="form-label">Route Name</label>
-                    <input name="RouteName" ngModel #RouteName="ngModel" type="text" required class="form-control">
-                </div>
-                <div class="col-4"></div>
-
-                <div class="clearfix"></div>
-
-                <div class="col-12 dropPoint" *ngFor="let item of DropPointList; last as isLast; index as i; trackBy:trackByFn">
-                    <div class="row">
-                        <div class="col-8">
-                            <label class="form-label">Drop Point {{i+1}}</label>
-                            <input name="DropPoint-{{i}}" [(ngModel)]="DropPointList[i]" type="text" required class="form-control" (change)="addLocations($event, i)">
-                        </div>
-                        <div class="col-4">
-                            <button type="submit" *ngIf="isLast" class="btn add-item btn-primary btn-block" (click)="addDropPoint()">+ Add Location</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <h4>Set Order Type</h4>
-                </div>
-
-                <div class="col-3 form-text">
-                    <label class="form-label-block">Open</label>
-                </div>
-                <div class="col-5">
-                    <div class="input-group">
-                        <div class="input-group-text">
-                            <label for="OpenTime">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock"
-                                    viewBox="0 0 16 16">
-                                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                </svg>
-                            </label>
-                        </div>
-                        <input type="text" [ngxTimepicker]="OpenTimePicket" name="OpenTime" id="OpenTime" ngModel #OpenTime="ngModel" class="form-control">
-                        <ngx-material-timepicker #OpenTimePicket></ngx-material-timepicker>
-                    </div>
-                </div>
-                <div class="col-4"></div>
-
-                <div class="col-3 form-text">
-                    <label class="form-label-block">Close</label>
-                </div>
-                <div class="col-5">
-                    <div class="input-group">
-                        <div class="input-group-text">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock"
-                                viewBox="0 0 16 16">
-                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                            </svg>
-                        </div>
-                        <input type="text" [ngxTimepicker]="CloseTimePicket" name="CloseTime"  id="CloseTime" ngModel #CloseTime="ngModel" class="form-control">
-                        <ngx-material-timepicker #CloseTimePicket></ngx-material-timepicker>
-                    </div>
-                </div>
-                <div class="col-4"></div>
-
-                <div class="clearfix"></div>
-                <div class="col-12" *ngIf="!RouterValid">
-                    <span class="input-group-text invalid-feedback">Please Enter required fields</span>
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary btn-block">Add Route</button>
-                </div>
-            </form>
+  <div class="add-new-route agrisoft-forms">
+    <h4>Add New Route</h4>
+    <div class="form-section custom-scrollbar">
+      <form
+        class="row g-3 needs-validation"
+        [formGroup]="addRoute"
+        (ngSubmit)="onNewRouteSubmit()"
+      >
+        <div class="col-8">
+          <label class="form-label">Wearhouse</label>
+          <select
+            name="Wearhouse"
+            formControlName="warehouse"
+            required
+            class="form-control"
+          >
+            <option value="1">1</option>
+            <option value="1">2</option>
+          </select>
         </div>
+        <div class="col-4">
+          <button type="submit" class="btn add-item btn-primary btn-block">
+            + Add Wearhouse
+          </button>
+        </div>
+
+        <div class="col-8">
+          <label class="form-label">Route Name</label>
+          <input
+            name="RouteName"
+            formControlName="name"
+            type="text"
+            required
+            class="form-control"
+          />
+        </div>
+        <div class="col-4"></div>
+
+        <div class="clearfix"></div>
+
+        <div
+          class="col-12 dropPoint"
+          *ngFor="
+            let item of DropPointList;
+            last as isLast;
+            let i = index;
+            trackBy: trackByFn
+          "
+        >
+          <div class="row">
+            <div class="col-8">
+              <label class="form-label">Drop Point {{ i + 1 }}</label>
+              <input
+                type="text"
+                pattern="[0-9]*"
+                (change)="dropPoint($event, i)"
+                required
+                class="form-control"
+              />
+            </div>
+            <div class="col-4">
+              <button
+                type="submit"
+                *ngIf="isLast"
+                [hidden]="DropPointList.length >= 5"
+                class="btn add-item btn-primary btn-block"
+                (click)="addDropPoint(i)"
+              >
+                + Add Location
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <h4>Set Order Type</h4>
+        </div>
+
+        <div class="col-3 form-text">
+          <label class="form-label-block">Open</label>
+        </div>
+        <div class="col-5">
+          <div class="input-group">
+            <div class="input-group-text">
+              <label for="OpenTime">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-clock"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
+                  />
+                  <path
+                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"
+                  />
+                </svg>
+              </label>
+            </div>
+            <input
+              type="text"
+              [ngxTimepicker]="OpenTimePicket"
+              name="OpenTime"
+              id="OpenTime"
+              formControlName="openTime"
+              class="form-control"
+            />
+            <ngx-material-timepicker #OpenTimePicket></ngx-material-timepicker>
+          </div>
+        </div>
+        <div class="col-4"></div>
+
+        <div class="col-3 form-text">
+          <label class="form-label-block">Close</label>
+        </div>
+        <div class="col-5">
+          <div class="input-group">
+            <div class="input-group-text">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-clock"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
+                />
+                <path
+                  d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              [ngxTimepicker]="CloseTimePicket"
+              name="CloseTime"
+              id="CloseTime"
+              formControlName="closeTime"
+              class="form-control"
+            />
+            <ngx-material-timepicker #CloseTimePicket></ngx-material-timepicker>
+          </div>
+        </div>
+        <div class="col-4"></div>
+
+        <div class="clearfix"></div>
+        <div class="col-12" *ngIf="!RouterValid">
+          <span class="input-group-text invalid-feedback"
+            >Please Enter required fields</span
+          >
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary btn-block">
+            Add Route
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 </section>
