@@ -94,7 +94,6 @@ export class ApiService {
   }
 
   readAll(uri: string): Observable<any> {
-    console.log(uri)
     return this.http
       .get<any>(`${environment.api}/${uri}`)
       .pipe(catchError((error: any) => this.processError(error)));

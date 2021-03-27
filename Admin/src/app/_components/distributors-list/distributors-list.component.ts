@@ -13,8 +13,6 @@ export class DistributorsListComponent implements OnInit {
     this.seletedBrand = this._brand.getBrand()
    }
 
-  ngOnInit(): void {
-    console.log(this.seletedBrand);
-  }
+  ngOnInit(): void {}
 
 }

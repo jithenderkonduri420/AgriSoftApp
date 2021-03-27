@@ -27,6 +27,7 @@ export class AddDistributorComponent implements OnInit {
   DropPoint: any[];
   seletedBrand: BrandsType;
   brandProducts: any[];
+  warehouses: any[];
   productValue: productdata[] = [];
 
   constructor(
