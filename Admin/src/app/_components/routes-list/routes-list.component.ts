@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../_service/api.service';
 
 @Component({
   selector: 'app-routes-list',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoutesListComponent implements OnInit {
 
-  constructor() { }
+  RoutesList: any[] = [];
 
-  ngOnInit(): void {
+  constructor(
+    private apiService:ApiService,
+  ) {
+      this.getRoutesList()
+   }
+
+  getRoutesList():void{
+    this.apiService.readAll("route").subscribe(data => {
+      this.RoutesList = data.routes;
+    })
+  }
+
+  ngOnInit(): void {}
+
+  dropRoute(id: string){
+    if(confirm("Conform delete distributor")){
+      this.apiService.deleteIndex("route",id).subscribe(data=>{
+        console.log(data);
+        this.getRoutesList();
+      });
+    }
   }
 
 }

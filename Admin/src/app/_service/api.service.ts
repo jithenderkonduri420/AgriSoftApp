@@ -104,4 +104,10 @@ export class ApiService {
       .post<any>(`${environment.api}/${uri}`, data)
       .pipe(catchError((error: any) => this.processError(error)));
   }
+
+  deleteIndex(uri: string, productIndex: string): Observable<any> {
+    return this.http
+      .delete<any>(`${environment.api}/${uri}/${productIndex}`)
+      .pipe(catchError((error: any) => this.processError(error)));
+  }
 }

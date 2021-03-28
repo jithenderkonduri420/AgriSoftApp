@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { ApiService } from './../../../app/_service/api.service';
 import { AlertService } from './../../../app/_service/alert.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { BrandService } from '../../_service/brand.service';
 
 export class CreateRoute {
   name: string;
@@ -27,17 +29,22 @@ export class AddRouteComponent implements OnInit {
   addRoute: FormGroup;
   submitted: boolean;
   loading: boolean;
+  warehouses: any[] = [{_id:"Test",name:"Sample"}];
 
   constructor(
     private apiService:ApiService,
     private formBuilder: FormBuilder,
     private alertService: AlertService,
     private router: Router,
-    ) { }
-
+    private brand: BrandService
+    ) { 
+      this.warehouses = this.brand.BrandWherehouses;
+    }
+    
   ngOnInit(): void {
+    
     this.addRoute = this.formBuilder.group({
-      warehouse: ['', Validators.required],
+      warehouse: [this.warehouses[0]._id, Validators.required],
       name: ['', Validators.required],
       openTime: ['', Validators.required],
       closeTime: ['', Validators.required]
@@ -45,22 +52,21 @@ export class AddRouteComponent implements OnInit {
   }
 
   addDropPoint(index:any):void{
-    this.DropPointList[index]
-    if(this.DropPointList.length < 5){
-      this.DropPointList.push("");
-    }
+    (this.DropPointList.length < 5) ? this.DropPointList.push("") : console.log("Drop Point List Count reached")
   }
 
   dropPoint(event:any, i:any){
     this.DropPointList[i] = event.target.value;
   }
+
   trackByFn(index: any, item: any) {
     return index;
   }
 
   onNewRouteSubmit():void{
     this.submitted = true;
-
+    
+    console.log(this.addRoute.value)
     // reset alerts on submit
     this.alertService.clear();
 
@@ -69,8 +75,8 @@ export class AddRouteComponent implements OnInit {
       return;
     }
     this.loading = true;
+
     this.addRoute.value.locations=this.DropPointList;
-    console.log(this.addRoute.value)
     this.apiService
       .create("route", this.addRoute.value)
       .pipe(first())

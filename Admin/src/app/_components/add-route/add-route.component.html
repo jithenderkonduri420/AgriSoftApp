@@ -19,11 +19,9 @@
           <select
             name="Wearhouse"
             formControlName="warehouse"
-            required
             class="form-control"
           >
-            <option value="1">1</option>
-            <option value="1">2</option>
+            <option *ngFor="let item of warehouses; first as isFirst" value="item._id" [selected]="isFirst">{{item.name}}</option>
           </select>
         </div>
         <div class="col-4">
