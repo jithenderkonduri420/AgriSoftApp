@@ -45,7 +45,7 @@ exports.delete = async (req, res, next) => {
   // validate
   if (!route) res.status(500).send({ error: true, message: 'Route not found' });
 
-  Route.deleteOne((err, product) => {
+  Route.findByIdAndRemove(route._id, (err, product) => {
     if (err) res.status(500).send({ error: true, message: err });
     res.send({ message: "Route was deleted successfully!" });
   });

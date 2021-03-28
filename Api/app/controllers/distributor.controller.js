@@ -77,7 +77,7 @@ exports.delete = async (req, res, next) => {
   const distributor = await Distributor.findById(req.params.id);
   // validate
   if (!distributor) res.status(400).send({  error: true, message: "distributor not found" });
-  Distributor.deleteOne((err, distributor) => {
+   Distributor.findByIdAndRemove(distributor._id, (err, distributor) => {
     if (err) res.status(500).send({  error: true,  message: err });
     res.send({ status: 200, message: "Distributor was deleted successfully!" });
   });
@@ -99,3 +99,14 @@ exports.getAll = (req, res) => {
     });
   });
 };
+exports.blockDistributor = async (req, res, next) => {
+  const distributor = await Distributor.findById(req.body.id);
+  // validate
+  if (!distributor) res.status(400).send({  error: true, message: "distributor not found" });
+  else {
+   Distributor.findByIdAndUpdate(distributor._id,{ active: false }, (err, distributor) => {
+    if (err) res.status(500).send({  error: true,  message: err });
+    res.send({ status: 200, message: "Distributor blocked successfully!" });
+  });
+}
+}

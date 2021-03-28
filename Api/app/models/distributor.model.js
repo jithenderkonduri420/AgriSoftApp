@@ -32,7 +32,8 @@ const Distributor = mongoose.model(
         code: String,
         passwordChanged: { type: Boolean, default: false },
         outStandingCrates: { type: Number, default: 0 },
-        outStandingAmount: { type: Number, default: 0 }
+        outStandingAmount: { type: Number, default: 0 },
+        active: { type: Boolean, default: true },
 
     })
 );
