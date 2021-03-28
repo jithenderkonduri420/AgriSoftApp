@@ -6,6 +6,7 @@ import { BrandService, BrandsType } from './../../_service/brand.service';
 import { AlertService } from 'src/app/_service/alert.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-product-invetory',
@@ -21,6 +22,8 @@ export class ProductInvetoryComponent implements OnInit {
   loading:boolean;
   submitted: boolean;
   uploadedProductImage: File;
+  productImage: string = "../../../assets/images/uploadImage.png";
+  serverImagePath = `${environment.serverUploads}/uploads`;
 
   constructor(
     private modalService: NgbModal,
@@ -37,6 +40,7 @@ export class ProductInvetoryComponent implements OnInit {
   loadProducts():void{
     this.apiService.readAll(`products?brandId=${this.seletedBrand._id}`).subscribe(data => {
       this.products = data.products;
+      console.log(this.products);
     })
   }
 
@@ -75,7 +79,13 @@ export class ProductInvetoryComponent implements OnInit {
   uploadImage(event:any):void{
     if(event.target.files){
       console.log(event.target.files[0])
+      this.loadProducts();
+      let reader = new FileReader();
       this.uploadedProductImage = <File>event.target.files[0];
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event: any)=>{
+        this.productImage = event.target.result;
+      }
     }
   }
 
@@ -89,7 +99,7 @@ export class ProductInvetoryComponent implements OnInit {
       this.addProductform.value.image = this.uploadedProductImage;
     }
 
-    const formData = new FormData();
+    const formData:FormData = new FormData();
     formData.append('image', this.addProductform.value.image);
     formData.append('name', this.addProductform.get('name')?.value);
     formData.append('packet', this.addProductform.get('packet')?.value);
@@ -107,6 +117,7 @@ export class ProductInvetoryComponent implements OnInit {
       .subscribe(
         (data) => {
           this.loadProducts();
+          this.modalService.dismissAll();
         },
         (error) => {
           console.log(error)
