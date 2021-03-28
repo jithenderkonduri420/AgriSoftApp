@@ -118,6 +118,8 @@ export class ProductInvetoryComponent implements OnInit {
         (data) => {
           this.loadProducts();
           this.modalService.dismissAll();
+          this.addProductform.reset();
+          this.productImage = "../../../assets/images/uploadImage.png";
         },
         (error) => {
           console.log(error)
