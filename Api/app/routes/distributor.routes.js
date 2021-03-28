@@ -80,4 +80,9 @@ module.exports = function (app) {
     authJwt.verifyToken,
     controller.delete
   );
+  app.post(
+    "/api/distributor/block",
+    authJwt.verifyToken,
+    controller.blockDistributor
+  );
 };
