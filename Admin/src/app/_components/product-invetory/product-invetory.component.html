@@ -1,6 +1,5 @@
 <header>
-    <p class="page-breadcrumb"> <span routerLink="/home"> Dashboard </span>/ <span routerLink="/distributor"> Sabari
-            MIlk </span> / Product Inventory</p>
+    <p class="page-breadcrumb"> <span routerLink="/home"> Dashboard </span>/ <span routerLink="/distributor"> {{seletedBrand.name}} </span> / Product Inventory</p>
     <h3 class="page-title">Product Inventory</h3>
     <button type="button" class="btn btn-primary add-new" (click)="open(mymodal)"> + Add New</button>
 </header>
@@ -8,16 +7,16 @@
 <section class="main-section">
     <div class="page-center-content custom-scrollbar">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6" *ngFor="let product of products">
                 <div class="product">
                     <div class="product-img">
                         <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
                     </div>
                     <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+                        <input type="checkbox" id="{{product._id}}" /><label for="{{product._id}}">Toggle</label>
                     </span>
                     <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
+                        <h5>{{product.name}}</h5>
                         <div>
                             <button type="button" class="btn btn-primary">Edit</button>
                             <button type="button" class="btn btn-outline-light">Delete</button>
@@ -25,194 +24,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
-                    </div>
-                    <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-                    </span>
-                    <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
-                        <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
-                    </div>
-                    <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-                    </span>
-                    <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
-                        <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
-                    </div>
-                    <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-                    </span>
-                    <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
-                        <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
-                    </div>
-                    <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-                    </span>
-                    <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
-                        <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
-                    </div>
-                    <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-                    </span>
-                    <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
-                        <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
-                    </div>
-                    <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-                    </span>
-                    <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
-                        <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
-                    </div>
-                    <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-                    </span>
-                    <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
-                        <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
-                    </div>
-                    <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-                    </span>
-                    <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
-                        <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
-                    </div>
-                    <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-                    </span>
-                    <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
-                        <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
-                    </div>
-                    <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-                    </span>
-                    <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
-                        <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../../../assets/images/sabarimilk.png" class="img-fluidimg-thumbnail" alt="product image">
-                    </div>
-                    <span class="product-toggle">
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-                    </span>
-                    <div class="product-data">
-                        <h5>Sabar Cow Milk 500ml</h5>
-                        <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
+        <div class="clearfix"></div>
     </div>
 </section>
 
@@ -221,14 +35,14 @@
         <div class="add-new-product agrisoft-forms">
             <h4>Add New Product</h4>
             <div class="form-section custom-scrollbar">
-                <form class="row g-3">
+                <form class="row g-3" [formGroup]="addProductform" (ngSubmit)="onSubmit()">
                     <div class="col-md-8">
                         <label class="form-label">Enter Product Name</label>
-                        <input type="email" class="form-control">
+                        <input formControlName="name" required type="text" class="form-control">
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">No of Packets</label>
-                        <input type="text" class="form-control">
+                        <input formControlName="packet" type="number" required class="form-control">
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-12">
@@ -238,11 +52,11 @@
                                 <label for="product-img">
                                     <img src="../../../assets/images/uploadImage.png" for="product-img" alt="upload Image">
                                 </label>
-                                <input type="file" name="productImage" id="product-img">
+                                <input type="file" required name="productImage" (change)="uploadImage($event)" id="product-img">
                             </div>
                             <div class="upload-info">
                                 <ul>
-                                    <li>*Maximum Limit Should not exceed than 1MB</li>
+                                    <li>*Maximum Limit Should not exceed more than 1MB</li>
                                     <li>*Supports only JPG and PNG only</li>
                                 </ul>
                             </div>
@@ -250,7 +64,9 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+                        </div>
                     </div>
                     
                 </form>

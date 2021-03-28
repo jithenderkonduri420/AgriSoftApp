@@ -24,10 +24,9 @@ export class RoutesListComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  dropRoute(id: string){
-    if(confirm("Conform delete distributor")){
+  dropRoute(id: string, name: string){
+    if(confirm(`Conform delete ${name}`)){
       this.apiService.deleteIndex("route",id).subscribe(data=>{
-        console.log(data);
         this.getRoutesList();
       });
     }
