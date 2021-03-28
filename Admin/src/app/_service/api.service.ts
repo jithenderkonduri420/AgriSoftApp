@@ -99,7 +99,7 @@ export class ApiService {
       .pipe(catchError((error: any) => this.processError(error)));
   }
 
-  create(uri:string, data: []): Observable<any> {
+  create(uri:string, data: any): Observable<any> {
     return this.http
       .post<any>(`${environment.api}/${uri}`, data)
       .pipe(catchError((error: any) => this.processError(error)));

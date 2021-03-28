@@ -16,7 +16,7 @@ export class DistributorsListComponent implements OnInit {
     private _brand:BrandService,
     private _api: ApiService
     ) {
-      
+
       this.seletedBrand = this._brand.getBrand();
       this.getDistributors();
    }

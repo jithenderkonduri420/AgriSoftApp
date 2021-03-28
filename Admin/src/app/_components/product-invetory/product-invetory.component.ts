@@ -29,7 +29,7 @@ export class ProductInvetoryComponent implements OnInit {
     private formBuilder: FormBuilder,
     private alertService: AlertService,
     private router: Router,
-    ) { 
+    ) {
       this.seletedBrand = this._brands.getBrand();
       this.loadProducts();
     }
@@ -39,7 +39,7 @@ export class ProductInvetoryComponent implements OnInit {
       this.products = data.products;
     })
   }
-  
+
 
   ngOnInit(): void {
     this.addProductform = this.formBuilder.group({
@@ -75,29 +75,34 @@ export class ProductInvetoryComponent implements OnInit {
   uploadImage(event:any):void{
     if(event.target.files){
       console.log(event.target.files[0])
-      this.uploadedProductImage = event.target.files[0];
+      this.uploadedProductImage = <File>event.target.files[0];
     }
   }
 
   onSubmit() {
     this.submitted = true;
-    
+
     // reset alerts on submit
     this.alertService.clear();
-    
+
     if(this.uploadedProductImage){
       this.addProductform.value.image = this.uploadedProductImage;
     }
-    
-    console.log(this.addProductform.value)
+
+    const formData = new FormData();
+    formData.append('image', this.addProductform.value.image);
+    formData.append('name', this.addProductform.get('name')?.value);
+    formData.append('packet', this.addProductform.get('packet')?.value);
+    formData.append('brandId', this.addProductform.get('brandId')?.value);
+
     // stop here if form is invalid
     if (this.addProductform.invalid) {
       return;
     }
-    this.loading = true;
 
+    this.loading = true;
     this.apiService
-      .create("products", this.addProductform.value)
+      .create("products", formData)
       .pipe(first())
       .subscribe(
         (data) => {

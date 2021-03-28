@@ -17,7 +17,7 @@
             display: block;
         }
     }
-    
+
     .welcome-subtitle {
         font-family: Roboto;
         font-size: 13px;
@@ -27,19 +27,19 @@
         font-weight: normal;
         margin: 0;
     }
-    
+
     .notificatin-icon {
         float: left;
         margin: 0
     }
-    
+
     .notificatin-icon img {
         float: right;
         height: 26px;
         position: relative;
         margin: 6px 0 0;
     }
-    
+
     .notification-badge {
         position: absolute;
         top: 9px;
@@ -51,18 +51,19 @@
         background: #A02A2A;
         border: 2px solid #fff;
     }
-    
+
     .app-details {
         float: right;
+        margin-top: 15px;
     }
-    
+
     a.ion-logout {
         height: 34px;
         margin: 6px 0px 0 12px;
         float: right;
         font-size: 26px;
     }
-    
+
     .welcome-title {
         ion-label {
             span {
@@ -75,7 +76,7 @@
             }
         }
     }
-    
+
     ion-header {
         z-index: 999;
         background: #fff;

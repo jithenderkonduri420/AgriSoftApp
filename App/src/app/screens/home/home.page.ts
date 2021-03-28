@@ -8,6 +8,7 @@ import {
   IonRouterOutlet,
 } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-tabs',
@@ -25,7 +26,8 @@ export class HomePage {
     private authService: AuthenticationService,
     private navCtrl: NavController,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private callNumber: CallNumber
   ) {
     this.authService.userDetails().then((res: any) => {
       this.currentUser = res.user;
@@ -53,5 +55,10 @@ export class HomePage {
   }
   logout() {
     this.authService.logout();
+  }
+  callNow(number) {
+    this.callNumber.callNumber(number, true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
   }
 }

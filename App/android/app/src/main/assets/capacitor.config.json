@@ -9,6 +9,8 @@
       "launchShowDuration": 0
     }
   },
+  "allowMixedContent": true,
+  "linuxAndroidStudioPath": "/snap/android-studio/current/android-studio/bin/studio.sh",
   "cordova": {
     "preferences": {
       "ScrollEnabled": "false",
