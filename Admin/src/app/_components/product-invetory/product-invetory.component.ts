@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { BrandService, BrandsType } from './../../_service/brand.service';
 
 @Component({
   selector: 'app-product-invetory',
@@ -8,12 +9,18 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductInvetoryComponent implements OnInit {
 
-  constructor(private modalService: NgbModal) { }
-  
+  seletedBrand: BrandsType;
   closeResult: string = "Model";
 
-  ngOnInit(): void {
-  }
+  constructor(
+    private modalService: NgbModal,
+    public _brands: BrandService
+    ) { 
+      this.seletedBrand = this._brands.getBrand();
+    }
+  
+
+  ngOnInit(): void {}
 
   open(content:any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {

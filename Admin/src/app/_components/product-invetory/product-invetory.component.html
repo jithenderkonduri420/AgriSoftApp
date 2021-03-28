@@ -1,6 +1,5 @@
 <header>
-    <p class="page-breadcrumb"> <span routerLink="/home"> Dashboard </span>/ <span routerLink="/distributor"> Sabari
-            MIlk </span> / Product Inventory</p>
+    <p class="page-breadcrumb"> <span routerLink="/home"> Dashboard </span>/ <span routerLink="/distributor"> {{seletedBrand.name}} </span> / Product Inventory</p>
     <h3 class="page-title">Product Inventory</h3>
     <button type="button" class="btn btn-primary add-new" (click)="open(mymodal)"> + Add New</button>
 </header>
@@ -250,7 +249,9 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+                        </div>
                     </div>
                     
                 </form>
