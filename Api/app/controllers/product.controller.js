@@ -6,6 +6,7 @@ const ApiError = require('../error/ApiError');
 const { check, validationResult } = require('express-validator')
 
 exports.create = async (req, res, next) => {
+  
   await check('name').notEmpty().withMessage('Product name is required').run(req);
   await check('packet').notEmpty().withMessage('Packet count is required').run(req);
   await check('brandId').notEmpty().withMessage('Brand Id is required').run(req);
