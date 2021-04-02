@@ -65,6 +65,12 @@ header .page-title{
                   flex: 4;
               }
               &>div:nth-child(4){
+                flex: 4;
+              }
+              &>div:nth-child(5){
+                flex: 4;
+              }
+              &>div:nth-child(6){
                   flex: 6;
                   &>button{
                       font-size: 16px;
@@ -81,10 +87,6 @@ header .page-title{
                   .distributor-block-edit{
                       background-color: #5C5C5C;
                       border: none;
-                  }
-                  .distributor-block-delete{
-                        color: #C82525;
-                        border-color: #C82525;
                   }
               }
           }

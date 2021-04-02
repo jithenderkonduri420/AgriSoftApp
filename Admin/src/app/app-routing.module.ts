@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'products', component: ProductInvetoryComponent, canActivate: [AuthGuard] },
   { path: 'orders', component: OrderManagementComponent, canActivate: [AuthGuard] },
   { path: 'order-invoice', component: OrderInvoiceComponent, canActivate: [AuthGuard] },
-  { path: 'account', component: AccountManagementComponent, canActivate: [AuthGuard] },
+  { path: 'account-management', component: AccountManagementComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'add-admin', component: AdminCreateComponent, canActivate: [AuthGuard] },
 
