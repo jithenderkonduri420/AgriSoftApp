@@ -98,10 +98,19 @@ export class ApiService {
       .get<any>(`${environment.api}/${uri}`)
       .pipe(catchError((error: any) => this.processError(error)));
   }
-
+  readSingle(uri: string, id: any): Observable<any> {
+    return this.http
+      .get<any>(`${environment.api}/${uri}/${id}`)
+      .pipe(catchError((error: any) => this.processError(error)));
+  }
   create(uri:string, data: any): Observable<any> {
     return this.http
       .post<any>(`${environment.api}/${uri}`, data)
+      .pipe(catchError((error: any) => this.processError(error)));
+  }
+  update(uri:string, data: any, id: any): Observable<any> {
+    return this.http
+      .put<any>(`${environment.api}/${uri}/${id}`, data)
       .pipe(catchError((error: any) => this.processError(error)));
   }
 
