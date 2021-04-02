@@ -12,7 +12,11 @@ const User = mongoose.model(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Role"
       }
-    ]
+    ],
+    brandId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Brand"
+    }
   })
 );
 

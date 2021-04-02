@@ -115,7 +115,6 @@ exports.appChangePassword = async (req, res, next) => {
       if (err) res.send({ error: false, message: err });
       if (!distributor) res.status(500).json({ error: true, message: "Distributor userid is invalid." });
       else {
-        console.log(distributor);
         bcrypt.genSalt(10, function (err, salt) {
           // Call error-handling middleware:
           if (err) { return res.send({ error: true, message: err }); }

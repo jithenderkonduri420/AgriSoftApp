@@ -31,6 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AddRouteComponent } from './_components/add-route/add-route.component';
 import { RoutesListComponent } from './_components/routes-list/routes-list.component';
 import { NumOnlyDirective } from './_directive/num-only.directive';
+import { AdminComponent } from './_components/admin/admin.component';
+import { AdminCreateComponent } from './_components/admin/admin-create/admin-create.component';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import { NumOnlyDirective } from './_directive/num-only.directive';
     AddRouteComponent,
     RoutesListComponent,
     NumOnlyDirective,
+    AdminComponent,
+    AdminCreateComponent,
   ],
   imports: [
     BrowserModule,

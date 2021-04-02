@@ -1,3 +1,5 @@
+import { AdminCreateComponent } from './_components/admin/admin-create/admin-create.component';
+import { AdminComponent } from './_components/admin/admin.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from "../app/_components/dashboard/dashboard.component";
@@ -26,6 +28,10 @@ const routes: Routes = [
   { path: 'orders', component: OrderManagementComponent, canActivate: [AuthGuard] },
   { path: 'order-invoice', component: OrderInvoiceComponent, canActivate: [AuthGuard] },
   { path: 'account', component: AccountManagementComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+  { path: 'add-admin', component: AdminCreateComponent, canActivate: [AuthGuard] },
+
+
 ];
 
 @NgModule({
