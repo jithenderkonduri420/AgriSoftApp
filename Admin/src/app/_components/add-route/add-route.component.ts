@@ -63,6 +63,11 @@ export class AddRouteComponent implements OnInit {
     return index;
   }
 
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.addRoute.controls;
+  }
+
   onNewRouteSubmit():void{
     this.submitted = true;
     
@@ -78,11 +83,12 @@ export class AddRouteComponent implements OnInit {
 
     this.addRoute.value.locations=this.DropPointList;
     this.apiService
-      .create("route", this.addRoute.value)
-      .pipe(first())
-      .subscribe(
-        (data) => {
-          this.router.navigate(['home']);
+    .create("route", this.addRoute.value)
+    .pipe(first())
+    .subscribe(
+      (data) => {
+          this.alertService.success("Route Created Succesfully");
+          this.router.navigate(['routes']);
         },
         (error) => {
           console.log(error)
