@@ -358,6 +358,13 @@ header{
             outline: none;
             height: 46px;
         }
+        .error-message{
+            margin: 0;
+            font-size: 13px;
+            &::before{
+                content: "*";
+            }
+        }
     }
     .upload-imge{
         display: flex;
