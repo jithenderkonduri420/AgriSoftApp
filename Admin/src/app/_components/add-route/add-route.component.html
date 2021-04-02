@@ -36,9 +36,11 @@
             name="RouteName"
             formControlName="name"
             type="text"
+            maxlength="3"
             required
             class="form-control"
           />
+          <p *ngIf="f.name.invalid && submitted" class="text-danger error-message">Please Enter Valid Route Name</p>
         </div>
         <div class="col-4"></div>
 
@@ -115,7 +117,9 @@
               class="form-control"
             />
             <ngx-material-timepicker #OpenTimePicket></ngx-material-timepicker>
+            <div class="clearfix"></div>
           </div>
+          <p *ngIf="f.openTime.invalid && submitted" class="text-danger error-message">Open Time is Required</p>
         </div>
         <div class="col-4"></div>
 
@@ -150,7 +154,9 @@
               class="form-control"
             />
             <ngx-material-timepicker #CloseTimePicket></ngx-material-timepicker>
+            <div class="clearfix"></div>
           </div>
+          <p *ngIf="f.closeTime.invalid && submitted" class="text-danger error-message">Close Time is Required</p>
         </div>
         <div class="col-4"></div>
 
