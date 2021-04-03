@@ -16,7 +16,10 @@
                                     d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                             </svg>
                         </span>
-                        <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Enter Order No." aria-label="Enter Order No." aria-describedby="button-addon2">
+                        <span class="input-group-text order-placeholder">
+                            TEDA364
+                        </span>
+                        <input type="text" class="form-control" [(ngModel)]="searchText" aria-label="Enter Order No." aria-describedby="button-addon2">
                         <button class="btn btn-outline-secondary" type="button">Enter</button>
                         <ul class="list-group list-group-flush" *ngIf="searchText">
                             <li class="list-group-item" *ngFor="let c of characters | orderFilter: searchText" searchHighlight
@@ -29,47 +32,46 @@
                 <div class="col-sm-4"></div>
                 
                 <div class="clearfix"></div>
-                <div class="col-md-11">                
-                    <div class="order-info">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <p class="info-sub-title">Distributor</p>
-                                        <p class="info-title"><strong>Distributor</strong></p>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="info-sub-title">Name</p>
-                                        <p class="info-title"><strong>Sebastian</strong></p>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="info-sub-title">Brand</p>
-                                        <p class="info-title"><strong>Sabari</strong></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="order-list custom-scrollbar">
-                        <div class="oder-item">
-                            <div class="product-img">
-                                <img src="{{Testimage}}" class="img-fluidimg-thumbnail" alt="product image">
+                <div class="order-info">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-4">
+                                <p class="info-sub-title">Distributor</p>
+                                <p class="info-title"><strong>Distributor</strong></p>
                             </div>
-                            <div class="product-info">
-                                <h4>Product Name</h4>
-                                <p class="Product-Price">450.00 <span>Per Crate</span> </p>
-                                <p class="Crate-qty"> <span> 25 </span> Packets per Crate</p>
+                            <div class="col-4">
+                                <p class="info-sub-title">Name</p>
+                                <p class="info-title"><strong>Sebastian</strong></p>
                             </div>
-                            <div class="product-qty">
-                                <p>Quantity</p>
-                                <input class="form-control" type="text">
+                            <div class="col-4">
+                                <p class="info-sub-title">Brand</p>
+                                <p class="info-title"><strong>Sabari</strong></p>
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary add-cart">Add All To Cart</button>
                 </div>
-                <div class="col-md-1"></div>
+
+                <div class="order-list custom-scrollbar">
+                    <div class="oder-item">
+                        <div class="product-img">
+                            <img src="{{Testimage}}" class="img-fluidimg-thumbnail" alt="product image">
+                        </div>
+                        <div class="product-info">
+                            <h4>Product Name</h4>
+                            <p class="Product-Price">450.00 <span>Per Crate</span> </p>
+                            <p class="Crate-qty"> <span> 25 </span> Packets per Crate</p>
+                        </div>
+                        <div class="product-qty">
+                            <p>Quantity</p>
+                            <input class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary add-cart" routerLink="/order-invoice">Add All To Cart</button>
+                </div>
+                
             </div>
         </div>
         <div class="col-md-6"></div>

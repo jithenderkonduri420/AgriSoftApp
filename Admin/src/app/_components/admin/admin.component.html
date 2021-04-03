@@ -53,7 +53,7 @@
           <div class="distributor-col">{{item.username}}</div>
           <div class="distributor-col">{{item.email}}</div>
           <div class="manage-col">
-            <a class="btn btn-dark  distributor-block-edit" [routerLink]="['/add-admin']" [queryParams]="{id: item._id}" >Edit</a>
+            <button class="btn btn-dark distributor-block-edit" [routerLink]="['/add-admin']" [queryParams]="{id: item._id}" >Edit</button>
             <button type="button" (click)="remove(item._id, item.username)" class="btn btn-outline-dark distributor-block-delete">Delete</button>
         </div>
         </div>
