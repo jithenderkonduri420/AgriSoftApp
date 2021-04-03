@@ -22,7 +22,7 @@ export class DistributorsListComponent implements OnInit {
    }
 
    getDistributors():void{
-    this._api.readAll("distributor").subscribe(data => {
+    this._api.readAllById("distributor", this.seletedBrand._id).subscribe(data => {
       this.distributorsList = data.distributors;
       console.log(this.distributorsList);
     })

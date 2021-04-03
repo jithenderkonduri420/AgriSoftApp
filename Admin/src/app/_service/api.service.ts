@@ -98,6 +98,11 @@ export class ApiService {
       .get<any>(`${environment.api}/${uri}`)
       .pipe(catchError((error: any) => this.processError(error)));
   }
+  readAllById(uri: string, id: any): Observable<any> {
+    return this.http
+      .get<any>(`${environment.api}/${uri}?id=${id}`)
+      .pipe(catchError((error: any) => this.processError(error)));
+  }
   readSingle(uri: string, id: any): Observable<any> {
     return this.http
       .get<any>(`${environment.api}/${uri}/${id}`)
