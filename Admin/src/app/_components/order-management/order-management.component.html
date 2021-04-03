@@ -61,8 +61,11 @@
           </div>
         </div>
         <div class="col-sm-4"></div>
-
-        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="clearfix"></div>
+    <div class="col-md-6">
         <div *ngIf="selectedDistributor">
           <div class="account-info">
             <div class="col-12">
@@ -122,33 +125,35 @@
               </div>
             </div>
           </div>
-          <div class="col-12">
-            <div
-              class="alert alert-danger"
-              role="alert"
-              *ngIf="
-                isOrderTimeOut &&
-                selectedDistributor &&
-                selectedDistributor.route
-              "
-            >
-              Your Order closing time is
-              {{ selectedDistributor.route.closeTime }}. Please try again next
-              day
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-12">
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="
+                  isOrderTimeOut &&
+                  selectedDistributor &&
+                  selectedDistributor.route
+                "
+              >
+                Your Order closing time is
+                {{ selectedDistributor.route.closeTime }}. Please try again next
+                day
+              </div>
+              <!-- *ngIf="!isOrderTimeOut" -->
+              <button
+                class="btn btn-primary add-cart"
+                (click)="addToCart()"
+                [disabled]="!totalAmount"
+                *ngIf="!isOrderTimeOut"
+  
+              >
+                Add All To Cart
+              </button>
             </div>
-            <!-- *ngIf="!isOrderTimeOut" -->
-            <button
-              class="btn btn-primary add-cart"
-              (click)="addToCart()"
-              [disabled]="!totalAmount"
-              *ngIf="!isOrderTimeOut"
-
-            >
-              Add All To Cart
-            </button>
           </div>
         </div>
-      </div>
     </div>
     <div class="col-md-6"></div>
   </div>
