@@ -38,7 +38,7 @@ export class AddDistributorComponent implements OnInit {
     public _brands: BrandService
   ) {
     this.seletedBrand = this._brands.getBrand();
-    this.apiService.readAll(`products?brandId=${this.seletedBrand._id}`).subscribe(data =>{ 
+    this.apiService.readAll(`products?brandId=${this.seletedBrand._id}`).subscribe(data =>{
       this.brandProducts = data.products;
       for(let product of this.brandProducts){
         this.productValue.push({productId:product._id, price:"0"})
@@ -91,7 +91,6 @@ export class AddDistributorComponent implements OnInit {
 
     this.form.value.brand = this.seletedBrand._id;
     this.form.value.products = this.productValue;
-    console.log(this.form.value)
     this.apiService
       .create("distributor", this.form.value)
       .pipe(first())

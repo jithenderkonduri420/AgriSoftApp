@@ -3,35 +3,35 @@
     <h3 class="page-title">Order Management</h3>
 </header>
 
-<section class="main-section order-management-list">
+<section class="main-section order-management-list" *ngIf="cartProducts">
     <div class="row">
-        <div class="col-md-6">   
+        <div class="col-md-6">
             <div class="order-info">
                 <div class="col-12">
                     <div class="row">
                         <div class="row">
                             <div class="col-4">
                                 <p class="info-sub-title">Distributor</p>
-                                <p class="info-title"><strong>Distributor</strong></p>
+                                <p class="info-title"><strong>{{ cartProducts.code }}</strong></p>
                             </div>
                             <div class="col-4">
                                 <p class="info-sub-title">Name</p>
-                                <p class="info-title"><strong>Sebastian</strong></p>
+                                <p class="info-title"><strong>{{ cartProducts.name }}</strong></p>
                             </div>
                             <div class="col-4">
                                 <p class="info-sub-title">Brand</p>
-                                <p class="info-title"><strong>Sabari</strong></p>
+                                <p class="info-title"><strong>{{ cartProducts.brand[0].name }}</strong></p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>       
+            </div>
         </div>
-        <div class="col-md-6"></div>    
+        <div class="col-md-6"></div>
     </div>
-    
+
     <div class="clearfix"></div>
-    
+
     <div class="place-order">
         <div class="row">
             <div class="col-md-9">
@@ -53,52 +53,30 @@
                         </div>
                     </div>
                     <div class="placeorder-table-items custom-scrollbar">
-                        <div class="row-item">
+                        <div class="row-item"  *ngFor="let item of cartProducts.products; index as i">
                             <div class="item-col">
                                 <div class="oder-item">
                                     <div class="product-img">
-                                        <img src="{{Testimage}}" class="img-fluidimg-thumbnail" alt="product image">
+                                        <img  src="{{ serverImagePath }}/{{ item.productId.fileName }}" class="img-fluidimg-thumbnail" alt="product image">
                                     </div>
                                     <div class="product-info">
-                                        <h4>Product Name</h4>
-                                        <p class="Product-Price">450.00 <span>Per Crate</span> </p>
+                                        <h4>{{ item.productId.name }}</h4>
+                                        <p class="Product-Price">{{ item.price  | number : '1.2-2' }} <span>Per Crate</span> </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="qty-col">
-                                <input maxlength="3" class="form-control" type="number">
+                                <input maxlength="3" class="form-control" type="number" [value]=" item.qty" (keyup)="addQty($event, item, i)">
                                 <p>Crates</p>
                             </div>
                             <div class="packets-col">
-                                <p>500</p>
+                                <p>{{ item.productId.packet }}</p>
                             </div>
                             <div class="price-col">
-                                <p>9000.00</p>
+                                <p>{{ (item.qty > 0 ? item.qty * item.productId.packet : 0)  | number : '1.2-2' }}</p>
                             </div>
                         </div>
-                        <div class="row-item">
-                            <div class="item-col">
-                                <div class="oder-item">
-                                    <div class="product-img">
-                                        <img src="{{Testimage}}" class="img-fluidimg-thumbnail" alt="product image">
-                                    </div>
-                                    <div class="product-info">
-                                        <h4>Product Name</h4>
-                                        <p class="Product-Price">450.00 <span>Per Crate</span> </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="qty-col">
-                                <input maxlength="3" class="form-control" type="number">
-                                <p>Crates</p>
-                            </div>
-                            <div class="packets-col">
-                                <p>500</p>
-                            </div>
-                            <div class="price-col">
-                                <p>9000.00</p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -107,18 +85,18 @@
                     <h5> Order Summery </h5>
                     <div class="price-data order-total">
                         <div>Order Total</div>
-                        <div>900.00</div>
+                        <div>{{ totalAmount | number : '1.2-2' }}</div>
                     </div>
                     <div class="price-data order-Outstanding">
                         <div>Outstanding</div>
-                        <div>900.00</div>
+                        <div>{{ cartProducts.outStandingAmount | number : '1.2-2' }}</div>
                     </div>
                     <div class="price-data order-Grand-Total">
                         <div>Total</div>
-                        <div>900.00</div>
+                        <div>{{ totalAmount + cartProducts.outStandingAmount | number : '1.2-2' }}</div>
                     </div>
                 </div>
-                <button class="btn btn-primary btn-block btn-place-order">Place Order</button>
+                <button class="btn btn-primary btn-block btn-place-order" [disabled]="!totalAmount" (click)="placeOrder()">Place Order</button>
             </div>
         </div>
     </div>

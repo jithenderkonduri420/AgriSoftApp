@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ 
-  name: 'orderFilter' 
+@Pipe({
+  name: 'orderFilter'
 })
 
 export class OrderSearchPipe implements PipeTransform {
@@ -20,7 +20,6 @@ export class OrderSearchPipe implements PipeTransform {
       return items;
     }
     searchText = searchText.toLocaleLowerCase();
-
     return items.filter(it => {
       return it.toLocaleLowerCase().includes(searchText);
     });
