@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/_service/api.service';
 import { BrandService } from 'src/app/_service/brand.service';
 import { environment } from 'src/environments/environment';
 import { AlertService } from 'src/app/_service/alert.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-order-invoice',
@@ -18,12 +19,14 @@ export class OrderInvoiceComponent implements OnInit {
   totalAmount = 0;
 
   searchText = '';
+  defaultImage: string = "../../assets/images/uploadImage.png";
 
   constructor(
     public _brands: BrandService,
     private apiService: ApiService,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private toastr: ToastrService
   ) {
     this.seletedBrand = this._brands.getBrand();
   }
@@ -74,12 +77,10 @@ export class OrderInvoiceComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
+          this.toastr.success(data.message);
           this.alertService.success(data.message);
           localStorage.removeItem('cartItem');
-          this.router.navigate(['/home']);
-        },
-        (error) => {
-          console.log(error);
+          this.router.navigate(['/distributor']);
         }
       );
   }

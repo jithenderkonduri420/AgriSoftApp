@@ -25,6 +25,8 @@ export class ProductInvetoryComponent implements OnInit {
   productImage: string = "../../../assets/images/uploadImage.png";
   serverImagePath = `${environment.serverUploads}/uploads`;
 
+  defaultImage: string = "../../assets/images/uploadImage.png";
+
   constructor(
     private modalService: NgbModal,
     public _brands: BrandService,
@@ -104,7 +106,7 @@ export class ProductInvetoryComponent implements OnInit {
     formData.append('name', this.addProductform.get('name')?.value);
     formData.append('packet', this.addProductform.get('packet')?.value);
     formData.append('brandId', this.addProductform.get('brandId')?.value);
-
+    console.log('formData', formData);
     // stop here if form is invalid
     if (this.addProductform.invalid) {
       return;

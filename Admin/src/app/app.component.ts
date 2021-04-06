@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     this.authService.currentUser.subscribe(x => this.currentUser = x);
     if(this.currentUser.accessToken) {
-      this.router.navigate(['/home']);
+   //   this.router.navigate(['/home']);
     }
   }
   logout() {

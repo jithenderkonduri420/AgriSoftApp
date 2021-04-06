@@ -17,7 +17,7 @@ exports.create = async (req, res, next) => {
   const result = validationResult(req);
   if (!result.isEmpty()) {
     return res.status(400).json({  error: true, message: result.array() });
-  }
+  } else {
   const { name, packet } = req.body
   let image = req.files.image;
   let extension = path.extname(image.name)
@@ -46,6 +46,7 @@ exports.create = async (req, res, next) => {
       res.send({message: "Product was created successfully!" });
     });
   });
+}
 };
 
 exports.update = async (req, res, next) => {
