@@ -24,6 +24,7 @@ export class OrderManagementComponent implements OnInit {
   distributorsList: any;
   totalAmount = 0;
   isOrderTimeOut: boolean = false;
+  accountStatus: true;
   constructor(
     public _brands: BrandService,
     private apiService: ApiService,
@@ -63,6 +64,7 @@ export class OrderManagementComponent implements OnInit {
     );
     this.searchText = '';
     this.distributorSelected = false;
+    this.accountStatus = this.selectedDistributor.active;
     if(this.compareTime(this.selectedDistributor.route.closeTime, moment().format('HH:MM')) === -1) {
       this.isOrderTimeOut = true;
     }

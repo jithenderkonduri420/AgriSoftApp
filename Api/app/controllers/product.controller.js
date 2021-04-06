@@ -26,7 +26,7 @@ exports.create = async (req, res, next) => {
 
     // Deleting Temporary File
     fs.unlinkSync(image.tempFilePath);
-    res.status(431).send({  error: true,  message: 'File is too Large' });
+    return res.status(431).send({  error: true,  message: 'File is too Large' });
   }
 
   let file = `${image.md5}${extension}`;
@@ -42,8 +42,8 @@ exports.create = async (req, res, next) => {
     });
 
     product.save((err, user) => {
-      if (err) res.status(500).send({ error: true, message: err });
-      res.send({message: "Product was created successfully!" });
+      if (err) return res.status(500).send({ error: true, message: err });
+      return  res.send({message: "Product was created successfully!" });
     });
   });
 }
