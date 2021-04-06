@@ -295,6 +295,37 @@ header{
     }
 }
 
+$someColor : #258B1F;
+
+.timepicker {
+
+    .timepicker__header {
+      background-color: $someColor !important;
+    }
+  
+    .clock-face__clock-hand {
+      background-color: $someColor !important;
+  
+      &::after {
+        background-color: $someColor !important;
+      }
+  
+      &::before {
+        border-color: $someColor !important;
+      }
+    }
+  
+    .clock-face__number {
+      > span.active {
+        background-color: $someColor !important;
+      }
+    }
+  
+    button:not(.timepicker-dial__item) {
+      color: $someColor !important;
+    }
+  }
+
 .agrisoft-forms{
     form{
         float: left;
@@ -312,7 +343,7 @@ header{
             top: -8px;
             background-color: #ffffff;
             z-index: 2;
-            color: rgba(48, 48, 48, 0.5);
+            color: rgba(48, 48, 48, 0.8);
             font-size: 14px;
             letter-spacing: 0;
             line-height: 16px;
