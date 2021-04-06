@@ -42,7 +42,6 @@ export class ProductInvetoryComponent implements OnInit {
   loadProducts():void{
     this.apiService.readAll(`products?brandId=${this.seletedBrand._id}`).subscribe(data => {
       this.products = data.products;
-      console.log(this.products);
     })
   }
 
@@ -53,6 +52,21 @@ export class ProductInvetoryComponent implements OnInit {
       packet: ['', Validators.required],
       image: [""],
       brandId: [this.seletedBrand._id]
+    });
+  }
+
+  remove(id: string, name: string){
+    if(confirm(`Conform delete ${name}`)){
+      this.apiService.deleteIndex("products",id).subscribe(data=>{
+        this.loadProducts();
+      });
+    }
+  }
+
+  edit(content:any, id: string, name: string){
+    this.modalService.open(content);
+    this.products.filter((item:any) => {
+      if (item._id == id) this.f.name.setValue(name);
     });
   }
 
@@ -80,7 +94,6 @@ export class ProductInvetoryComponent implements OnInit {
 
   uploadImage(event:any):void{
     if(event.target.files){
-      console.log(event.target.files[0])
       this.loadProducts();
       let reader = new FileReader();
       this.uploadedProductImage = <File>event.target.files[0];

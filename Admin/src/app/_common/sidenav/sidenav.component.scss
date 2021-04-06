@@ -1,12 +1,15 @@
 .logo {
-  color: #0C1C3A;
-  font-size: 31px;
-  font-weight: bold;
-  letter-spacing: 0;
-  line-height: 47px;
-  width: 100%;
-  margin: 0;
-  text-align: center;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    svg{
+        path{
+            fill: #258B1F;
+        }
+        text{
+            fill: #0C1C3A;
+        }
+    }
 }
 
 nav{

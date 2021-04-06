@@ -5,7 +5,6 @@ import { AlertService } from 'src/app/_service/alert.service';
 import { ApiService } from 'src/app/_service/api.service';
 import { BrandService } from 'src/app/_service/brand.service';
 import { environment } from 'src/environments/environment';
-
 import * as moment from 'moment';
 
 @Component({

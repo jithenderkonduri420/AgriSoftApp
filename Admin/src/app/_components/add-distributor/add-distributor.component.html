@@ -3,7 +3,7 @@
     <span routerLink="/home"> Dashboard </span>/
     <span routerLink="/distributor"> {{seletedBrand.name}} </span> / Distributors
   </p>
-  <h3 class="page-title">Add New</h3>
+  <h3 class="page-title">{{ formType === 'Add New' ? 'Add New' : formType }}</h3>
 </header>
 
 <section class="main-section">
@@ -74,28 +74,26 @@
         </div>
         <br />
 
-        <div class="col-12" *ngFor="let product of brandProducts">
+        <div class="col-12 brandProducts" *ngFor="let product of brandProducts">
           <div class="row">
             <div class="col-md-6 form-text">
               <label class="form-label-block">{{product.name}}</label>
             </div>
             <div class="col-md-2"> 
-              <input type="text" pattern="[0-9]*" min="0" maxlength="4" NumOnly inputmode=”numeric”  required min="1" (change)="onChangeEvent($event, product._id)" class="form-control" />
+              <input type="text" pattern="[0-9]*" [value]="product.price ? product.price : 0" min="0" maxlength="4" NumOnly inputmode=”numeric”  required min="1" (change)="onChangeEvent($event, product._id)" class="form-control" />
             </div>
             <div class="col-md-4"></div>
           </div>
         </div>
 
-       
+        <div class="clearfix spaceDivider"></div>
 
-        <div class="clearfix"></div>
-        <br />
         <div class="col-12">
           <h4>Set Credit Limit</h4>
         </div>
         <br />
         <div class="col-md-6">
-          <label class="form-label">Set Credit Limit</label>
+          <label class="form-label">Set Crate Limit</label>
           <input
             type="email"
             class="form-control"
@@ -122,7 +120,7 @@
               *ngIf="loading"
               class="spinner-border spinner-border-sm mr-1"
             ></span>
-            Add Distributor
+            {{ formType === 'Add New' ? 'Add New' : 'Update' }}
           </button>
         </div>
       </form>

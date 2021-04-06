@@ -48,7 +48,7 @@
                     <div class="manage-col">
                         <button type="button" class="btn btn-primary distributor-block-btn" *ngIf="!item.active">Un-Block</button>
                         <button type="button" class="btn btn-primary distributor-block-btn" *ngIf="item.active">Block</button>
-                        <button type="button" class="btn btn-dark  distributor-block-edit">Edit</button>
+                        <button type="button" class="btn btn-dark  distributor-block-edit" [routerLink]="['/add-distributor']" [queryParams]="{id: item._id}">Edit</button>
                         <button type="button" class="btn btn-outline-dark distributor-block-delete" (click)="delDistributor(item._id)">Delete</button>
                     </div>
                 </div>

@@ -18,8 +18,8 @@
                     <div class="product-data">
                         <h5>{{product.name}}</h5>
                         <div>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-outline-light">Delete</button>
+                            <button type="button" class="btn btn-primary" (click)="edit(mymodal, product._id, product.name)">Edit</button>
+                            <button type="button" class="btn btn-outline-light" (click)="remove(product._id, product.name)">Delete</button>
                         </div>
                     </div>
                 </div>
