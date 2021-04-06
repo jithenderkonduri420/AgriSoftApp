@@ -65,27 +65,33 @@
     </div>
     <div class="col-md-6"></div>
     <div class="clearfix"></div>
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div *ngIf="selectedDistributor">
           <div class="account-info">
             <div class="col-12">
               <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                   <p class="info-sub-title">Distributor</p>
                   <p class="info-title">
                     <strong>{{ selectedDistributor.code }}</strong>
                   </p>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                   <p class="info-sub-title">Name</p>
                   <p class="info-title">
                     <strong>{{ selectedDistributor.name }}</strong>
                   </p>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                   <p class="info-sub-title">Brand</p>
                   <p class="info-title">
                     <strong>{{ selectedDistributor.brand[0].name }}</strong>
+                  </p>
+                </div>
+                <div class="col-3">
+                  <p class="info-sub-title">Status</p>
+                  <p class="info-title">
+                    <strong>{{ selectedDistributor.active ? "Active" : "Block" }}</strong>
                   </p>
                 </div>
               </div>
@@ -121,6 +127,7 @@
                   class="form-control"
                   type="text"
                   (change)="addQty($event, product, i)"
+                  [disabled] = "!this.accountStatus"
                 />
               </div>
             </div>
@@ -147,7 +154,6 @@
                 (click)="addToCart()"
                 [disabled]="!totalAmount"
                 *ngIf="!isOrderTimeOut"
-  
               >
                 Add All To Cart
               </button>

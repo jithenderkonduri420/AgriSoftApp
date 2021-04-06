@@ -44,6 +44,9 @@ exports.create = async (req, res) => {
         const sumOfCrates = _.sumBy(order.product, function (o) { return o.qty * o.total_packets; });
         distributor.outStandingAmount += req.body.total;
         distributor.outStandingCrates += sumOfCrates;
+        if (distributor.cashLimit <= (req.body.total + distributor.outStandingAmount) && distributor.crateLimit <= (sumOfCrates + distributor.outStandingCrates)) {
+          distributor.active = false;
+        }
 
         const orderResult = await order.save();
 

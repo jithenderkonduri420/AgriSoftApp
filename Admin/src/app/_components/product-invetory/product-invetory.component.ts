@@ -118,8 +118,8 @@ export class ProductInvetoryComponent implements OnInit {
     formData.append('image', this.addProductform.value.image);
     formData.append('name', this.addProductform.get('name')?.value);
     formData.append('packet', this.addProductform.get('packet')?.value);
-    formData.append('brandId', this.addProductform.get('brandId')?.value);
-    console.log('formData', formData);
+    formData.append('brandId', this.seletedBrand._id);
+    console.log('formData', this.addProductform.get('brandId')?.value);
     // stop here if form is invalid
     if (this.addProductform.invalid) {
       return;

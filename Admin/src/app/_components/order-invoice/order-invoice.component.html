@@ -5,23 +5,27 @@
 
 <section class="main-section order-management-list" *ngIf="cartProducts">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="order-info">
                 <div class="col-12">
                     <div class="row">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-3">
                                 <p class="info-sub-title">Distributor</p>
                                 <p class="info-title"><strong>{{ cartProducts.code }}</strong></p>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <p class="info-sub-title">Name</p>
                                 <p class="info-title"><strong>{{ cartProducts.name }}</strong></p>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <p class="info-sub-title">Brand</p>
                                 <p class="info-title"><strong>{{ cartProducts.brand[0].name }}</strong></p>
                             </div>
+                            <div class="col-3">
+                              <p class="info-sub-title">Status</p>
+                              <p class="info-title"><strong>{{ cartProducts.active ? "Active" : "Block" }}</strong></p>
+                          </div>
                         </div>
                     </div>
                 </div>
