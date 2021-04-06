@@ -52,7 +52,7 @@ export class AddRouteComponent implements OnInit {
   }
 
   addDropPoint(index:any):void{
-    (this.DropPointList.length < 5) ? this.DropPointList.push("") : console.log("Drop Point List Count reached")
+    (this.DropPointList.length < 15) ? this.DropPointList.push("") : console.log("Drop Point List Count reached")
   }
 
   dropPoint(event:any, i:any){
