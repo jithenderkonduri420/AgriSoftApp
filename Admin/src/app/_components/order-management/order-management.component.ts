@@ -17,7 +17,7 @@ export class OrderManagementComponent implements OnInit {
   seletedBrand: any;
   serverImagePath = `${environment.serverUploads}/uploads`;
 
-  Testimage: string = '../../assets/images/uploadImage.png';
+  defaultImage: string = '../../assets/images/uploadImage.png';
   searchText: any = '';
   distributorSelected: boolean = false;
   selectedDistributor: any;
@@ -32,6 +32,7 @@ export class OrderManagementComponent implements OnInit {
     private router: Router
   ) {
     this.seletedBrand = this._brands.getBrand();
+    console.log('this.seletedBrand', this.seletedBrand);
   }
 
   ngOnInit(): void {
@@ -55,6 +56,7 @@ export class OrderManagementComponent implements OnInit {
   selectDestributor(destributor: any) {
     this.searchText = destributor;
     this.distributorSelected = true;
+    this.isOrderTimeOut = false;
   }
   searchDistributor() {
     this.selectedDistributor = this.distributorsList.find(

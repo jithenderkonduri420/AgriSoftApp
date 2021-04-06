@@ -5,7 +5,7 @@ export class BrandsType {
   name: string;
   _id: string;
   image: string;
-} 
+}
 
 @Injectable({ providedIn: 'root' })
 export class BrandService {
@@ -13,15 +13,17 @@ export class BrandService {
   constructor(private _api: ApiService){
     this._api.readAll("warehouse").subscribe(data => this.BrandWherehouses = data.warehouses)
   }
-  
+
   public currentBrandData: BrandsType;
-  
+
   setBrand(data: BrandsType): void{
-    this.currentBrandData = data;
+    localStorage.setItem('selectedBrand', JSON.stringify(data));
+  //  this.currentBrandData = data;
   }
 
   getBrand(): BrandsType{
-    return this.currentBrandData;
+    return JSON.parse(localStorage.getItem('selectedBrand') || '{}');
+   // return this.currentBrandData;
   }
 
   getWearhouses(): any{

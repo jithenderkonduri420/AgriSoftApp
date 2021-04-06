@@ -93,15 +93,16 @@ exports.getAll = async (req, res) => {
   // validate
   if (!brand) res.status(400).send({ error: true, message: 'Brand not found' });
   else {
-    Distributor.find({ brand: req.query.id }, (err, distributors) => {
-      if (err) {
-        res.status(500).send({ error: true, message: err });
-        return;
-      }
-      res.status(200).send({
-        distributors,
+    Distributor.find({ brand: req.query.id }).populate("brand", "-__v").populate("products.productId", "-__v").populate("route", "-__v")
+      .exec((err, distributors) => {
+        if (err) {
+          res.status(500).send({ error: true, message: err });
+          return;
+        }
+        res.status(200).send({
+          distributors,
+        });
       });
-    });
   }
 };
 exports.blockDistributor = async (req, res, next) => {
