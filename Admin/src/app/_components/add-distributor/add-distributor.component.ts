@@ -10,6 +10,12 @@ import { CookieService } from 'ngx-cookie-service';
 class productdata{
   productId:string;
   price: string;
+  name: string;
+}
+
+class productdataNew{
+  productId:string;
+  price: number;
 }
 
 @Component({
@@ -24,11 +30,13 @@ export class AddDistributorComponent implements OnInit {
   returnUrl: string;
   id: string;
   formType: string = "Add New";
+  priceValidation = false;
   routeList: any[];
   DropPoint: any[];
   seletedBrand: BrandsType;
   brandProducts: any;
   productValue: productdata[] = [];
+  pushProducts: productdataNew[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,11 +57,9 @@ export class AddDistributorComponent implements OnInit {
 
     this.apiService.readAll(`products?brandId=${this.seletedBrand._id}`).subscribe(data =>{ 
       this.brandProducts = data.products;
-      console.log(data)
-      if(!this.id){
-        for(let product of this.brandProducts){
-          this.productValue.push({productId:product._id, price:"0"})
-        }
+      
+      for(let product of this.brandProducts){
+        this.productValue.push({productId:product._id, price:"0", name:product.name})
       }
     })
     this.apiService.readAll("route").subscribe(data => this.routeList = data.routes )
@@ -76,11 +82,16 @@ export class AddDistributorComponent implements OnInit {
           this.f.address.setValue(data.distributor.address);
           this.f.crateLimit.setValue(data.distributor.crateLimit);
           this.f.cashLimit.setValue(data.distributor.cashLimit);
+
           this.formType = `Edit ${data.distributor.name}`;
-          this.brandProducts = [];
-          this.brandProducts = data.distributor.products;
-          console.log(this.brandProducts)
           
+          for (let item of this.productValue){
+            data.distributor.products.filter((test:any)=>{
+              if (item.productId === test.productId._id){
+                item.price = test.price
+              }
+            })
+          }
         },
         (error) => {
           console.log(error)
@@ -127,9 +138,23 @@ export class AddDistributorComponent implements OnInit {
     this.loading = true;
 
     this.form.value.brand = this.seletedBrand._id;
-    this.form.value.products = this.productValue;
-    console.log(this.form.value)
+    for(let item of this.productValue){
+      if (item.price == "0" && item.price == null && !item.price){
+        this.priceValidation = true
+        this.loading = false;
+        return;
+      }
+    }
+    this.priceValidation = false;
 
+    for(let item of this.productValue){
+      this.pushProducts.push({productId: item.productId, price:Number(item.price)})
+    }
+
+    this.form.value.products = this.pushProducts;
+
+    console.log(this.form.value)
+    
     if(!this.id) {
       this.apiService
         .create("distributor", this.form.value)

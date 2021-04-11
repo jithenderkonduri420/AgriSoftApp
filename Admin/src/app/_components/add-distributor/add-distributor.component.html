@@ -1,7 +1,7 @@
 <header>
   <p class="page-breadcrumb">
     <span routerLink="/home"> Dashboard </span>/
-    <span routerLink="/distributor"> {{seletedBrand.name}} </span> / Distributors
+    <span routerLink="/distributor"> {{seletedBrand.name}} </span> / <span routerLink="/distributors"> Distributors </span>
   </p>
   <h3 class="page-title">{{ formType === 'Add New' ? 'Add New' : formType }}</h3>
 </header>
@@ -14,7 +14,7 @@
         
         <div class="col-md-7">
           <label class="form-label">Enter Distributor Name</label>
-          <input type="text" class="form-control" formControlName="name" />
+          <input type="text" class="form-control" [ngClass]="formType != 'Add New' ? 'inputDisabled' : 'notDisabled'" formControlName="name"/>
           <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
             <div *ngIf="f.name.errors.required">Name is required</div>
           </div>
@@ -22,7 +22,7 @@
 
         <div class="col-md-5">
           <label class="form-label">Brand</label>
-          <input type="text" class="form-control brand-field" formControlName="brand" />
+          <input type="text" class="form-control brand-field" [ngClass]="formType != 'Add New' ? 'inputDisabled' : 'notDisabled'" formControlName="brand" />
           <div *ngIf="submitted && f.brand.errors" class="invalid-feedback">
             <div *ngIf="f.brand.errors.required">Brand is required</div>
           </div>
@@ -30,7 +30,7 @@
 
         <div class="col-md-5">
           <label class="form-label">Route</label>
-          <select name="" class="form-control" formControlName="route" #route (change)="onChangeRoute(route.value)">
+          <select name="" class="form-control" formControlName="route" [ngClass]="formType != 'Add New' ? 'inputDisabled' : 'notDisabled'" #route (change)="onChangeRoute(route.value)">
             <option *ngFor="let route of routeList; let i = index" value="{{route._id}}">{{route.name}}</option>
           </select>
           <div *ngIf="submitted && f.route.errors" class="invalid-feedback">
@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-7">
           <label class="form-label">Drop Point</label>
-          <select name="" class="form-control">
+          <select name="" class="form-control" [ngClass]="formType != 'Add New' ? 'inputDisabled' : 'notDisabled'">
             <option  *ngFor="let point of DropPoint" value="{{point}}">{{point}}</option>
           </select>
         </div>
@@ -74,13 +74,13 @@
         </div>
         <br />
 
-        <div class="col-12 brandProducts" *ngFor="let product of brandProducts">
+        <div class="col-12 brandProducts" *ngFor="let product of productValue">
           <div class="row">
             <div class="col-md-6 form-text">
               <label class="form-label-block">{{product.name}}</label>
             </div>
             <div class="col-md-2"> 
-              <input type="text" pattern="[0-9]*" [value]="product.price ? product.price : 0" min="0" maxlength="4" NumOnly inputmode=”numeric”  required min="1" (change)="onChangeEvent($event, product._id)" class="form-control" />
+              <input type="text" pattern="[0-9]*" [value]="product.price ? product.price : 0" min="0" maxlength="4" NumOnly inputmode=”numeric”  required min="1" (change)="onChangeEvent($event, product.productId)" class="form-control" />
             </div>
             <div class="col-md-4"></div>
           </div>
@@ -115,6 +115,9 @@
           </div>
         </div>
         <div class="col-12">
+          <div *ngIf="submitted && priceValidation" class="invalid-feedback">
+            Please Fill All Product Prices
+          </div>
           <button [disabled]="loading" class="btn btn-primary btn-block">
             <span
               *ngIf="loading"
