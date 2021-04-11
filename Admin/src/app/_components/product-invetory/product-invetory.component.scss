@@ -72,6 +72,14 @@ header .page-title{
                 width: 0;
                 visibility: hidden;
             }
+            span{
+                position: absolute;
+                top: 22px;
+                text-align: right;
+                left: -70px;
+                min-width: 65px;
+                font-size: 12px;
+            }
 
             label {
                 cursor: pointer;
