@@ -105,14 +105,15 @@ exports.getAll = async (req, res) => {
       });
   }
 };
-exports.blockDistributor = async (req, res, next) => {
+exports.distributorStatusChange = async (req, res, next) => {
+  const active = req.body.active ? req.body.active : false;
   const distributor = await Distributor.findById(req.body.id);
   // validate
   if (!distributor) res.status(400).send({ error: true, message: "distributor not found" });
   else {
-    Distributor.findByIdAndUpdate(distributor._id, { active: false }, (err, distributor) => {
+    Distributor.findByIdAndUpdate(distributor._id, { active: active  }, (err, distributor) => {
       if (err) res.status(500).send({ error: true, message: err });
-      res.send({ status: 200, message: "Distributor blocked successfully!" });
+      res.send({ status: 200, message: "Distributor status changed successfully!" });
     });
   }
 }

@@ -81,8 +81,8 @@ module.exports = function (app) {
     controller.delete
   );
   app.post(
-    "/api/distributor/block",
+    "/api/distributor/change-status",
     authJwt.verifyToken,
-    controller.blockDistributor
+    controller.distributorStatusChange
   );
 };

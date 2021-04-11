@@ -28,4 +28,9 @@ module.exports = function(app) {
     authJwt.verifyToken,
     controller.delete
   );
+  app.post(
+    "/api/products/change-status",
+    authJwt.verifyToken,
+    controller.productStatusChange
+  );
 };

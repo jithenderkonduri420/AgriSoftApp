@@ -132,6 +132,17 @@ exports.getAll = async (req, res) => {
     });
   });
 };
-
+exports.productStatusChange = async (req, res, next) => {
+  const active = req.body.active ? req.body.active : false;
+  const product = await Product.findById(req.body.id);
+  // validate
+  if (!product) res.status(400).send({ error: true, message: "product not found" });
+  else {
+    Product.findByIdAndUpdate(product._id, { status: active  }, (err, product) => {
+      if (err) res.status(500).send({ error: true, message: err });
+      res.send({ status: 200, message: "Product status changed successfully!" });
+    });
+  }
+}
 
 
