@@ -371,8 +371,12 @@ $someColor : #258B1F;
             font-weight: 500;
             letter-spacing: 0;
             line-height: 15px;
-            &:focus{
+            &:focus,
+            &:disabled{
                 background: none !important;
+            }
+            &.inputDisabled{
+                pointer-events: none;
             }
             &:-webkit-autofill,
             &:-webkit-autofill:hover,

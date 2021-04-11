@@ -25,7 +25,7 @@
           </select>
         </div>
         <div class="col-4">
-          <button class="btn add-item btn-primary btn-block">
+          <button disabled class="btn add-item btn-primary btn-block">
             + Add Wearhouse
           </button>
         </div>
@@ -70,7 +70,7 @@
               <button
                 type="submit"
                 *ngIf="isLast"
-                [hidden]="DropPointList.length >= 5"
+                [hidden]="DropPointList.length >= 15"
                 class="btn add-item btn-primary btn-block"
                 (click)="addDropPoint(i)"
               >
