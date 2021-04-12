@@ -14,7 +14,10 @@
         
         <div class="col-md-7">
           <label class="form-label">Enter Distributor Name</label>
-          <input type="text" class="form-control" [ngClass]="formType != 'Add New' ? 'inputDisabled' : 'notDisabled'" formControlName="name"/>
+          <div class="input-set">
+            <input type="text" class="form-control distributor-name" [ngClass]="formType != 'Add New' ? 'inputDisabled' : 'notDisabled'" formControlName="name"/>
+            <input type="text" class="form-control distributor-prifix" maxlength="3" />
+          </div>
           <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
             <div *ngIf="f.name.errors.required">Name is required</div>
           </div>
@@ -27,17 +30,22 @@
             <div *ngIf="f.brand.errors.required">Brand is required</div>
           </div>
         </div>
-
-        <div class="col-md-5">
+        <div class="col-md-4">
+          <label class="form-label">Warehouse</label>
+          <select name="warehouse" class="form-control" formControlName="warehouse" #warehouse [ngClass]="formType != 'Add New' ? 'inputDisabled' : 'notDisabled'">
+            <option *ngFor="let route of routeList; let i = index" value="{{route._id}}">{{route.name}}</option>
+          </select>
+        </div>
+        <div class="col-md-4">
           <label class="form-label">Route</label>
-          <select name="" class="form-control" formControlName="route" [ngClass]="formType != 'Add New' ? 'inputDisabled' : 'notDisabled'" #route (change)="onChangeRoute(route.value)">
+          <select name="route" class="form-control" formControlName="route" [ngClass]="formType != 'Add New' ? 'inputDisabled' : 'notDisabled'" #route (change)="onChangeRoute(route.value)">
             <option *ngFor="let route of routeList; let i = index" value="{{route._id}}">{{route.name}}</option>
           </select>
           <div *ngIf="submitted && f.route.errors" class="invalid-feedback">
             <div *ngIf="f.route.errors.required">Route is required</div>
           </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-4">
           <label class="form-label">Drop Point</label>
           <select name="" class="form-control" [ngClass]="formType != 'Add New' ? 'inputDisabled' : 'notDisabled'">
             <option  *ngFor="let point of DropPoint" value="{{point}}">{{point}}</option>
@@ -112,6 +120,15 @@
           <input type="text" pattern="[0-9]*" min="0" maxlength="4" NumOnly class="form-control" formControlName="cashLimit" />
           <div *ngIf="submitted && f.cashLimit.errors" class="invalid-feedback">
             <div *ngIf="f.cashLimit.errors.required">Cash limit limit is required</div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="col-12">
+          <label class="form-label">Generate Password</label>
+          <div class="generate-pass">
+            <input type="text" class="form-control" />
+            <button class="btn" type="button" id="button-addon2">#</button>
           </div>
         </div>
         <div class="col-12">

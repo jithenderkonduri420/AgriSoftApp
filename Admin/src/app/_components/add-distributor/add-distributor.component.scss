@@ -32,6 +32,36 @@
             width: 100%;
         }
 
+        .input-set{
+            display: flex;
+            .distributor-name{
+                border-radius: 5px 0 0 5px;
+                
+            }
+            .distributor-prifix {
+                width: 70px;
+                border-radius: 0 5px 5px 0;
+                border-left-width: 0.5px;
+                font-size: 18px;
+                text-align: center;
+                text-transform: uppercase;
+            }
+        }
+        
+
+        .generate-pass{
+            display: flex;
+            .form-control{
+                border-radius: 5px 0 0 5px;
+            }
+            .btn{
+                background-color: #979797;
+                color: #000000;
+                border-radius: 0 5px 5px 0;
+                border: none;
+            }
+        }
+
     }
 
     .brand-field{

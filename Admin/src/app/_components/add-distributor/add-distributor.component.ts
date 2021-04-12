@@ -105,6 +105,7 @@ export class AddDistributorComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       brand: [{value: this.seletedBrand.name, disabled: true}, Validators.required],
+      warehouse: ['', Validators.required],
       route: ['', Validators.required],
       email: ['', Validators.required],
       phone: ['', Validators.required],
