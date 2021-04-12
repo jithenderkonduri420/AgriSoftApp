@@ -37,6 +37,7 @@ export class AddDistributorComponent implements OnInit {
   brandProducts: any;
   productValue: productdata[] = [];
   pushProducts: productdataNew[] = [];
+  isValid: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,

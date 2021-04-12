@@ -47,6 +47,21 @@
                 text-transform: uppercase;
             }
         }
+
+        .distributor-id-prefix{
+            font-weight: bold;
+            font-size: 28px;
+            letter-spacing: 2px;
+            svg{
+                vertical-align: baseline;
+                &.bi-check-circle-fill{
+                    fill: #258B1F;
+                }
+                &.bi-x-circle-fill{
+                    fill: #FF0000;
+                }
+            }
+        }
         
 
         .generate-pass{
