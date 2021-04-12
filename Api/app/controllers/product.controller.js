@@ -122,7 +122,7 @@ exports.getAll = async (req, res) => {
   if (!req.query.brandId) {
     res.send({ status: 400, message: 'BrandId is required' });
   }
-  Product.find({ status: true, brandId: req.query.brandId }, (err, products) => {
+  Product.find({ brandId: req.query.brandId }, (err, products) => {
     if (err) {
       res.status(500).send({ error: true, message: err });
       return;
