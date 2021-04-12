@@ -13,7 +13,9 @@
                         <img src="{{serverImagePath}}/{{product.fileName}}" default="{{ defaultImage }}"  class="img-fluidimg-thumbnail" alt="product image">
                     </div>
                     <span class="product-toggle">
-                        <input type="checkbox" checked id="{{product._id}}" /><label for="{{product._id}}">Toggle</label>
+                        <span>{{product.status ? 'Active' : 'Inactive'}}</span>
+                        <input type="checkbox" [checked]="product.status" id="{{product._id}}" (change)="changeProductStatus(product._id,!product.status)"/>
+                        <label for="{{product._id}}"> Toggle</label>
                     </span>
                     <div class="product-data">
                         <h5>{{product.name}}</h5>
@@ -38,11 +40,24 @@
                 <form class="row g-3" [formGroup]="addProductform" (ngSubmit)="onSubmit()">
                     <div class="col-md-8">
                         <label class="form-label">Enter Product Name</label>
-                        <input formControlName="name" required type="text" class="form-control">
+                        <input formControlName="name" id="name" required type="text" class="form-control">
+                        <div *ngIf="submitted && f.name.invalid" class="invalid-feedback">
+                            Product Name is Required
+                          </div>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">No of Packets</label>
-                        <input formControlName="packet" type="number" required class="form-control">
+                        <label class="form-label">Packets</label>
+                        <div class="btn-group radio-btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="radio" formControlName="packet" name="packet" [value]="12" autocomplete="off" checked> 12
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" formControlName="packet" name="packet" [value]="20" autocomplete="off"> 20
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" formControlName="packet" name="packet" [value]="25" autocomplete="off"> 25
+                            </label>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-12">
@@ -64,9 +79,11 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-12">
-                        <div class="row">
-                            <button type="submit" class="btn btn-primary btn-block">Add Product</button>
-                        </div>
+                        
+                        <div *ngIf="submitted && productimgCheck" class="invalid-feedback">
+                            <div>Please Upload an Product Image</div>
+                            </div>
+                        <button type="submit" class="btn btn-primary btn-block">Add Product</button>
                     </div>
 
                 </form>
