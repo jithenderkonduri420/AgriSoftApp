@@ -41,7 +41,6 @@ export class DistributorsListComponent implements OnInit {
         },
         (error) => {
           console.log(error)
-          // this.alertService.error(error);
         }
       );
     }
