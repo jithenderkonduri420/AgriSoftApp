@@ -17,6 +17,7 @@ const Distributor = mongoose.model(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Route"
         },
+        dropPoint: String,
         location: String,
         products: [{
             productId: {

@@ -19,9 +19,8 @@ exports.create = async (req, res, next) => {
   // validate
   if (!brand) res.status(400).send({ error: true, message: 'Brand not found' });
 
-  const password = Math.random().toString(36).substring(4);
-  console.log('route', route);
-  var code = `${route.warehouse.name.substring(0, 2).toUpperCase()}${route.name.substring(0, 3).toUpperCase()}${brand.name.substring(0, 3).toUpperCase()}${req.body.name.substring(0, 3).toUpperCase()}`;
+  const password = req.body.password;//Math.random().toString(36).substring(4);
+  var code = `${route.warehouse.name.substring(0, 1).toUpperCase()}${req.body.dropPoint.substring(0, 2).toUpperCase()}${route.name.substring(1, 3).toUpperCase()}${brand.name.substring(0, 2).toUpperCase()}${req.body.code.substring(0, 3).toUpperCase()}`;
 
   Distributor.findOne({
     code
@@ -37,6 +36,7 @@ exports.create = async (req, res, next) => {
     phone: req.body.phone,
     address: req.body.address,
     route: req.body.route,
+    dropPoint: req.body.dropPoint,
     location: req.body.location,
     products: req.body.products,
     crateLimit: req.body.crateLimit,
@@ -111,9 +111,25 @@ exports.distributorStatusChange = async (req, res, next) => {
   // validate
   if (!distributor) res.status(400).send({ error: true, message: "distributor not found" });
   else {
-    Distributor.findByIdAndUpdate(distributor._id, { active: active  }, (err, distributor) => {
+    Distributor.findByIdAndUpdate(distributor._id, { active: active }, (err, distributor) => {
       if (err) res.status(500).send({ error: true, message: err });
       res.send({ status: 200, message: "Distributor status changed successfully!" });
     });
   }
 }
+exports.checkDuplicateDistributor = async (req, res, next) => {
+  Distributor.findOne({
+    code: req.params.id
+  }).exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+    if (user) {
+      res.status(400).send({ error: true, message: "Failed! Distributor Code is already in use!" });
+      return;
+    } else {
+      res.status(200).send({ error: false, message: "" });
+    }
+  });
+};

@@ -85,4 +85,9 @@ module.exports = function (app) {
     authJwt.verifyToken,
     controller.distributorStatusChange
   );
+  app.get(
+    "/api/distributor-exists/:id",
+    authJwt.verifyToken,
+    controller.checkDuplicateDistributor
+  );
 };

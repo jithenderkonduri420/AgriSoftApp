@@ -53,6 +53,11 @@ export class ApiService {
       .get<any>(`${environment.api}/${uri}/${id}`)
       .pipe(catchError((error: any) => this.processError(error)));
   }
+  checkExists(uri: string, id: any): Observable<any> {
+    return this.http
+      .get<any>(`${environment.api}/${uri}/${id}`)
+      .pipe(catchError((error: any) => this.processError(error)));
+  }
   create(uri: string, data: any): Observable<any> {
     return this.http
       .post<any>(`${environment.api}/${uri}`, data)
