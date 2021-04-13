@@ -32,6 +32,51 @@
             width: 100%;
         }
 
+        .input-set{
+            display: flex;
+            .distributor-name{
+                border-radius: 5px 0 0 5px;
+                
+            }
+            .distributor-prifix {
+                width: 70px;
+                border-radius: 0 5px 5px 0;
+                border-left-width: 0.5px;
+                font-size: 18px;
+                text-align: center;
+                text-transform: uppercase;
+            }
+        }
+
+        .distributor-id-prefix{
+            font-weight: bold;
+            font-size: 28px;
+            letter-spacing: 2px;
+            svg{
+                vertical-align: baseline;
+                &.bi-check-circle-fill{
+                    fill: #258B1F;
+                }
+                &.bi-x-circle-fill{
+                    fill: #FF0000;
+                }
+            }
+        }
+        
+
+        .generate-pass{
+            display: flex;
+            .form-control{
+                border-radius: 5px 0 0 5px;
+            }
+            .btn{
+                background-color: #979797;
+                color: #000000;
+                border-radius: 0 5px 5px 0;
+                border: none;
+            }
+        }
+
     }
 
     .brand-field{
