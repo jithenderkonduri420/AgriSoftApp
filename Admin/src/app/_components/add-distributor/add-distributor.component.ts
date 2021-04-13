@@ -66,11 +66,13 @@ export class AddDistributorComponent implements OnInit {
         this.brandProducts = data.products;
 
         for (let product of this.brandProducts) {
-          this.productValue.push({
-            productId: product._id,
-            price: '0',
-            name: product.name,
-          });
+          if(product.status){
+            this.productValue.push({
+              productId: product._id,
+              price: '0',
+              name: product.name,
+            });
+          }
         }
       });
     this.apiService
@@ -101,6 +103,7 @@ export class AddDistributorComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
+          console.log(data.distributor)
           this.f.name.setValue(data.distributor.name);
           this.f.route.setValue(data.distributor.route._id);
           this.f.email.setValue(data.distributor.email);
@@ -108,7 +111,11 @@ export class AddDistributorComponent implements OnInit {
           this.f.address.setValue(data.distributor.address);
           this.f.crateLimit.setValue(data.distributor.crateLimit);
           this.f.cashLimit.setValue(data.distributor.cashLimit);
-
+          this.f.warehouse.setValue(data.distributor.route.warehouse);
+          this.onChangeWarehouse(data.distributor.route.warehouse);
+          this.f.route.setValue(data.distributor.route._id);
+          this.onChangeRoute(data.distributor.route._id);
+          this.f.dropPoint.setValue(data.distributor.dropPoint);
           this.formType = `Edit ${data.distributor.name}`;
 
           for (let item of this.productValue) {

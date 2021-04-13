@@ -382,10 +382,13 @@ $someColor : #258B1F;
                 -webkit-box-shadow: 0 0 0 30px white inset !important;
                 background: none;
             }
+            &:read-only{
+                background-color: #ffffff;
+            }
         }
         input{
             &:focus,
-            &:disabled{
+            &:disabled, &.inputDisabled{
                 background: none !important;
                 border-color: #cccccc;
             }
@@ -396,7 +399,7 @@ $someColor : #258B1F;
             background-repeat: no-repeat;
             background-position-x: 98%;
             background-position-y: 63%;
-            &:disabled{
+            &:disabled, &.inputDisabled{
                 background-color: #ffffff;
                 border-color: #cccccc;
             }
