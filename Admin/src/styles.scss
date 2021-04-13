@@ -387,6 +387,7 @@ $someColor : #258B1F;
             &:focus,
             &:disabled{
                 background: none !important;
+                border-color: #cccccc;
             }
         }
         select{
@@ -395,6 +396,10 @@ $someColor : #258B1F;
             background-repeat: no-repeat;
             background-position-x: 98%;
             background-position-y: 63%;
+            &:disabled{
+                background-color: #ffffff;
+                border-color: #cccccc;
+            }
         }
 
         .radio-btn-group{
@@ -420,6 +425,9 @@ $someColor : #258B1F;
             border: none;
             outline: none;
             height: 46px;
+            &:hover, &:active, &:focus{
+                background-color: #258B1F;
+            }
         }
         .error-message{
             margin: 0;

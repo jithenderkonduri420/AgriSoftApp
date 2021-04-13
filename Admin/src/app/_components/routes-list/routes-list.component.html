@@ -37,8 +37,8 @@
                         {{route.closeTime}}
                     </div>
                     <div class="manage-col">
-                        <button type="button" class="btn btn-dark  distributor-block-edit">Edit</button>
-                        <button type="button" (click)="dropRoute(route.w, route.name)" class="btn btn-outline-dark distributor-block-delete">Delete</button>
+                        <button type="button" class="btn btn-dark  distributor-block-edit" [routerLink]="['/add-route']" [queryParams]="{id: route._id}">Edit</button>
+                        <button type="button" (click)="dropRoute(route._id, route.name)" class="btn btn-outline-dark distributor-block-delete">Delete</button>
                     </div>
                 </div>
             </div>
