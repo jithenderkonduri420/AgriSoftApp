@@ -27,7 +27,10 @@ export class RoutesListComponent implements OnInit {
   dropRoute(id: string, name: string){
     if(confirm(`Conform delete ${name}`)){
       this.apiService.deleteIndex("route",id).subscribe(data=>{
+        console.log(data)
         this.getRoutesList();
+      },(error)=>{
+        console.error(error);
       });
     }
   }

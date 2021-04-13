@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'src/app/_service/alert.service';
 import { first } from 'rxjs/operators';
 import { BrandService, BrandsType } from 'src/app/_service/brand.service';
-import { CookieService } from 'ngx-cookie-service';
 
 class productdata{
   productId:string;

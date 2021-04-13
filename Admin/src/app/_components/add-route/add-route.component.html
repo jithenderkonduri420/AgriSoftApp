@@ -1,13 +1,15 @@
 <header>
   <p class="page-breadcrumb">
-    <span routerLink="/route"> Routes </span>/ Add New
+    <span routerLink="/home"> Home </span> /
+    <span routerLink="/routes"> Routes </span> / Route
   </p>
-  <h3 class="page-title">Routes</h3>
+  <h3 class="page-title">Route</h3>
 </header>
 
 <section class="main-section">
   <div class="add-new-route agrisoft-forms">
-    <h4>Add New Route</h4>
+    <h4 *ngIf="id"> Edit {{formType}} </h4>
+    <h4 *ngIf="!id"> Add New Route</h4>
     <div class="form-section custom-scrollbar">
       <form
         class="row g-3 needs-validation"
@@ -17,12 +19,13 @@
         <div class="col-8">
           <label class="form-label">Wearhouse</label>
           <select
-            name="Wearhouse"
+            name="wearhouse"
             formControlName="warehouse"
             class="form-control"
           >
-            <option *ngFor="let item of warehouses; first as isFirst" value="item._id" [selected]="isFirst">{{item.name}}</option>
+            <option *ngFor="let item of warehouses; first as isFirst" [value]="item._id" [selected]="isFirst">{{item.name}}</option>
           </select>
+          <p *ngIf="f.warehouse.invalid && submitted" class="text-danger error-message">Please select Warehouse from the list</p>
         </div>
         <div class="col-4">
           <button disabled class="btn add-item btn-primary btn-block">
@@ -64,6 +67,7 @@
                 (change)="dropPoint($event, i)"
                 required
                 class="form-control"
+                [value]="item ? item : ''"
               />
             </div>
             <div class="col-4">
@@ -168,7 +172,8 @@
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary btn-block">
-            Add Route
+            {{ id ? 'Update Route' : 'Add Route'}}
+            
           </button>
         </div>
       </form>

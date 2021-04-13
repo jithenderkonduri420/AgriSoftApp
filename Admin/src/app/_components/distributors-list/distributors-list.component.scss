@@ -86,6 +86,9 @@ header .page-title{
                     .distributor-block-delete{
                           color: #C82525;
                           border-color: #C82525;
+                          &:hover{
+                              color: #ffffff;
+                          }
                     }
                 }
             }
