@@ -98,10 +98,12 @@
             </div>
           </div>
 
-          <div class="order-list custom-scrollbar">
+          <div class="order-list custom-scrollbar"
+            *ngFor="let product of selectedDistributor.products; index as i"
+          >
             <div
               class="oder-item"
-              *ngFor="let product of selectedDistributor.products; index as i"
+              *ngIf="product.productId.status"
             >
               <div class="product-img">
                 <img

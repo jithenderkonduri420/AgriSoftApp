@@ -409,8 +409,9 @@ $someColor : #258B1F;
             margin-top: 10px;
             margin-left: 5px;
             label{
-                background-color: #E77649;
-                border-color: #E77649;
+                background-color: #e6e6e6;
+                border-color: #e6e6e6;
+                color: #000000;
                 &.active,
                 &:focus,
                 &:active{

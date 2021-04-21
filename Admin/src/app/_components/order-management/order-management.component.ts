@@ -46,6 +46,7 @@ export class OrderManagementComponent implements OnInit {
         (data) => {
           this.distributors = data.distributors.map((res: any) => res.code);
           this.distributorsList = data.distributors;
+          console.log(this.distributorsList)
         },
         (error) => {
           console.log(error);
