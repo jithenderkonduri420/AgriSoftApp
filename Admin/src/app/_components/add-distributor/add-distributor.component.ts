@@ -66,13 +66,11 @@ export class AddDistributorComponent implements OnInit {
         this.brandProducts = data.products;
 
         for (let product of this.brandProducts) {
-          if(product.status){
-            this.productValue.push({
-              productId: product._id,
-              price: '0',
-              name: product.name,
-            });
-          }
+          this.productValue.push({
+            productId: product._id,
+            price: '0',
+            name: product.name,
+          });
         }
       });
     this.apiService
@@ -117,7 +115,8 @@ export class AddDistributorComponent implements OnInit {
           this.onChangeRoute(data.distributor.route._id);
           this.f.dropPoint.setValue(data.distributor.dropPoint);
           this.formType = `Edit ${data.distributor.name}`;
-
+          this.distributorCode = data.distributor.code;
+          this.isValid = true;
           for (let item of this.productValue) {
             data.distributor.products.filter((test: any) => {
               if (item.productId === test.productId._id) {
