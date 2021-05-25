@@ -11,7 +11,10 @@ const Route = mongoose.model(
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Warehouse"
-    }
+    },
+    password: String,
+    passwordHash: String,
+    code: String
 
 
   })

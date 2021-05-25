@@ -5,8 +5,10 @@
     "capacitor": {}
   },
   "type": "angular",
-  "proxies": [{
-    "path": "/api",
-    "proxyUrl": "http://localhost:8087"
-}]
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://localhost:8087"
+    }
+  ]
 }

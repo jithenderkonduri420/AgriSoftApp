@@ -16,7 +16,7 @@ export class CartPage implements OnInit {
   currentUser: any;
   products: any;
   cartAddedProducts = [];
-  cartAmount: Number = 0;
+  cartAmount: any = 0;
   serverImagePath = `${environment.serverUploads}/uploads`;
   orderProducts = [];
   constructor(

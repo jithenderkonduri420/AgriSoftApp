@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 import { UtilsService } from 'src/app/shared/services//utils.service';
-import { CallNumber } from '@ionic-native/call-number';
 
 @Component({
   selector: 'app-login',
@@ -18,8 +17,7 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthenticationService,
-    private utilsService: UtilsService,
-    private callNumber: CallNumber
+    private utilsService: UtilsService
   ) {}
 
   ngOnInit() {
@@ -59,10 +57,5 @@ export class LoginPage implements OnInit {
         this.router.navigate(['home']);
       }
     });
-  }
-  callNow(number) {
-    this.callNumber.callNumber(number, true)
-      .then(res => console.log('Launched dialer!', res))
-      .catch(err => console.log('Error launching dialer', err));
   }
 }

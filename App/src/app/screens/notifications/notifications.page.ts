@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class NotificationsPage {
   currentUser: any;
-  notifications: [];
+  notifications: any = [];
   count: any = 0;
   constructor(
     private apiService: ApiService,

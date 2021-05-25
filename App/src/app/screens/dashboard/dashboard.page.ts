@@ -10,7 +10,7 @@ import { HomePage } from '../home/home.page';
 })
 export class DashboardPage {
   currentUser: any;
-  notifications: [];
+  notifications: any = [];
   constructor(
     private authService: AuthenticationService,
     private apiService: ApiService,

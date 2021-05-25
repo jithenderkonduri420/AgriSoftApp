@@ -15,8 +15,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
-import { CallNumber } from '@ionic-native/call-number';
-
 
 
 @NgModule({
@@ -32,7 +30,6 @@ import { CallNumber } from '@ionic-native/call-number';
   providers: [
     StatusBar,
     SplashScreen,
-    CallNumber,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HTTP_INTERCEPTORS,

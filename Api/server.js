@@ -7,9 +7,9 @@ const path = require('path');
 const app = express();
 const apiErrorHandler = require('./app/error/api-error-handler');
 var bcrypt = require("bcryptjs");
-// var corsOptions = {
-//   origin: "http://localhost:8100"
-// };
+var corsOptions = {
+  origin: "http://localhost:8087"
+};
 
 // enable files upload
 app.use(fileUpload({
@@ -23,7 +23,7 @@ app.use(express.static(dir));
 
 //app.use(cors(corsOptions));
 app.use(cors());
-app.options('*', cors());
+// app.options('*', cors());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", '*');

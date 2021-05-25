@@ -1,7 +1,7 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/warehouse.controller");
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.get(
     "/api/warehouse",
     authJwt.verifyToken,
@@ -10,5 +10,10 @@ module.exports = function(app) {
   app.post(
     "/api/warehouse",
     authJwt.verifyToken,
-    controller.create  );
+    controller.create);
+  app.delete(
+    "/api/warehouse/:id",
+    authJwt.verifyToken,
+    controller.delete
+  );
 };

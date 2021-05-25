@@ -2,6 +2,7 @@ const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
 const Distributor = db.distributor;
+const Route = db.route;
 const ApiError = require('../error/ApiError');
 const { check, validationResult } = require('express-validator')
 
@@ -66,37 +67,39 @@ exports.appSignin = async (req, res, next) => {
   if (!result.isEmpty()) {
     return res.status(400).json({ errors: result.array() });
   }
+  let appData = {};
+  let deliveryBoy = null;
+  const distributor = await Distributor.findOne({ code: req.body.username });
+  if (!distributor) {
+    deliveryBoy = await Route.findOne({ code: req.body.username });
+    appData = deliveryBoy;
+  } else {
+    appData = distributor;
+  }
+  if (!distributor && !deliveryBoy) res.status(500).json({ error: true, message: "User code is invalid." });
+  else {
+    let passwordIsValid = bcrypt.compareSync(
+      req.body.password,
+      appData.passwordHash
+    );
 
-  Distributor.findOne({
-    code: req.body.username
-  })
-    .exec((err, distributor) => {
-      if (err) res.send({ error: true, message: err });
-      if (!distributor) res.status(500).json({ error: true, message: "Distributor userid is invalid." });
-      else {
-        console.log(distributor);
-        let passwordIsValid = bcrypt.compareSync(
-          req.body.password,
-          distributor.passwordHash
-        );
+    if (!passwordIsValid) {
+      return res.status(401).send({
+        error: true,
+        message: "Invalid Password!"
+      });
+    }
 
-        if (!passwordIsValid) {
-          return res.status(401).send({
-            error: true,
-            message: "Invalid Password!"
-          });
-        }
-
-        let token = jwt.sign({ user: distributor }, config.secret, {
-          expiresIn: 86400 // 24 hours
-        });
-
-        res.status(200).send({
-          _id: distributor._id,
-          accessToken: token
-        });
-      }
+    let token = jwt.sign({ user: appData }, config.secret, {
+      expiresIn: 86400 // 24 hours
     });
+
+    res.status(200).send({
+      _id: appData._id,
+      accessToken: token
+    });
+  }
+
 };
 
 exports.appChangePassword = async (req, res, next) => {
