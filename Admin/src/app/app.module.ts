@@ -34,6 +34,7 @@ import { NumOnlyDirective } from './_directive/num-only.directive';
 import { ImagePreloadDirective } from './_directive/Image-preload.directive';
 import { AdminComponent } from './_components/admin/admin.component';
 import { AdminCreateComponent } from './_components/admin/admin-create/admin-create.component';
+import { WarehousesComponent } from './_components/warehouses/warehouses.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { AdminCreateComponent } from './_components/admin/admin-create/admin-cre
     ImagePreloadDirective,
     AdminComponent,
     AdminCreateComponent,
+    WarehousesComponent,
   ],
   imports: [
     BrowserModule,

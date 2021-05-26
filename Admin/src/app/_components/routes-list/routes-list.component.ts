@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../_service/api.service';
 
 @Component({
@@ -9,15 +10,21 @@ import { ApiService } from '../../_service/api.service';
 export class RoutesListComponent implements OnInit {
 
   RoutesList: any[] = [];
+  id: string;
 
   constructor(
     private apiService:ApiService,
+    private route: ActivatedRoute
   ) {
+    this.route.queryParams.subscribe(data => {
+      this.id = data.wharehouseID;
       this.getRoutesList()
+    })
    }
 
   getRoutesList():void{
-    this.apiService.readAll("route").subscribe(data => {
+    console.log(this.id)
+    this.apiService.readAllByWareHouseId("route",this.id).subscribe(data => {
       this.RoutesList = data.routes;
     })
   }
