@@ -1,0 +1,14 @@
+<header>
+    <h3 class="page-title">Warehouses</h3>
+</header>
+
+<section class="main-section">
+    <div class="page-center-content">
+        
+        <div class="card" *ngFor="let item of warehouses" (click)="gotoRoute(item._id)" >
+            <div class="card-body">
+                <h5 class="card-title">{{item.name}}</h5>
+            </div>
+        </div>
+    </div>
+</section>
