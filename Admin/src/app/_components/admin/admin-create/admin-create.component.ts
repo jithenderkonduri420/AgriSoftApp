@@ -81,7 +81,6 @@ export class AdminCreateComponent implements OnInit {
 
         },
         (error) => {
-          console.log(error)
           this.alertService.error(error);
           this.loading = false;
         }
@@ -107,7 +106,6 @@ export class AdminCreateComponent implements OnInit {
           this.router.navigate(['admin']);
         },
         (error) => {
-          console.log(error)
           this.alertService.error(error);
           this.loading = false;
         }
@@ -121,7 +119,6 @@ export class AdminCreateComponent implements OnInit {
           this.router.navigate(['admin']);
         },
         (error) => {
-          console.log(error)
           this.alertService.error(error);
           this.loading = false;
         }

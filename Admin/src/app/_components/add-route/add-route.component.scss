@@ -41,4 +41,18 @@
         }
     }
 
+    .generate-password{
+        position: relative;
+        .btn{
+            position: absolute;
+            right: 19px;
+            top: 4px;
+            padding: 0px 15px;
+            height: 38px;
+            background: rgba(220,161,12,1);
+            border: none;
+            line-height: 38px;
+        }
+    }
+
 }
