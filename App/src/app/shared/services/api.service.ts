@@ -89,19 +89,32 @@ export class ApiService {
           );
       });
   }
-  public getAllNotifications(distributor: any, limit: Number = 0): Observable<any> {
+  public getAllNotifications(
+    distributor: any,
+    limit: Number = 0
+  ): Observable<any> {
     return this.http
       .post<any>(`${environment.api_prefix_url}/notifications`, {
         distributorId: distributor._id,
-        limit: limit
+        limit: limit,
       })
       .pipe(catchError((error: any) => this.processError(error)));
   }
   public notificationsReadUpdate(distributor: any): Observable<any> {
     return this.http
       .post<any>(`${environment.api_prefix_url}/notifications-update`, {
-        distributorId: distributor._id
+        distributorId: distributor._id,
       })
+      .pipe(catchError((error: any) => this.processError(error)));
+  }
+  public getDeliveryBoyOrders(routeId: any): Observable<any> {
+    return this.http
+      .get<any>(`${environment.api_prefix_url}/deliveryboy-orders/${routeId}`)
+      .pipe(catchError((error: any) => this.processError(error)));
+  }
+  public getDistributorOrderDetails(distributor: any): Observable<any> {
+    return this.http
+      .get<any>(`${environment.api_prefix_url}/distributor-order/${distributor}`)
       .pipe(catchError((error: any) => this.processError(error)));
   }
   async failedAlert(header, message) {

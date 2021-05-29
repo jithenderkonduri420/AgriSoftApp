@@ -73,9 +73,7 @@ export class AddDistributorComponent implements OnInit {
           });
         }
       });
-    this.apiService
-      .readAll('route')
-      .subscribe((data) => (this.originalRouteList = data.routes));
+
     this.apiService
       .readAll('warehouse')
       .subscribe((data) => (this.warehouseList = data.warehouses));
@@ -83,13 +81,13 @@ export class AddDistributorComponent implements OnInit {
 
   onChangeWarehouse(value: any) {
     this.DropPoint = [];
-    this.routeList = this.originalRouteList.filter(
-      (item) => item.warehouse === value
-    );
+    this.apiService
+      .readAllByWareHouseId('route', value)
+      .subscribe((data) => (this.routeList = data.routes));
     this.distributorCodeGenerate();
   }
   onChangeRoute(value: any) {
-    this.DropPoint = this.originalRouteList.filter(
+    this.DropPoint = this.routeList.filter(
       (item) => item._id === value
     )[0]['locations'];
     this.distributorCodeGenerate();
@@ -101,7 +99,7 @@ export class AddDistributorComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          console.log(data.distributor)
+          console.log(data.distributor);
           this.f.name.setValue(data.distributor.name);
           this.f.route.setValue(data.distributor.route._id);
           this.f.email.setValue(data.distributor.email);

@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
     // validate
     if (!distributor) { res.status(400).send({ error: true, message: 'Distributor not found' }); }
     else {
-      if (compareTime(distributor.route.closeTime, moment().format('HH:MM')) === -1) {
+      if (compareTime(moment(distributor.route.closeTime, ["h:mm A"]).format('HH:MM'), moment().format('HH:MM')) === -1) {
         return res.status(400).json({ error: true, message: 'Order placing time is completed for today' });
       }
       const checking = distributorOrderPlacingCheck(distributor, req.body);
@@ -36,6 +36,7 @@ exports.create = async (req, res) => {
         const order = new Order({
           orderId,
           distributorId: req.body.distributorId,
+          routeId: distributor.route,
           product: req.body.product,
           outstanding_price: req.body.outstanding_price,
           total: req.body.total,

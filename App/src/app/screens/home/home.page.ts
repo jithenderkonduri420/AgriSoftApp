@@ -15,6 +15,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  role = null;
   count: any = 0;
   notifies: any = [];
   currentUser: any;
@@ -25,10 +26,11 @@ export class HomePage {
     private authService: AuthenticationService,
     private navCtrl: NavController,
     private router: Router,
-    private apiService: ApiService,
+    private apiService: ApiService
   ) {
     this.authService.userDetails().then((res: any) => {
       this.currentUser = res.user;
+      this.role = res.role;
       this.isLogin = this.authService.currentUserValue;
       this.apiService.getAllNotifications(this.currentUser).subscribe((res) => {
         this.notifies = res.notifications;
@@ -53,5 +55,8 @@ export class HomePage {
   }
   logout() {
     this.authService.logout();
+  }
+  callNumber(phoneNumber) {
+    window.open('tel:' + phoneNumber, '_system');
   }
 }

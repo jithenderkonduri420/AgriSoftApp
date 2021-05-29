@@ -84,6 +84,7 @@ require("./app/routes/route.routes")(app);
 require("./app/routes/distributor.routes")(app);
 require("./app/routes/order.routes")(app);
 require("./app/routes/notifications.routes")(app);
+require("./app/routes/delveryboy.routes")(app);
 
 
 

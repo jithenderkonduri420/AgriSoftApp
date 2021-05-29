@@ -51,7 +51,16 @@ export class AuthenticationService {
               if (res.accessToken) {
                 return this.storage.set(TOKEN_KEY, res.accessToken).then(() => {
                   this.authenticationState.next(true);
-                  this.router.navigate(['home']);
+                  if(res.role === 'distributor') {
+                    this.router.navigate(['home']);
+                  } else if(res.role === 'deliveryBoy') {
+                    this.router.navigate(['deliveryboy']);
+                  } else {
+                    this.loginFailedAlert(
+                      'Role Access Invalid!',
+                      'Please login with valid userid and password.'
+                    );
+                  }
                 });
               } else {
                 this.loginFailedAlert(

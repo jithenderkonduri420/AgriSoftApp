@@ -70,11 +70,15 @@ exports.appSignin = async (req, res, next) => {
   let appData = {};
   let deliveryBoy = null;
   const distributor = await Distributor.findOne({ code: req.body.username });
+  let role = null;
   if (!distributor) {
     deliveryBoy = await Route.findOne({ code: req.body.username });
     appData = deliveryBoy;
+    role
+    role = 'deliveryBoy';
   } else {
     appData = distributor;
+    role = 'distributor';
   }
   if (!distributor && !deliveryBoy) res.status(500).json({ error: true, message: "User code is invalid." });
   else {
@@ -89,14 +93,13 @@ exports.appSignin = async (req, res, next) => {
         message: "Invalid Password!"
       });
     }
-
-    let token = jwt.sign({ user: appData }, config.secret, {
+    let token = jwt.sign({ user: appData, role }, config.secret, {
       expiresIn: 86400 // 24 hours
     });
-
     res.status(200).send({
       _id: appData._id,
-      accessToken: token
+      accessToken: token,
+      role
     });
   }
 

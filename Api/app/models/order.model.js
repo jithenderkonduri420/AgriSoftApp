@@ -8,6 +8,10 @@ const Order = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Distributor"
     },
+    routeId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Route"
+    },
     product: [{
       productId: {
         type: mongoose.Schema.Types.ObjectId,

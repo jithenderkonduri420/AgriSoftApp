@@ -21,7 +21,7 @@
                 <ion-icon slot="start" name="log-out"></ion-icon>
               </a>
             </a>
-            <p class="notificatin-icon" (click)="notifications()">
+            <p class="notificatin-icon" (click)="notifications()" >
               <img src="\assets\icon\notification.svg" />
               <ion-badge color="primary" mode="ios" class="notification-badge"
                 >{{count}}</ion-badge
@@ -33,7 +33,6 @@
     </ion-grid>
   </ion-toolbar>
 </ion-header>
-
 <ion-tabs>
   <ion-tabs #tabs>
     <ion-tab-bar slot="bottom">
@@ -52,8 +51,8 @@
         <ion-label>Order Now</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button>
-        <ion-icon src="\assets\icon\phone-call.svg" (click)="callNow('18001010101')"></ion-icon>
+      <ion-tab-button (click)="callNumber(7799851596)">
+        <ion-icon src="\assets\icon\phone-call.svg"></ion-icon>
         <ion-label>Call Admin</ion-label>
       </ion-tab-button>
     </ion-tab-bar>

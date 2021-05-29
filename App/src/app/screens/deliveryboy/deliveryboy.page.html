@@ -1,67 +1,92 @@
-<ion-content>
-    <div class="vertical-top-margin">
-        <ion-card>
-            <ion-item color="blue">
-                <ion-label>
-                    <div class="align">
-                        <p>Distributor</p>
-                        <span>TVM06SABSEB</span>
-                        <p><a href="">Add Entry</a></p>
-                    </div>
-                </ion-label>
-            </ion-item>
-        </ion-card>
-        <ion-card>
-            <ion-item color="blue">
-                <ion-label>
-                    <div class="align">
-                        <p>Distributor</p>
-                        <span>TVM06SABSEB</span>
-                        <p><a href="">Add Entry</a></p>
-                    </div>
-                </ion-label>
-            </ion-item>
-        </ion-card>
-        <ion-card>
-            <ion-item color="blue">
-                <ion-label>
-                    <div class="align">
-                        <p>Distributor</p>
-                        <span>TVM06SABSEB</span>
-                        <p><a href="">Add Entry</a></p>
-                    </div>
-                    <span class="badge">2</span>
-                </ion-label>
-            </ion-item>
-        </ion-card>
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                    <h4 class="heading-title">Delivered <img src="\assets\icon\check.png"></h4>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-        <ion-card>
-            <ion-item color="grey" class="delivery-content">
-                <ion-label>
-                    <div class="align">
-                        <p>Distributor</p>
-                        <span>TVM06SABSEB</span>
-                        <p><a href="">Add Entry</a></p>
-                    </div>
-                </ion-label>
-            </ion-item>
-        </ion-card>
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                    <div class="call-details">
-                        <img src="\assets\icon\phone.png">
-                        <span>Call Admin</span>
-                    </div>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
 
-    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-title>
+            <h3 class="welcome-title" *ngIf="isLogin">
+              <span>Hello, </span>
+              <span class="user-name">{{ this.currentUser.name }}</span>
+            </h3>
+          </ion-title>
+        </ion-col>
+        <ion-col size="6">
+          <div class="app-details">
+            <a href="" class="ion-logout">
+              <a (click)="logout()">
+                <ion-icon slot="start" name="log-out"></ion-icon>
+              </a>
+            </a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="vertical-top-margin">
+    <ion-card *ngFor="let item of pendingOrders">
+      <ion-item color="blue">
+        <ion-label>
+          <div class="align">
+            <p>Distributor</p>
+            <span>{{item.distributors[0].code}}</span>
+            <p>
+              <a
+                [routerLink]="['/deliveryboy-ionvice', item.distributors[0]._id]"
+                >Add Entry</a
+              >
+            </p>
+          </div>
+          <span class="badge" *ngIf="item.count > 1">{{item.count}}</span>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+    <ion-card *ngIf="!pendingOrders.length"
+      ><ion-item color="blue">No Records Found</ion-item></ion-card
+    >
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h4 class="heading-title">
+            Delivered <img src="\assets\icon\check.png" />
+          </h4>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-card *ngFor="let item of completedOrder">
+      <ion-item color="grey" class="delivery-content">
+        <ion-label>
+          <div class="align">
+            <p>Distributor</p>
+            <span>{{item.distributors[0].code}}</span>
+            <p>
+              <a
+                [routerLink]="['/deliveryboy-ionvice', item.distributors[0]._id]"
+                >Add Entry</a
+              >
+            </p>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+    <ion-card *ngIf="!completedOrder.length"
+      ><ion-item color="grey">No Records Found</ion-item></ion-card
+    >
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="call-details" (click)="callNumber(7799851596)">
+            <img src="\assets\icon\phone.png" />
+            <span>Call Admin</span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

@@ -1,3 +1,4 @@
+import { RoleGuard } from './../../guards/role.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
@@ -11,22 +12,22 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardPageModule),
-        canActivate: [AuthGuard]
+        canActivate: [RoleGuard, AuthGuard]
       },
       {
         path: 'cart',
         loadChildren: () => import('../cart/cart.module').then(m => m.CartPageModule),
-        canActivate: [AuthGuard]
+        canActivate: [RoleGuard, AuthGuard]
       },
       {
         path: 'order',
         loadChildren: () => import('../order/order.module').then(m => m.OrderPageModule),
-        canActivate: [AuthGuard]
+        canActivate: [RoleGuard, AuthGuard]
       },
       {
         path: 'notifications',
         loadChildren: () => import('../notifications/notifications.module').then( m => m.NotificationsPageModule),
-        // canActivate: [AuthGuard]
+        canActivate: [RoleGuard, AuthGuard]
       },
       {
         path: '',
