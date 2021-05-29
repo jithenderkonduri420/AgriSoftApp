@@ -3,7 +3,7 @@
         <span routerLink="/warehouses"> Warehouses </span> / {{warehouseName}}</p>
     <div>
         <h3 class="page-title">Routes</h3>
-        <button type="button" class="btn btn-primary add-new" routerLink="/add-route"> + Add New</button>
+        <button type="button" class="btn btn-primary add-new" [routerLink]="['/add-route']" [queryParams]="{count: routeCount}"> + Add New</button>
     
         <!-- Example split danger button -->
         <div class="btn-group delete-warehouse">

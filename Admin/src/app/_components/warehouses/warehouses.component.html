@@ -6,7 +6,7 @@
 <section class="main-section">
     <div class="page-center-content">
         
-        <div class="card" *ngFor="let item of warehouses" (click)="gotoRoute(item._id, item.name)" >
+        <div class="card" *ngFor="let item of warehouses" (click)="gotoRoute(item._id, item.name, item.code)" >
             <div class="card-body">
                 <h5 class="card-title">{{item.name}}</h5>
             </div>

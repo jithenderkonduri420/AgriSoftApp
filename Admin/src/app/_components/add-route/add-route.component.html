@@ -1,7 +1,7 @@
 <header>
   <p class="page-breadcrumb">
     <span routerLink="/home"> Home </span> /
-    <span routerLink="/wearhouse"> Wearhouses </span> /
+    <span routerLink="/warehouses"> Wearhouses </span> /
     <span routerLink="/routes"> {{warehouseName}} </span> / Route
   </p>
   <h3 class="page-title">Route</h3>
@@ -37,10 +37,8 @@
             formControlName="name"
             type="text"
             maxlength="3"
-            required
             class="form-control"
           />
-          <p *ngIf="f.name.invalid && submitted" class="text-danger error-message">Please Enter Valid Route Name</p>
         </div>
         <div class="col-4"></div>
 

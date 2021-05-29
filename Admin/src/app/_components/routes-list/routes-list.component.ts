@@ -14,10 +14,10 @@ export class RoutesListComponent implements OnInit {
   WarehouseData: any;
   warehouseID: string;
   warehouseName: string;
+  routeCount: string;
 
   constructor(
     private apiService:ApiService,
-    private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertService
   ) {
@@ -30,6 +30,11 @@ export class RoutesListComponent implements OnInit {
   getRoutesList():void{
     this.apiService.readAllByWareHouseId("route",this.warehouseID).subscribe(data => {
       this.RoutesList = data.routes;
+      if(data.routes.length){
+        this.routeCount = data.routes[data.routes.length-1].name.slice(-2);
+      }else{
+        this.routeCount = "0";
+      }
     })
   }
 
