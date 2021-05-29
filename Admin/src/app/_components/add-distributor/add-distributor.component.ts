@@ -101,7 +101,6 @@ export class AddDistributorComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          console.log(data.distributor)
           this.f.name.setValue(data.distributor.name);
           this.f.route.setValue(data.distributor.route._id);
           this.f.email.setValue(data.distributor.email);
@@ -126,7 +125,6 @@ export class AddDistributorComponent implements OnInit {
           }
         },
         (error) => {
-          console.log(error);
           this.alertService.error(error);
           this.loading = false;
         }
@@ -205,7 +203,6 @@ export class AddDistributorComponent implements OnInit {
             this.router.navigate(['distributors']);
           },
           (error) => {
-            console.log(error);
             this.alertService.error(error);
             this.loading = false;
           }
@@ -219,7 +216,6 @@ export class AddDistributorComponent implements OnInit {
             this.router.navigate(['distributors']);
           },
           (error) => {
-            console.log(error);
             this.alertService.error(error);
             this.loading = false;
           }

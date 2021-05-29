@@ -4,16 +4,6 @@ import { first } from 'rxjs/operators';
 import { ApiService } from './../../../app/_service/api.service';
 import { AlertService } from './../../../app/_service/alert.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { BrandService } from '../../_service/brand.service';
-
-export class CreateRoute {
-  name: string;
-  warehouse: string;
-  openTime: string;
-  closeTime: string;
-  locations: string[];
-}
 
 @Component({
   selector: 'app-add-route',
@@ -23,14 +13,15 @@ export class CreateRoute {
 export class AddRouteComponent implements OnInit {
 
   RouterValid: any = true;
-  newRoute: CreateRoute = new CreateRoute();
   DropPointList:string[] = ["","",""];
   id:string;
   formType: string = "Add New";
   addRoute: FormGroup;
   submitted: boolean;
   loading: boolean;
-  warehouses: any[] = [];
+  WarehouseData: any;
+  warehouseID: string;
+  warehouseName: string;
 
   constructor(
     private apiService:ApiService,
@@ -39,24 +30,27 @@ export class AddRouteComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     ) { 
+      this.WarehouseData =  JSON.parse(localStorage.getItem('selectedWarehouse') || '[]');
+      this.warehouseID = this.WarehouseData.WarehouseID;
+      this.warehouseName = this.WarehouseData.WarehouseName;
       
-      this.getWarehouses();
-
       this.route.queryParams.subscribe(params => {
         this.id = params.id;
         if(this.id) {
           this.loadRouteDetails();
         }
       })
-
+      
     }
     
   ngOnInit(): void {
     this.addRoute = this.formBuilder.group({
-      warehouse: ['', Validators.required],
+      warehouse: {value: this.warehouseName, disabled: true},
       name: ['', Validators.required],
       openTime: ['', Validators.required],
-      closeTime: ['', Validators.required]
+      closeTime: ['', Validators.required],
+      code: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -71,7 +65,8 @@ export class AddRouteComponent implements OnInit {
           this.f.name.disable();
           this.f.openTime.setValue(data.route.openTime);
           this.f.closeTime.setValue(data.route.closeTime);
-          this.f.warehouse.setValue(data.route.warehouse);
+          this.f.code.setValue(data.route.code);
+          this.f.warehouse.setValue(this.warehouseName);
           this.f.warehouse.disable();
           this.DropPointList = data.route.locations;
 
@@ -83,14 +78,6 @@ export class AddRouteComponent implements OnInit {
           this.loading = false;
         }
       );
-  }
-
-  getWarehouses(): any{
-    this.apiService.readAll("warehouse").subscribe(data => {
-      this.warehouses = data['warehouses'];
-    }), (error :any)=>{
-      console.error(error)
-    }
   }
 
   addDropPoint(index:any):void{
@@ -121,6 +108,7 @@ export class AddRouteComponent implements OnInit {
     if (this.addRoute.invalid) {
       return;
     }
+    this.addRoute.value.warehouse=this.warehouseID;
     this.loading = true;
     this.addRoute.value.locations=this.DropPointList;
 

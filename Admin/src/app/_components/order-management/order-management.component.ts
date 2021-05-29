@@ -32,7 +32,6 @@ export class OrderManagementComponent implements OnInit {
     private router: Router
   ) {
     this.seletedBrand = this._brands.getBrand();
-    console.log('this.seletedBrand', this.seletedBrand);
   }
 
   ngOnInit(): void {
@@ -46,10 +45,8 @@ export class OrderManagementComponent implements OnInit {
         (data) => {
           this.distributors = data.distributors.map((res: any) => res.code);
           this.distributorsList = data.distributors;
-          console.log(this.distributorsList)
         },
         (error) => {
-          console.log(error);
           this.alertService.error(error);
         }
       );

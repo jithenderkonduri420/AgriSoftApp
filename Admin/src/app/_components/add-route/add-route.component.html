@@ -18,19 +18,15 @@
       >
         <div class="col-8">
           <label class="form-label">Wearhouse</label>
-          <select
+          <input
             name="wearhouse"
             formControlName="warehouse"
+            type="text"
             class="form-control"
-          >
-            <option *ngFor="let item of warehouses; first as isFirst" [value]="item._id" [selected]="isFirst">{{item.name}}</option>
-          </select>
+          />
           <p *ngIf="f.warehouse.invalid && submitted" class="text-danger error-message">Please select Warehouse from the list</p>
         </div>
         <div class="col-4">
-          <!-- <button disabled class="btn add-item btn-primary btn-block">
-            + Add Wearhouse
-          </button> -->
         </div>
 
         <div class="col-8">
@@ -165,13 +161,45 @@
         <div class="col-4"></div>
 
         <div class="clearfix"></div>
+        <br>
+        <div class="col-12">
+          <h4>Delivery Boy Details</h4>
+        </div>
+
+        <div class="col-8">
+          <label class="form-label">User Name</label>
+          <input
+            name="code"
+            formControlName="code"
+            type="text"
+            class="form-control"
+            required
+          />
+          <p *ngIf="f.code.invalid && submitted" class="text-danger error-message">Please Enter Valid User Name</p>
+        </div>
+        <div class="col-4"></div>
+
+        <div class="col-8">
+          <label class="form-label">Password</label>
+          <input
+            name="password"
+            formControlName="password"
+            type="password"
+            class="form-control"
+            required
+          />
+          <p *ngIf="f.password.invalid && submitted" class="text-danger error-message">Please Enter Valid Password</p>
+        </div>
+        <div class="col-4"></div>
+
+        <div class="clearfix"></div>
         <div class="col-12" *ngIf="!RouterValid">
           <span class="input-group-text invalid-feedback"
             >Please Enter required fields</span
           >
         </div>
         <div class="col-12">
-          <button type="submit" class="btn btn-primary btn-block">
+          <button type="submit" class="btn btn-primary">
             {{ id ? 'Update Route' : 'Add Route'}}
             
           </button>

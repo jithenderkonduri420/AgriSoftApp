@@ -40,7 +40,7 @@ export class DistributorsListComponent implements OnInit {
           this.getDistributors();
         },
         (error) => {
-          console.log(error)
+          this.alertService.error(error);
         }
       );
     }
@@ -49,7 +49,6 @@ export class DistributorsListComponent implements OnInit {
    delDistributor(id:string):void{
     if(confirm("Conform delete distributor")){
       this._api.deleteIndex("distributor",id).subscribe(data=>{
-        console.log(data);
         this.getDistributors();
       });
     }
