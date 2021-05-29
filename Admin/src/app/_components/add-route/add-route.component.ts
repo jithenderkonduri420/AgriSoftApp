@@ -80,6 +80,10 @@ export class AddRouteComponent implements OnInit {
       );
   }
 
+  passwordGen() {
+    this.f.password.setValue(Math.random().toString(36).slice(-6));
+  }
+
   addDropPoint(index:any):void{
     (this.DropPointList.length < 15) ? this.DropPointList.push("") : console.log("Drop Point List Count reached")
   }

@@ -1,7 +1,8 @@
 <header>
   <p class="page-breadcrumb">
     <span routerLink="/home"> Home </span> /
-    <span routerLink="/routes"> Routes </span> / Route
+    <span routerLink="/wearhouse"> Wearhouses </span> /
+    <span routerLink="/routes"> {{warehouseName}} </span> / Route
   </p>
   <h3 class="page-title">Route</h3>
 </header>
@@ -179,29 +180,27 @@
         </div>
         <div class="col-4"></div>
 
-        <div class="col-8">
+        <div class="col-8 generate-password">
           <label class="form-label">Password</label>
           <input
             name="password"
             formControlName="password"
-            type="password"
+            type="text"
             class="form-control"
             required
           />
+          <span class="btn btn-primary" (click)="passwordGen()">Generate</span>
           <p *ngIf="f.password.invalid && submitted" class="text-danger error-message">Please Enter Valid Password</p>
         </div>
         <div class="col-4"></div>
 
         <div class="clearfix"></div>
         <div class="col-12" *ngIf="!RouterValid">
-          <span class="input-group-text invalid-feedback"
-            >Please Enter required fields</span
-          >
+          <span class="input-group-text invalid-feedback">Please Enter required fields</span>
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">
             {{ id ? 'Update Route' : 'Add Route'}}
-            
           </button>
         </div>
       </form>
