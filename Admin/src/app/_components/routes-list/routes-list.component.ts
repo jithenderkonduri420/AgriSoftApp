@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../_service/api.service';
+import { AlertService } from '../../_service/alert.service';
 
 @Component({
   selector: 'app-routes-list',
@@ -10,23 +11,33 @@ import { ApiService } from '../../_service/api.service';
 export class RoutesListComponent implements OnInit {
 
   RoutesList: any[] = [];
-  id: string;
+  WarehouseData: any;
+  warehouseID: string;
+  warehouseName: string;
 
   constructor(
     private apiService:ApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private alertService: AlertService
   ) {
-    this.route.queryParams.subscribe(data => {
-      this.id = data.wharehouseID;
+      this.WarehouseData =  JSON.parse(localStorage.getItem('selectedWarehouse') || '[]');
+      this.warehouseID = this.WarehouseData.WarehouseID;
+      this.warehouseName = this.WarehouseData.WarehouseName;;
       this.getRoutesList()
-    })
    }
 
   getRoutesList():void{
-    console.log(this.id)
-    this.apiService.readAllByWareHouseId("route",this.id).subscribe(data => {
+    this.apiService.readAllByWareHouseId("route",this.warehouseID).subscribe(data => {
       this.RoutesList = data.routes;
     })
+  }
+
+  deleteWarehouse():void{
+    this.apiService.deleteIndex("warehouse",this.warehouseID).subscribe(data => {
+      this.router.navigate(["/warehouses"]);
+      this.alertService.success(data)
+    });
   }
 
   ngOnInit(): void {}
@@ -34,10 +45,9 @@ export class RoutesListComponent implements OnInit {
   dropRoute(id: string, name: string){
     if(confirm(`Conform delete ${name}`)){
       this.apiService.deleteIndex("route",id).subscribe(data=>{
-        console.log(data)
         this.getRoutesList();
       },(error)=>{
-        console.error(error);
+        this.alertService.error(error);
       });
     }
   }

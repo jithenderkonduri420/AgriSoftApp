@@ -39,7 +39,6 @@ export class AccountManagementComponent implements OnInit {
           this.distributorsList = data.distributors;
         },
         (error) => {
-          console.log(error);
           this.alertService.error(error);
         }
       );

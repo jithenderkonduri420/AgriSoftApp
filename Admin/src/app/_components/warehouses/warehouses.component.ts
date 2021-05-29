@@ -27,8 +27,12 @@ export class WarehousesComponent implements OnInit {
     );
   }
 
-  gotoRoute(id:string){
-    this.route.navigate(['/routes'],{queryParams: {wharehouseID: id}})
+  gotoRoute(id:string, name:string){
+    localStorage.setItem('selectedWarehouse', JSON.stringify({
+      WarehouseID: id, 
+      WarehouseName: name
+    }));
+    this.route.navigate(['/routes'])
   }
 
 }

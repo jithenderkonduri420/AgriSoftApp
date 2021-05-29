@@ -43,13 +43,11 @@ export class ProductInvetoryComponent implements OnInit {
   loadProducts():void{
     this.apiService.readAll(`products?brandId=${this.seletedBrand._id}`).subscribe(data => {
       this.products = data.products;
-      console.log(this.products)
     })
   }
 
   changeProductStatus(product_id:string, event:any):void{
     const data = {id:product_id, active:event};
-    console.log(data)
     this.apiService.create("products/change-status",data)
     .pipe(first())
     .subscribe(
@@ -57,7 +55,7 @@ export class ProductInvetoryComponent implements OnInit {
         this.loadProducts();
       },
       (error) => {
-        console.log(error)
+        this.alertService.error(error);
       }
     );
   }
@@ -139,14 +137,11 @@ export class ProductInvetoryComponent implements OnInit {
       return;
     }
 
-    console.log(this.addProductform.value)
-
     const formData:FormData = new FormData();
     formData.append('image', this.addProductform.value.image);
     formData.append('name', this.addProductform.get('name')?.value);
     formData.append('packet', this.addProductform.get('packet')?.value);
     formData.append('brandId', this.seletedBrand._id);
-    console.log('formData', this.addProductform.get('brandId')?.value);
     // stop here if form is invalid
     this.loading = true;
     this.apiService
@@ -160,7 +155,6 @@ export class ProductInvetoryComponent implements OnInit {
           this.productImage = "../../../assets/images/uploadImage.png";
         },
         (error) => {
-          console.log(error)
           this.alertService.error(error);
           this.loading = false;
         }
