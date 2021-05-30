@@ -22,6 +22,9 @@ export class AddRouteComponent implements OnInit {
   WarehouseData: any;
   warehouseID: string;
   warehouseName: string;
+  warehouseCode: string;
+  RoutesList: any[] = [];
+  routeName:string;
 
   constructor(
     private apiService:ApiService,
@@ -33,9 +36,17 @@ export class AddRouteComponent implements OnInit {
       this.WarehouseData =  JSON.parse(localStorage.getItem('selectedWarehouse') || '[]');
       this.warehouseID = this.WarehouseData.WarehouseID;
       this.warehouseName = this.WarehouseData.WarehouseName;
+      this.warehouseCode = this.WarehouseData.WarehouseCode;
       
       this.route.queryParams.subscribe(params => {
         this.id = params.id;
+        let count = String(Number(params.count)+1);
+        if (Number(params.count) < 10){
+          count = `0${count}`
+        }
+        if(params.count){
+          this.routeName = `${this.warehouseCode}${count}`
+        }
         if(this.id) {
           this.loadRouteDetails();
         }
@@ -46,10 +57,10 @@ export class AddRouteComponent implements OnInit {
   ngOnInit(): void {
     this.addRoute = this.formBuilder.group({
       warehouse: {value: this.warehouseName, disabled: true},
-      name: ['', Validators.required],
+      name: {value: this.routeName, disabled: true},
       openTime: ['', Validators.required],
       closeTime: ['', Validators.required],
-      code: ['', Validators.required],
+      code: {value: `${this.warehouseName.slice(0,3).toUpperCase()}${this.routeName}`, disabled: true},
       password: ['', Validators.required]
     });
   }
@@ -60,7 +71,6 @@ export class AddRouteComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          console.log(data)
           this.f.name.setValue(data.route.name);
           this.f.name.disable();
           this.f.openTime.setValue(data.route.openTime);
@@ -103,7 +113,7 @@ export class AddRouteComponent implements OnInit {
 
   onNewRouteSubmit():void{
     this.submitted = true;
-    
+    this.addRoute.value.name = this.routeName;
     console.log(this.addRoute.value)
     // reset alerts on submit
     this.alertService.clear();
