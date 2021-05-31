@@ -1,7 +1,9 @@
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { ApiService } from './../../shared/services/api.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { LeakageComponent } from './modal-popup/leakage.component';
+import { ConfirmSubmissionComponent } from './modal-popup/confirm-submission.component';
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,7 +21,8 @@ export class DeliveryboyIonvicePage implements OnInit {
     private authService: AuthenticationService,
     private apiService: ApiService,
     private route: ActivatedRoute,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private modalCtrl: ModalController
   ) {
     this.authService.userDetails().then((res: any) => {
       this.currentUser = res.user;
@@ -51,4 +54,20 @@ export class DeliveryboyIonvicePage implements OnInit {
   callNumber(phoneNumber) {
     window.open('tel:' + phoneNumber, '_system');
   }
+  async leakageModal() {
+    const modal = await this.modalCtrl.create({
+      component: LeakageComponent,
+      cssClass: "my-modal"
+    });
+    return await modal.present();
+  }
+  async confirmationModal() {
+    const modal = await this.modalCtrl.create({
+      component: ConfirmSubmissionComponent,
+      cssClass: "my-modal"
+    });
+    return await modal.present();
+  }
+
+
 }

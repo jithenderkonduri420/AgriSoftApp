@@ -148,7 +148,7 @@
             <ion-item color="rcr">
               <ion-label>
                 <div class="align">
-                  <span>Report Leakage</span>
+                  <span (click)="leakageModal()">Report Leakage</span>
                 </div>
               </ion-label>
             </ion-item>
@@ -161,16 +161,26 @@
                 expand="block"
                 color="cart-button"
                 class="order-review"
+                (click)="confirmationModal()"
                 >Add Entry!
               </ion-button>
             </section>
           </div>
-          <div class="call-details" (click)="callNumber(7799851596)">
-            <img src="\assets\icon\phone.png" />
-            <span>Contact Admin</span>
-          </div>
+
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
 </ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="call-details" (click)="callNumber(7799851596)">
+          <img src="\assets\icon\phone.png" />
+          <span>Call Admin</span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

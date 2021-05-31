@@ -15,6 +15,13 @@ import { Splash } from './screens/splash/splash.page';
 export class AppComponent {
   public isLoggedIn: boolean;
   navigate: any;
+  public appPages = [
+    { title: 'Home', url: 'home', icon: 'home' },
+    { title: 'About', url: '/about', icon: 'people' },
+    { title: 'Contact', url: '/contact', icon: 'call' },
+    { title: 'Gallery', url: '/gallery', icon: 'images' },
+    { title: 'Setting', url: '/setting', icon: 'settings' }
+  ];
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

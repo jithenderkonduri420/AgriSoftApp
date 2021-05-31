@@ -78,15 +78,18 @@
     <ion-card *ngIf="!completedOrder.length"
       ><ion-item color="grey">No Records Found</ion-item></ion-card
     >
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <div class="call-details" (click)="callNumber(7799851596)">
-            <img src="\assets\icon\phone.png" />
-            <span>Call Admin</span>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+
   </div>
 </ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="call-details" (click)="callNumber(7799851596)">
+          <img src="\assets\icon\phone.png" />
+          <span>Call Admin</span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
