@@ -57,7 +57,8 @@ export class DeliveryboyIonvicePage implements OnInit {
   async leakageModal() {
     const modal = await this.modalCtrl.create({
       component: LeakageComponent,
-      cssClass: "my-modal"
+      cssClass: "my-modal",
+      componentProps: this.orders
     });
     return await modal.present();
   }

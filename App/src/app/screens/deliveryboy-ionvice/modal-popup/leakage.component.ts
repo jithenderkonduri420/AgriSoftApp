@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal',
@@ -7,9 +7,12 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./leakage.component.scss'],
 })
 export class LeakageComponent implements OnInit {
-  constructor(private modalCtrl: ModalController) {}
+  products: any;
+  constructor(private modalCtrl: ModalController,public navParams : NavParams) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.navParams.data);
+  }
 
   dismiss() {
     this.modalCtrl.dismiss();
