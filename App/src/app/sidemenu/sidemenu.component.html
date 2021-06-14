@@ -4,10 +4,10 @@
     </div>
 </div>
 <div class="nav">
-    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+    <div *ngFor="let p of appPages">
         <div class="nav-item" [routerLink]="[p.url]">
             <ion-icon slot="start" [icon]="p.icon"></ion-icon>
             {{p.title}}
         </div>
-    </ion-menu-toggle>
+    </div>
 </div>

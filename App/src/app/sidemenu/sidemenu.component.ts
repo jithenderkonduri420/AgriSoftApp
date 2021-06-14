@@ -13,11 +13,11 @@ export class SidemenuComponent {
           url: '/home/dashboard',
           icon: 'home'
       },
-      {
-          title: 'Change Password',
-          url: '/changepassword',
-          icon: 'eye'
-      }
+      // {
+      //     title: 'Change Password',
+      //     url: '/changepassword',
+      //     icon: '[eye]'
+      // }
   ];
 
   constructor() { }

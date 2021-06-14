@@ -2,8 +2,8 @@ import { LoadingController, ModalController } from '@ionic/angular';
 import { ApiService } from './../../shared/services/api.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
-import { LeakageComponent } from './modal-popup/leakage.component';
-import { ConfirmSubmissionComponent } from './modal-popup/confirm-submission.component';
+import { LeakageComponent } from './modal-popup/leakage.page';
+import { ConfirmSubmissionComponent } from './modal-popup/confirm-submission.page';
 
 import { ActivatedRoute } from '@angular/router';
 

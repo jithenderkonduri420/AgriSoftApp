@@ -3,8 +3,8 @@ import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal',
-  templateUrl: './leakage.component.html',
-  styleUrls: ['./leakage.component.scss'],
+  templateUrl: './leakage.page.html',
+  styleUrls: ['./leakage.page.scss'],
 })
 export class LeakageComponent implements OnInit {
   products: any;
