@@ -14,6 +14,7 @@ db.route = require("./route.model");
 db.distributor = require("./distributor.model");
 db.order = require("./order.model");
 db.notification = require("./notification.model");
+db.deliveryReturns = require("./deliveryReturns.model");
 // db.ROLES = ["user", "admin", "moderator"];
 
 module.exports = db;

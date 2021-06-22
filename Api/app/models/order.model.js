@@ -27,6 +27,8 @@ const Order = mongoose.model(
       enum: ['accept', 'deliver', 'rejected'],
       default: 'accept'
     },
+    otp: String,
+    date: Date,
   })
 );
 

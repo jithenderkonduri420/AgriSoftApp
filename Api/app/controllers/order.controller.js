@@ -2,6 +2,7 @@ const db = require("../models");
 const Order = db.order;
 const Distributor = db.distributor;
 const Notification = db.notification;
+const deliveryReturns = db.deliveryReturns;
 const { check, validationResult } = require('express-validator')
 const notifications = require("./notifications.controller");
 var _ = require('lodash');
@@ -31,6 +32,14 @@ exports.create = async (req, res) => {
         return res.status(400).json({ error: true, message: 'Order not placed due to insufficient crates or amount limit for today' });
       }
       if (checking) {
+        let otp = Math.floor(1000 + Math.random() * 9000);
+        const checkOTP = await Order.findOne({
+          distributorId: req.body.distributorId, date: {
+            $gte: new Date(new Date().setHours(00, 00, 00)),
+            $lt: new Date(new Date().setHours(23, 59, 59))
+          }
+        });
+        if (checkOTP) { otp = checkOTP.otp }
         const id = orderid.generate();
         const orderId = orderid.getTime(id);
         const order = new Order({
@@ -40,7 +49,9 @@ exports.create = async (req, res) => {
           product: req.body.product,
           outstanding_price: req.body.outstanding_price,
           total: req.body.total,
-          order: 'accept'
+          order: 'accept',
+          otp,
+          date: new Date()
         });
         const sumOfCrates = _.sumBy(order.product, function (o) { return o.qty * o.total_packets; });
         distributor.outStandingAmount += req.body.total;
@@ -57,7 +68,7 @@ exports.create = async (req, res) => {
           distributorId: req.body.distributorId,
           title: 'Order Accepted',
           body: `We acknowledge the receipt of your purchase order number ${orderId}`,
-          isRead : false
+          isRead: false
         })
         await notification.save()
 
@@ -95,12 +106,35 @@ function compareTime(str1, str2) {
     return -1;
   }
 }
-function orderNumber() {
-  let now = Date.now().toString() // '1492341545873'
-  // pad with extra random digit
-  now += now + Math.floor(Math.random() * 10)
-  // format
-  return [now.slice(0, 4), now.slice(4, 10), now.slice(10, 14)].join('-')
+exports.OTPVerify = async (req, res) => {
+  const checkOTP = await Order.findOne({
+    distributorId: req.body.distributorId,
+    date: {
+      $gte: new Date(new Date().setHours(00, 00, 00)),
+      $lt: new Date(new Date().setHours(23, 59, 59))
+    },
+    otp: req.body.otp,
+  }).sort({date:1});
+  res.status(200).send({
+    checkOTP
+  });
+}
+exports.orderDelivery = async (req, res) => {
+
+  const order = new deliveryReturns({
+    returns: req.body.orders,
+    date: new Date()
+  });
+  order.save((err, product) => {
+    if (err) res.status(500).send({ error: true, message: err });
+    else {
+      req.body.orders.forEach(async(o) => {
+        console.log(o);
+        await Order.findByIdAndUpdate(o._id, { orderType: 'completed'});
+      });
+    }
+    res.send({ message: "Order was delivered successfully!" });
+  });
 }
 
 

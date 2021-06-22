@@ -21,7 +21,7 @@ module.exports = function (app) {
       check('name')
         .notEmpty()
         .withMessage('name is required')
-        .isLength({ min: 3, max: 3 })
+        .isLength({ min: 3, max: 6 })
         .withMessage('Must be at 3 chars long'),
       check('warehouse')
         .notEmpty()

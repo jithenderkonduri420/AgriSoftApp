@@ -7,4 +7,16 @@ module.exports = function(app) {
     authJwt.verifyToken,
     controller.create
   );
+  
+  app.post(
+    "/api/otp-verify",
+    authJwt.verifyToken,
+    controller.OTPVerify
+  );
+  app.post(
+    "/api/order-delivery",
+    authJwt.verifyToken,
+    controller.orderDelivery
+  );
+  
 };
