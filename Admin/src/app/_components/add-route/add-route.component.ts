@@ -75,6 +75,7 @@ export class AddRouteComponent implements OnInit {
           this.f.name.disable();
           this.f.openTime.setValue(data.route.openTime);
           this.f.closeTime.setValue(data.route.closeTime);
+          this.f.password.setValue(data.route.password);
           this.f.code.setValue(data.route.code);
           this.f.warehouse.setValue(this.warehouseName);
           this.f.warehouse.disable();

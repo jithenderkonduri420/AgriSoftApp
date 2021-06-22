@@ -16,20 +16,20 @@
 
 <ng-template #mymodal let-modal>
     <div class="modal-body">
-        <div class="add-new-product agrisoft-forms">
+        <div class="add-new-warehouse agrisoft-forms">
             <h4>Add New Warehouse</h4>
             <div class="form-section custom-scrollbar">
                 <form class="row g-3" [formGroup]="addWarehouseform" (ngSubmit)="onSubmit()">
                     <div class="col-md-8">
                         <label class="form-label">Enter Warehouse Name</label>
-                        <input formControlName="name" id="name" required type="text" class="form-control">
+                        <input formControlName="name" id="name" (keyup)="onChangeEvent($event)" required type="text" class="form-control">
                         <div *ngIf="submitted && f.name.invalid" class="invalid-feedback">
                             Warehouse Name is Required
                         </div>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Code</label>
-                        <input formControlName="code" id="code" required type="text" class="form-control">
+                        <input formControlName="code" id="code" maxlength="1" required type="text" class="form-control">
                         <div *ngIf="submitted && f.code.invalid" class="invalid-feedback">
                             Warehouse Code is Required
                         </div>
