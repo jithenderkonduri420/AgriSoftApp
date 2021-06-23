@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  auth_prefix_url:'http://localhost:8087/api/auth',
-  api_prefix_url: 'http://localhost:8087/api',
-  serverUploads: 'http://localhost:8087'
+  auth_prefix_url:'http://localhost:8088/api/auth',
+  api_prefix_url: 'http://localhost:8088/api',
+  serverUploads: 'http://localhost:8088'
 };
 
 /*

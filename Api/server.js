@@ -8,7 +8,7 @@ const app = express();
 const apiErrorHandler = require('./app/error/api-error-handler');
 var bcrypt = require("bcryptjs");
 var corsOptions = {
-  origin: "http://localhost:8087"
+  origin: "http://localhost:8088"
 };
 
 // enable files upload
