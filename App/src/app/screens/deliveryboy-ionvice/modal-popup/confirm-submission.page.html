@@ -11,7 +11,7 @@
             <ion-label>
               <div class="center">
                 <p>Crates In</p>
-                <span>28</span>
+                <span>{{ orders[0].cratesIn  ? orders[0].cratesIn : 0 }}</span>
               </div>
             </ion-label>
           </ion-item>
@@ -23,7 +23,7 @@
             <ion-label>
               <div class="center">
                 <p>Crates Out</p>
-                <span>8</span>
+                <span>{{ orders[0].cratesOut ? orders[0].cratesOut : 0 }}</span>
               </div>
             </ion-label>
           </ion-item>
@@ -35,7 +35,7 @@
             <ion-label>
               <div class="center">
                 <p>Cash recieved</p>
-                <span>3500</span>
+                <span>{{ orders[0].cashReceived ? orders[0].cashReceived : 0 }}</span>
               </div>
             </ion-label>
           </ion-item>
@@ -51,44 +51,30 @@
     </ion-row>
   </ion-grid>
 
-  <ion-item>
+  <ion-item *ngFor="let item of orders.leakages">
     <ion-grid>
       <ion-row>
         <ion-col size="8">
           <ion-label>
             <div class="align">
-              <p class="sabari-cow-milk-500">Sabari Cow Milk 500</p>
+              <p class="sabari-cow-milk-500">{{item.productId.name}}</p>
             </div>
           </ion-label>
         </ion-col>
         <ion-col size="4">
-          <ion-label><div class="leakage-value">10</div></ion-label>
+          <ion-label><div class="leakage-value">{{item.leakageCount ? item.leakageCount : 0}}</div></ion-label>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-item>
-  <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="8">
-          <ion-label>
-            <div class="align">
-              <p class="sabari-cow-milk-500">Sabari Cow Milk 500</p>
-            </div>
-          </ion-label>
-        </ion-col>
-        <ion-col size="4">
-          <ion-label><div class="leakage-value">10</div></ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
+
   <ion-grid>
     <ion-row>
       <ion-col size="12">
-
-          <div><label class="form-label">OTP</label><input type="text" autocomplete="off" class="otp-input"></div>
-
+        <div>
+          <label class="form-label">OTP</label
+          ><input type="text" autocomplete="off" maxlength="4" class="otp-input" (keyup)="otpChecking($event)"/>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -96,7 +82,7 @@
     <div class="cart-button-col">
       <section class="full-width">
         <ion-button expand="block" color="cart-button" class="rectangle-copy-4"
-          ><span class="center">Yes, Confirm</span>
+          [disabled]="otpValid" (click)="orderDelivery()"><span class="center">Yes, Confirm</span>
         </ion-button>
       </section>
     </div>

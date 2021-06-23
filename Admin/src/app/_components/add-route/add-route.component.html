@@ -173,6 +173,7 @@
             type="text"
             class="form-control"
             required
+            [disabled]='true'
           />
           <p *ngIf="f.code.invalid && submitted" class="text-danger error-message">Please Enter Valid User Name</p>
         </div>

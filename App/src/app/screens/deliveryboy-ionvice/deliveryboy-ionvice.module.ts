@@ -1,7 +1,7 @@
 import { LeakageComponent } from './modal-popup/leakage.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -14,6 +14,7 @@ import { ConfirmSubmissionComponent } from './modal-popup/confirm-submission.pag
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     DeliveryboyIonvicePageRoutingModule
   ],

@@ -4,13 +4,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
+
+  <ion-item *ngFor="let item of orders;index as i">
     <ion-grid>
       <ion-row>
         <ion-col size="8">
           <ion-label>
             <div class="align">
-              <p class="sabari-cow-milk-500">Sabari Cow Milk 500</p>
+              <p class="sabari-cow-milk-500">{{item.productId.name}}</p>
             </div>
           </ion-label>
         </ion-col>
@@ -26,213 +27,19 @@
               model="quantity"
               maxlength="3"
               autocomplete="off"
+              (change)="addLeakageCount(i, $event)"
             />
           </div>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-item>
-  <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="8">
-          <ion-label>
-            <div class="align">
-              <p class="sabari-cow-milk-500">Sabari Cow Milk 500</p>
-            </div>
-          </ion-label>
-        </ion-col>
-        <ion-col size="4">
-          <div class="cart-detials">
-            <input
-              type="text"
-              class="rectangle-copy-19"
-              placeholder="0"
-              #quantity
-              name="quantity"
-              ng-
-              model="quantity"
-              maxlength="3"
-              autocomplete="off"
-            />
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="8">
-          <ion-label>
-            <div class="align">
-              <p class="sabari-cow-milk-500">Sabari Cow Milk 500</p>
-            </div>
-          </ion-label>
-        </ion-col>
-        <ion-col size="4">
-          <div class="cart-detials">
-            <input
-              type="text"
-              class="rectangle-copy-19"
-              placeholder="0"
-              #quantity
-              name="quantity"
-              ng-
-              model="quantity"
-              maxlength="3"
-              autocomplete="off"
-            />
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="8">
-          <ion-label>
-            <div class="align">
-              <p class="sabari-cow-milk-500">Sabari Cow Milk 500</p>
-            </div>
-          </ion-label>
-        </ion-col>
-        <ion-col size="4">
-          <div class="cart-detials">
-            <input
-              type="text"
-              class="rectangle-copy-19"
-              placeholder="0"
-              #quantity
-              name="quantity"
-              ng-
-              model="quantity"
-              maxlength="3"
-              autocomplete="off"
-            />
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="8">
-          <ion-label>
-            <div class="align">
-              <p class="sabari-cow-milk-500">Sabari Cow Milk 500</p>
-            </div>
-          </ion-label>
-        </ion-col>
-        <ion-col size="4">
-          <div class="cart-detials">
-            <input
-              type="text"
-              class="rectangle-copy-19"
-              placeholder="0"
-              #quantity
-              name="quantity"
-              ng-
-              model="quantity"
-              maxlength="3"
-              autocomplete="off"
-            />
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="8">
-          <ion-label>
-            <div class="align">
-              <p class="sabari-cow-milk-500">Sabari Cow Milk 500</p>
-            </div>
-          </ion-label>
-        </ion-col>
-        <ion-col size="4">
-          <div class="cart-detials">
-            <input
-              type="text"
-              class="rectangle-copy-19"
-              placeholder="0"
-              #quantity
-              name="quantity"
-              ng-
-              model="quantity"
-              maxlength="3"
-              autocomplete="off"
-            />
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="8">
-          <ion-label>
-            <div class="align">
-              <p class="sabari-cow-milk-500">Sabari Cow Milk 500</p>
-            </div>
-          </ion-label>
-        </ion-col>
-        <ion-col size="4">
-          <div class="cart-detials">
-            <input
-              type="text"
-              class="rectangle-copy-19"
-              placeholder="0"
-              #quantity
-              name="quantity"
-              ng-
-              model="quantity"
-              maxlength="3"
-              autocomplete="off"
-            />
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="8">
-          <ion-label>
-            <div class="align">
-              <p class="sabari-cow-milk-500">Sabari Cow Milk 500</p>
-            </div>
-          </ion-label>
-        </ion-col>
-        <ion-col size="4">
-          <div class="cart-detials">
-            <input
-              type="text"
-              class="rectangle-copy-19"
-              placeholder="0"
-              #quantity
-              name="quantity"
-              ng-
-              model="quantity"
-              maxlength="3"
-              autocomplete="off"
-            />
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
+
   <ion-toolbar>
     <div class="cart-button-col">
       <section class="full-width">
         <ion-button expand="block" color="cart-button" class="rectangle-copy-4"
-          ><span class="submit">SubMit</span>
+        (click)="submit()"><span class="submit">SubMit</span>
         </ion-button>
       </section>
     </div>

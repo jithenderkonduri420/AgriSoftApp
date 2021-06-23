@@ -117,6 +117,17 @@ export class ApiService {
       .get<any>(`${environment.api_prefix_url}/distributor-order/${distributor}`)
       .pipe(catchError((error: any) => this.processError(error)));
   }
+  public otpVerify(data: any): Observable<any> {
+    return this.http
+    .post<any>(`${environment.api_prefix_url}/otp-verify`, data)
+    .pipe(catchError((error: any) => this.processError(error)));
+  }
+  public orderDelivery(data: any): Observable<any> {
+    return this.http
+    .post<any>(`${environment.api_prefix_url}/order-delivery`, data)
+    .pipe(catchError((error: any) => this.processError(error)));
+  }
+
   async failedAlert(header, message) {
     const alert = await this.alertController.create({
       header,

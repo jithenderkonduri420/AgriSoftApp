@@ -17,7 +17,9 @@ export class DeliveryboyPage implements OnInit {
     private authService: AuthenticationService,
     private apiService: ApiService,
     private loadingController: LoadingController
-  ) {
+  ) {}
+  ngOnInit() {}
+  ionViewWillEnter() {
     this.authService.userDetails().then((res: any) => {
       this.currentUser = res.user;
       this.isLogin = this.authService.currentUserValue;
@@ -43,7 +45,6 @@ export class DeliveryboyPage implements OnInit {
         });
     });
   }
-  ngOnInit() {}
   logout() {
     this.authService.logout();
   }

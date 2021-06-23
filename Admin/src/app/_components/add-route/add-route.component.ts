@@ -32,12 +32,12 @@ export class AddRouteComponent implements OnInit {
     private alertService: AlertService,
     private router: Router,
     private route: ActivatedRoute,
-    ) { 
+    ) {
       this.WarehouseData =  JSON.parse(localStorage.getItem('selectedWarehouse') || '[]');
       this.warehouseID = this.WarehouseData.WarehouseID;
       this.warehouseName = this.WarehouseData.WarehouseName;
       this.warehouseCode = this.WarehouseData.WarehouseCode;
-      
+
       this.route.queryParams.subscribe(params => {
         this.id = params.id;
         let count = String(Number(params.count)+1);
@@ -51,16 +51,16 @@ export class AddRouteComponent implements OnInit {
           this.loadRouteDetails();
         }
       })
-      
+
     }
-    
+
   ngOnInit(): void {
     this.addRoute = this.formBuilder.group({
       warehouse: {value: this.warehouseName, disabled: true},
       name: {value: this.routeName, disabled: true},
       openTime: ['', Validators.required],
       closeTime: ['', Validators.required],
-      code: {value: `${this.warehouseName.slice(0,3).toUpperCase()}${this.routeName}`, disabled: true},
+      code: [`${this.warehouseName.slice(0,3).toUpperCase()}${this.routeName}`],
       password: ['', Validators.required]
     });
   }
@@ -113,8 +113,8 @@ export class AddRouteComponent implements OnInit {
 
   onNewRouteSubmit():void{
     this.submitted = true;
+    console.log(this.addRoute)
     this.addRoute.value.name = this.routeName;
-    console.log(this.addRoute.value)
     // reset alerts on submit
     this.alertService.clear();
 

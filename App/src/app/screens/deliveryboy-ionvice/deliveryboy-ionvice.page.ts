@@ -1,5 +1,6 @@
 import { LoadingController, ModalController } from '@ionic/angular';
 import { ApiService } from './../../shared/services/api.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { LeakageComponent } from './modal-popup/leakage.page';
@@ -17,6 +18,7 @@ export class DeliveryboyIonvicePage implements OnInit {
   orders: any;
   currentUser: any;
   isLogin: boolean = false;
+  addEntry: FormGroup;
   constructor(
     private authService: AuthenticationService,
     private apiService: ApiService,
@@ -47,7 +49,16 @@ export class DeliveryboyIonvicePage implements OnInit {
         });
     });
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.initForm();
+  }
+  initForm() {
+    this.addEntry = new FormGroup({
+      cratesIn: new FormControl('', []),
+      cratesOut: new FormControl('', []),
+      cashReceived: new FormControl('', [])
+    });
+  }
   logout() {
     this.authService.logout();
   }
@@ -57,18 +68,17 @@ export class DeliveryboyIonvicePage implements OnInit {
   async leakageModal() {
     const modal = await this.modalCtrl.create({
       component: LeakageComponent,
-      cssClass: "my-modal",
-      componentProps: this.orders
+      cssClass: 'my-modal',
+      componentProps: { products: this.orders },
     });
     return await modal.present();
   }
   async confirmationModal() {
     const modal = await this.modalCtrl.create({
       component: ConfirmSubmissionComponent,
-      cssClass: "my-modal"
+      cssClass: 'my-modal',
+      componentProps: { addEntry: this.addEntry.value, distributor: this.distributor, orders: this.orders},
     });
     return await modal.present();
   }
-
-
 }
