@@ -40,9 +40,14 @@ header {
     }
 }
 
-.add-new-product{
+.add-new-warehouse{
     padding: 7%;
     h4{
         margin-bottom: 40px;
+    }
+    #code{
+        font-size: 28px;
+        font-weight: bold;
+        text-transform: uppercase;
     }
 }

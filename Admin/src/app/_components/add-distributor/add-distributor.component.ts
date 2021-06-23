@@ -109,7 +109,8 @@ export class AddDistributorComponent implements OnInit {
           this.f.warehouse.setValue(data.distributor.route.warehouse);
           this.onChangeWarehouse(data.distributor.route.warehouse);
           this.f.route.setValue(data.distributor.route._id);
-          this.onChangeRoute(data.distributor.route._id);
+          this.f.password.setValue(data.distributor.password);
+          // this.onChangeRoute(data.distributor.route._id);
           this.f.dropPoint.setValue(data.distributor.dropPoint);
           this.formType = `Edit ${data.distributor.name}`;
           this.distributorCode = data.distributor.code;

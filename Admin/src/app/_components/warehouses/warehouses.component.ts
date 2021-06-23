@@ -37,6 +37,10 @@ export class WarehousesComponent implements OnInit {
     });
   }
 
+  onChangeEvent(event: any){
+    this.f.code.setValue(event.target.value[0]);
+  }
+
   get f() {
     return this.addWarehouseform.controls;
   }
@@ -60,6 +64,7 @@ export class WarehousesComponent implements OnInit {
   }
 
   open(content:any) {
+    this.addWarehouseform.reset();
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
